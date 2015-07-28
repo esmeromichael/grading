@@ -50,7 +50,7 @@
             <div class="container">
                 <ul id="text_nav_h" class="clearfix j_menu top_text_nav jMenu">
 
-                    <li><a href="/items">Items</a></li>
+                    <li><a href="/partners">Partners</a></li>
 
                 </ul>
             </div>

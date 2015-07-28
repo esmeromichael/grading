@@ -14,7 +14,7 @@
         <tbody>
             @foreach ($items as $item)
                 <tr>
-                    <td>{{ $item->id }}</td>
+                    <td> <a href="/partners/{{ $item->id }}">{{ $item->id }}</a></td>
                     <td>{{ $item->name }}</td>
                 </tr>
             @endforeach

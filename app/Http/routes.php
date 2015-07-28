@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('items', 'ItemsController@index');
+Route::get('items/{id}', 'ItemsController@show');
+Route::get('partners', 'ItemsController@index');

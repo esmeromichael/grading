@@ -12,4 +12,9 @@ class ItemsController extends Controller {
         return view('items/index', ['items' => $items]);
     }
 
+    public function show($id) {
+    	$item = Item::find($id);
+
+    	return view('items/show', compact('item'));
+    }
 }
