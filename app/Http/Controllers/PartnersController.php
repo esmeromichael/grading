@@ -11,4 +11,10 @@ class PartnersController extends Controller {
         return view('partners/index', compact('partners'));
     }
 
+
+    public function showinfo($id)
+    {
+    	$partnerinfo = Partner::find($id);
+    	return view('partners/profile',compact('partnerinfo'));
+    }
 }
