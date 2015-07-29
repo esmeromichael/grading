@@ -20,7 +20,7 @@
         <tbody>
             @foreach ($partners as $partner)
                 <tr>
-                    <td> <a href="/partners/{{ $partner->id }}/profile">{{ $partner->id }}</a></td>
+                    <td> <a href="/partners/{{ $partner->partner_id }}/profile">{{ $partner->partner_id }}</a></td>
                     <td>{{ $partner->name }}</td>
                     <td> # </td>
                     <td>{{ $partner->address }}</td>

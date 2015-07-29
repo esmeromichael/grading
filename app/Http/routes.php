@@ -16,4 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('partners', 'PartnersController@index');
-Route::get('partners/{id}/profile','PartnersController@showinfo');
+
+Route::get('partners/{partner_id}/profile','PartnersController@showprofile');
+Route::get('partners/{partner_id}/contacts','PartnersController@showcontact');
+Route::get('partners/{partner_id}/branches','PartnersController@showbranch');

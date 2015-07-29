@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePartnersBranchesTable extends Migration
+class PartnersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreatePartnersBranchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('partners_branches', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('partner_id');
+        Schema::create('partners', function (Blueprint $table) {
+            $table->increments('partner_id');
+            $table->string('name');
             $table->enum('status', array('New', 'Active', 'Archived'))->default('Active'); 
                      
             $table->string('address');
@@ -24,6 +24,19 @@ class CreatePartnersBranchesTable extends Migration
             $table->string('city');
             $table->string('province');
             $table->string('country');
+
+            $table->string('mobile_countrycode');
+            $table->string('mobile_areacode');
+            $table->string('mobile_lineno');
+            $table->string('tel_countrycode');
+            $table->string('tel_areacode');
+            $table->string('tel_lineno');
+            $table->string('email'); 
+
+            $table->integer('business_entity');
+            $table->string('tin'); 
+            $table->date('birthday');
+            $table->timestamps();
         });
     }
 
@@ -34,6 +47,6 @@ class CreatePartnersBranchesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('partners_branches');
+        Schema::drop('partners');
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePartnersTable extends Migration
+class PartnerBranches extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,14 @@ class CreatePartnersTable extends Migration
      */
     public function up()
     {
-        Schema::create('partners', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('partner_branches', function (Blueprint $table) {
+            $table->increments('branch_id');
+            $table->integer('partner_id');
             $table->string('name');
-            $table->enum('status', array('New', 'Active', 'Archived'))->default('Active'); 
-                     
+            $table->string('description');               
             $table->string('address');
+            $table->enum('status', array('New', 'Active', 'Archived'))->default('Active');
+
             $table->string('home');
             $table->string('street');
             $table->string('barangay');
@@ -31,11 +33,10 @@ class CreatePartnersTable extends Migration
             $table->string('tel_countrycode');
             $table->string('tel_areacode');
             $table->string('tel_lineno');
+            $table->string('fax_countrycode');
+            $table->string('fax_areacode');
+            $table->string('fax_lineno');
             $table->string('email'); 
-
-            $table->integer('business_entity');
-            $table->string('tin'); 
-            $table->date('birthday');
             $table->timestamps();
         });
     }
@@ -47,6 +48,6 @@ class CreatePartnersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('partners');
+        Schema::drop('partner_branches');
     }
 }

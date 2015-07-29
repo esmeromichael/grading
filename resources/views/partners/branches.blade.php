@@ -21,26 +21,28 @@
             </div>
         </nav>
 
-    <h6>This is the Contacts Tab. Click on the Contact ID to view details</h6>
+    <h6>This is the Branch Tab. Click on the Branch ID to view details</h6>
 
 
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Contact ID</th>
+                <th>Branch ID</th>
                 <th>Name</th>
+                <th>Description</th>
                 <th>Address</th>
-                <th>Contacts</th>
+                <th>Status</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach ($partnerscontact as $contact)
+            @foreach ($partnersbranch as $branch)
                 <tr>
-                    <td> <a href="#">{{ $contact->contact_id }}</a></td>
-                    <td>{{ $contact->full_name }}</td>
-                    <td>{{ $contact->address }}</td>
-                    <td>{{ $contact->tel_areacode}} {{$contact->tel_lineno }}</td>                  
+                    <td> <a href="#">{{ $branch->branch_id }}</a></td>
+                    <td>{{ $branch->name }}</td>
+                    <td>{{ $branch->description }}</td>
+                    <td>{{ $branch->address }}</td>
+                    <td>{{ $branch->status }}</td>                  
                 </tr>
             @endforeach
         </tbody>
