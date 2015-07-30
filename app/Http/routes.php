@@ -15,8 +15,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('partners', 'PartnersController@index');
+Route::get('deskpad/', function () {
+    return view('deskpad/index');
+});
 
-Route::get('partners/{partner_id}/profile','PartnersController@showprofile');
-Route::get('partners/{partner_id}/contacts','PartnersController@showcontact');
-Route::get('partners/{partner_id}/branches','PartnersController@showbranch');
+Route::get('deskpad/partners', 'DeskpadController@partners');
+
+
+Route::get('deskpad/partners/{partner_id}/profile','DeskpadController@showprofile');
+Route::get('deskpad/partners/{partner_id}/contacts','DeskpadController@showcontact');
+Route::get('deskpad/partners/{partner_id}/branches','DeskpadController@showbranch');
+
+
+
+
+Route::get('register', function () {
+    return view('account.register');
+});
+
+Route::post('register','RegisterController@insert');
+
+
+Route::get('operations/', function () {
+    return view('operations/index');
+});
+
+Route::get('operations/items', 'OperationController@items');

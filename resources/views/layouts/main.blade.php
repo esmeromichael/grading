@@ -9,13 +9,16 @@
         <nav id="side_fixed_nav">
             <ul id="text_nav_side_fixed">
                 <li>
-                    <a href="javascript:void(0)" title="Operations"><span class="fa fa-cubes"></span> Operations</a>
+                    <a href="/deskpad" title="Deskpad"><span class="fa fa-group"></span> Deskpad</a>
+                </li>
+                <li>
+                    <a href="/operations" title="Operations"><span class="fa fa-cubes"></span> Operations</a>
                 </li>
                 <li>
                     <a href="javascript:void(0)" title="Accounting"><span class="fa fa-bar-chart"></span> Accounting</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" title="HR"><span class="fa fa-group"></span> HR</a>
+                    <a href="javascript:void(0)" title="HR"><span class="fa fa-desktop"></span> HR</a>
                 </li>
             </ul>
         </nav>
@@ -45,18 +48,6 @@
         </header>
 
         <nav id="mobile_navigation"></nav>
-
-        <nav id="top_navigation" class="text_nav">
-            <div class="container">
-                <ul id="text_nav_h" class="clearfix j_menu top_text_nav jMenu">
-
-                    <li><a href="/partners">Partners</a></li>
-
-                </ul>
-            </div>
-        </nav>
-
-        <section class="container main_section">
             @yield('content')
         </section>
     </div>

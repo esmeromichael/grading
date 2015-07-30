@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-    HELLO WELCOME
+       
+
+        <section class="container main_section">
+    HELLO WELCOME TO HOME
+
 @endsection
