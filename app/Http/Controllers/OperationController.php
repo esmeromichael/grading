@@ -19,13 +19,21 @@ class OperationController extends Controller {
 
 public function displayItems(){
 
-	    $itemlist = DB::table('items')
-			            ->join('item_categories', 'items.item_id', '=', 'item_categories.item_id')
-			            ->join('item_sub_categories', 'item_categories.category', '=', 'item_sub_categories.item_category_id')
-			            ->select('items.*', 'item_sub_categories.name')
+	    // $itemlist = DB::table('items')
+			  //           ->join('item_categories', 'items.item_id', '=', 'item_categories.item_id')
+			  //           ->join('item_sub_categories', 'item_categories.category', '=', 'item_sub_categories.item_category_id')
+			  //           ->select('items.*', 'item_sub_categories.name')
+			  //           ->get();
+					// 	return view('operations/show', compact('itemlist'));
+
+$itemlist = DB::table('profile')
+			            ->join('profile_category', 'profile.item_id', '=', 'profile_category.item_id')
+			            ->join('category', 'profile_category.category', '=', 'category.id')
+			            ->select('profile.*', 'category.name')
+			            ->groupBy('name')
+			            ->orderBy('name', 'asc')
 			            ->get();
 						return view('operations/show', compact('itemlist'));
-
 }
 
 
