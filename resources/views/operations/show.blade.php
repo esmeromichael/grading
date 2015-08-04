@@ -13,10 +13,9 @@
                 </ul>
             </div>
         </nav>
-
         
         <section class="container main_section">
-    	<h5>This is the Partners Tab. Click on the Partner ID to view details</h5>
+    	<h5>This is the Items Tab. Click on the Item ID to view details</h5>
 
 			<table class="table table-striped table-hover">
 			        <thead>
@@ -40,9 +39,12 @@
 			                    <td>{{ $item->description }}</td>
 			                    <td>{{ $item->sku }} </td>
 			                    <td>{{ $item->code }}</td>
-			                    <td>{{ $item->category }}</td>
-			                    <td>{{ $item->qoh }} </td>
-			                    <td>{{ $item->Unit }} </td>                    
+			                    <td>{{ $item->name }}</td>
+			                    <td># </td>
+			                    <td> # </td>
+			                    <td> # </td>
+			                    <td>{{ $item->status }}</td> 
+
 			                </tr>
 			            @endforeach
 			        </tbody>

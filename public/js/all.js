@@ -2335,4 +2335,45 @@ $(function() {
     };
 });
 
+
+/*comment- my additional js section*/
+ function myFunction1() {
+    var x = document.getElementById("entity").value;
+    if (x == "Individual") 
+        {
+            document.getElementById("inputRegdiv").style.display = "none";
+            document.getElementById("inputBdaydiv").style.display = "block";
+            document.getElementById("inputdateincdiv").style.display = "none";
+        }
+    else if(x == "Sole Proprietorship")
+        {
+            document.getElementById("inputRegdiv").style.display = "block";
+            document.getElementById("inputBdaydiv").style.display = "none";
+            document.getElementById("inputdateincdiv").style.display = "block";
+        }
+    else if(x == "Partnership")
+        {
+            document.getElementById("inputRegdiv").style.display = "block";
+            document.getElementById("inputBdaydiv").style.display = "none";
+            document.getElementById("inputdateincdiv").style.display = "block";
+        }
+    else if(x == "Corporation")
+        {
+           document.getElementById("inputRegdiv").style.display = "block";
+            document.getElementById("inputBdaydiv").style.display = "none";
+            document.getElementById("inputdateincdiv").style.display = "block";
+        }
+    else
+        {
+            document.getElementById("inputRegdiv").style.display = "none";
+            document.getElementById("inputBdaydiv").style.display = "none";
+            document.getElementById("inputdateincdiv").style.display = "none";
+        }
+
+//      function copy() {
+//     document.getElementById("label").innerHTML = document.getElementById("category").value
+// }
+
+
+    }
 //# sourceMappingURL=all.js.map

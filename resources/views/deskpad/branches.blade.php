@@ -22,13 +22,13 @@
             </div>
             <div class="container"> 
                     <ul id="text_nav_h" class="clearfix j_menu top_text_nav jMenu">
-                    <li><a href="/deskpad/partners/{{ $partnerid->partner_id }}/profile">Profile</a></li>
-                    <li><a href="/deskpad/partners/{{ $partnerid->partner_id }}/branches">Branches</a></li>
-                    <li><a href="/deskpad/partners/{{ $partnerid->partner_id }}/contacts">Contacts</a></li>
+                    <li><a href="/deskpad/partners/{{ $partnerid->id }}/profile">Profile</a></li>
+                    <li><a href="/deskpad/partners/{{ $partnerid->id }}/branches">Branches</a></li>
+                    <li><a href="/deskpad/partners/{{ $partnerid->id }}/contacts">Contacts</a></li>
                 </ul>          
             </div>
             <div class="container"> 
-                   <h5>[{{$partnerid->partner_id}}] - {{$partnerid->name}}</h5> 
+                   <h5>[{{$partnerid->id}}] - {{$partnerid->name}}</h5> 
             </div>
         </nav>
 
@@ -46,15 +46,18 @@
             </tr>
         </thead>
 
-        <tbody>
+        <tbody><?php 
+            $index=1;
+            ?>
             @foreach ($partnersbranch as $branch)
                 <tr>
-                    <td> <a href="#">{{ $branch->branch_id }}</a></td>
+                    <td> <a href="/deskpad/partners/{{$partnerid->id}}/branches/{{$branch->branchid}}">{{$index++}}</a></td>
                     <td>{{ $branch->name }}</td>
                     <td>{{ $branch->description }}</td>
                     <td>{{ $branch->address }}</td>
                     <td>{{ $branch->status }}</td>                  
                 </tr>
+
             @endforeach
         </tbody>
     </table>
