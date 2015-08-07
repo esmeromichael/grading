@@ -27,10 +27,10 @@ class Items extends Migration
             $table->string('description');
             $table->integer('account');
             $table->integer('category');
+            $table->integer('subcategory');
             $table->decimal('reorder_lvl',11,2)->default('0.00');
             $table->integer('lead_time');
             $table->integer('uom');
-
             $table->decimal('ave_cost',20,4)->default('0.0000');
             $table->decimal('item_cost',12,4)->default('0.0000');
             $table->enum('status', array('New', 'Active', 'Archived'))->default('New');

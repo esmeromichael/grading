@@ -41,17 +41,6 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 -- Table structure for table `citizenships`
 --
 
-CREATE TABLE IF NOT EXISTS `citizenships` (
-  `id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL DEFAULT '',
-  `description` varchar(50) NOT NULL,
-  `is_local` enum('Y','N') DEFAULT 'N',
-  `status` enum('Active','Inactive','Archived') NOT NULL DEFAULT 'Active'
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `citizenships`
---
 
 INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES
 (1, 'Filipino', 'Citizens of the Republic of the Philippines\r\n', 'Y', 'Active'),
@@ -71,18 +60,6 @@ INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) V
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `countries`
---
-
-CREATE TABLE IF NOT EXISTS `countries` (
-  `id` int(6) NOT NULL,
-  `value` varchar(250) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=243 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `countries`
---
 
 INSERT INTO `countries` (`id`, `value`) VALUES
 (1, 'Afghanistan'),
@@ -333,68 +310,18 @@ INSERT INTO `countries` (`id`, `value`) VALUES
 -- Table structure for table `entities`
 --
 
-CREATE TABLE IF NOT EXISTS `entities` (
-  `client` int(11) NOT NULL DEFAULT '1',
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `status` enum('Active','Inactive','Archived') DEFAULT 'Active',
-  `sort` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `entities`
---
-
-INSERT INTO `entities` (`client`, `id`, `name`, `description`, `status`, `sort`) VALUES
-(1, 1, 'Corporation', 'Corporation', 'Active', 4),
-(1, 3, 'Partnership', 'Partnership', 'Active', 3),
-(1, 4, 'Sole Proprietorship', 'Sole Proprietorship', 'Active', 2),
-(1, 6, 'Individual', 'Individual', 'Active', 1);
+INSERT INTO `entities` (`id`, `name`, `description`, `status`, `sort`) VALUES
+(1, 'Corporation', 'Corporation', 'Active', 4),
+(3, 'Partnership', 'Partnership', 'Active', 3),
+(4, 'Sole Proprietorship', 'Sole Proprietorship', 'Active', 2),
+(6, 'Individual', 'Individual', 'Active', 1);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `items`
 --
-
-CREATE TABLE IF NOT EXISTS `items` (
-  `item_id` int(11) NOT NULL,
-  `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `sku` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `generic` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `brand` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `make` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `model` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `color` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `size_dim` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `gauge_thick` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `account` int(11) NOT NULL,
-  `category` int(11) NOT NULL,
-  `reorder_lvl` decimal(11,2) NOT NULL DEFAULT '0.00',
-  `lead_time` int(11) NOT NULL,
-  `uom` int(11) NOT NULL,
-  `ave_cost` decimal(20,4) NOT NULL DEFAULT '0.0000',
-  `item_cost` decimal(12,4) NOT NULL DEFAULT '0.0000',
-  `status` enum('New','Active','Archived') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'New',
-  `for_sale` enum('Y','N') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',
-  `vatable` enum('Y','N') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',
-  `inventoriable` enum('Y','N') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
-  `serialized` enum('Y','N') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
-  `sales_acct` int(11) NOT NULL,
-  `usage_acct` int(11) NOT NULL,
-  `inv_acct` int(11) NOT NULL,
-  `over_cost` enum('null','Amount','Percent') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'null',
-  `std` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `max` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `min` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `old_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `subcategory` int(5) NOT NULL,
-  `_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=44097 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `items`
@@ -414,149 +341,104 @@ INSERT INTO `items` (`item_id`, `code`, `sku`, `generic`, `brand`, `make`, `mode
 -- Table structure for table `item_categories`
 --
 
-CREATE TABLE IF NOT EXISTS `item_categories` (
-  `module_id` int(11) NOT NULL,
-  `parent` int(11) NOT NULL DEFAULT '0',
-  `level` int(11) NOT NULL DEFAULT '1',
-  `id` int(11) NOT NULL,
-  `short` varchar(50) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  `active` enum('Y','N') NOT NULL DEFAULT 'Y',
-  `for_printing` enum('Y','N') NOT NULL DEFAULT 'N',
-  `for_lamination` enum('Y','N') NOT NULL DEFAULT 'N',
-  `group` int(11) DEFAULT NULL,
-  `vatable` enum('Y','N') DEFAULT 'Y',
-  `sales_acct` int(11) DEFAULT '0',
-  `usage_acct` int(11) DEFAULT '0',
-  `inv_acct` int(11) DEFAULT '0',
-  `over_cost` enum('Amount','Percent') DEFAULT NULL,
-  `std` decimal(12,2) DEFAULT NULL,
-  `max` decimal(12,2) DEFAULT NULL,
-  `min` decimal(12,2) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 --
 -- Dumping data for table `item_categories`
 --
 
-INSERT INTO `item_categories` (`module_id`, `parent`, `level`, `id`, `short`, `name`, `description`, `active`, `for_printing`, `for_lamination`, `group`, `vatable`, `sales_acct`, `usage_acct`, `inv_acct`, `over_cost`, `std`, `max`, `min`) VALUES
-(2, 0, 1, 1, '', 'Computer Hardwares', '', 'N', 'N', 'N', NULL, 'Y', 50, 69, 8, 'Percent', '10.00', '20.00', '8.00'),
-(2, 0, 1, 2, '', 'Security Systems', '', 'Y', 'N', 'N', NULL, 'Y', 50, 16, 8, 'Percent', '42.86', '50.00', '35.00'),
-(2, 0, 1, 3, '', 'POS Systems', '', 'Y', 'N', 'N', NULL, 'Y', 50, 16, 8, 'Percent', '20.00', '40.00', '15.00'),
-(2, 0, 1, 4, '', 'Home Automation Systems', '', 'Y', 'N', 'N', NULL, 'Y', 50, 17, 8, 'Percent', '20.00', '40.00', '15.00'),
-(2, 0, 1, 5, '', 'Software', '', 'Y', 'N', 'N', NULL, 'Y', 50, 69, 8, 'Percent', '10.00', '20.00', '8.00'),
-(2, 0, 1, 6, '', 'Project Materials', '', 'Y', 'N', 'N', NULL, 'Y', 50, 82, 8, 'Percent', '10.00', '20.00', '8.00'),
-(2, 0, 1, 7, '', 'Network Equipment', '', 'Y', 'N', 'N', NULL, 'Y', 50, 16, 8, 'Percent', '10.00', '20.00', '8.00'),
-(2, 0, 1, 8, '', 'Services', '', 'Y', 'N', 'N', NULL, 'Y', 51, 81, 88, 'Amount', '100.00', '200.00', '50.00'),
-(2, 0, 1, 9, '', 'Power Devices', '', 'Y', 'N', 'N', NULL, 'Y', 50, 16, 8, 'Percent', '50.00', '100.00', '40.00'),
-(0, 0, 1, 0, NULL, NULL, NULL, 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, NULL, NULL, NULL, NULL),
-(2, 0, 1, 10, '', 'Computer Equipment', '', 'Y', 'N', 'N', NULL, 'Y', 50, 16, 8, 'Percent', '10.00', '20.00', '8.00'),
-(2, 0, 1, 11, '', 'Cables and Wires', '', 'Y', 'N', 'N', NULL, 'Y', 50, 82, 8, 'Percent', '20.00', '30.00', '10.00'),
-(2, 0, 1, 12, '', 'Tools', '', 'Y', 'N', 'N', NULL, 'Y', 50, 15, 8, 'Percent', '20.00', '30.00', '10.00'),
-(2, 0, 1, 13, '', 'Office Supplies', '', 'Y', 'N', 'N', NULL, 'Y', 50, 69, 8, 'Percent', '10.00', '20.00', '5.00'),
-(2, 0, 1, 14, '', 'Personal Protective Equipments', '', 'Y', 'N', 'N', NULL, 'Y', 50, 16, 8, 'Percent', '20.00', '30.00', '15.00'),
-(2, 0, 1, 15, '', 'Household Products', '', 'Y', 'N', 'N', NULL, 'Y', 50, 69, 8, 'Amount', '40.00', '60.00', '20.00');
-
+INSERT INTO `item_categories` (`id`, `short`, `name`, `description`, `active`, `for_printing`, `for_lamination`, `group`, `vatable`, `sales_acct`, `usage_acct`, `inv_acct`, `over_cost`, `std`, `max`, `min`) VALUES
+(0,'', NULL, '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, NULL, NULL, NULL, NULL),
+(1,'', 'Computer Hardwares', '', 'N', 'N', 'N', NULL, 'Y', 50, 69, 8, 'Percent', '10.00', '20.00', '8.00'),
+(2,'', 'Security Systems', '', 'Y', 'N', 'N', NULL, 'Y', 50, 16, 8, 'Percent', '42.86', '50.00', '35.00'),
+(3,'', 'POS Systems', '', 'Y', 'N', 'N', NULL, 'Y', 50, 16, 8, 'Percent', '20.00', '40.00', '15.00'),
+(4,'', 'Home Automation Systems', '', 'Y', 'N', 'N', NULL, 'Y', 50, 17, 8, 'Percent', '20.00', '40.00', '15.00'),
+(5,'', 'Software', '', 'Y', 'N', 'N', NULL, 'Y', 50, 69, 8, 'Percent', '10.00', '20.00', '8.00'),
+(6,'', 'Project Materials', '', 'Y', 'N', 'N', NULL, 'Y', 50, 82, 8, 'Percent', '10.00', '20.00', '8.00'),
+(7,'', 'Network Equipment', '', 'Y', 'N', 'N', NULL, 'Y', 50, 16, 8, 'Percent', '10.00', '20.00', '8.00'),
+(8,'', 'Services', '', 'Y', 'N', 'N', NULL, 'Y', 51, 81, 88, 'Amount', '100.00', '200.00', '50.00'),
+(9,'', 'Power Devices', '', 'Y', 'N', 'N', NULL, 'Y', 50, 16, 8, 'Percent', '50.00', '100.00', '40.00'),
+(10,'', 'Computer Equipment', '', 'Y', 'N', 'N', NULL, 'Y', 50, 16, 8, 'Percent', '10.00', '20.00', '8.00'),
+(11,'', 'Cables and Wires', '', 'Y', 'N', 'N', NULL, 'Y', 50, 82, 8, 'Percent', '20.00', '30.00', '10.00'),
+(12,'', 'Tools', '', 'Y', 'N', 'N', NULL, 'Y', 50, 15, 8, 'Percent', '20.00', '30.00', '10.00'),
+(13,'', 'Office Supplies', '', 'Y', 'N', 'N', NULL, 'Y', 50, 69, 8, 'Percent', '10.00', '20.00', '5.00'),
+(14,'', 'Personal Protective Equipments', '', 'Y', 'N', 'N', NULL, 'Y', 50, 16, 8, 'Percent', '20.00', '30.00', '15.00'),
+(15,'', 'Household Products', '', 'Y', 'N', 'N', NULL, 'Y', 50, 69, 8, 'Amount', '40.00', '60.00', '20.00');
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `item_subcategories`
 --
 
-CREATE TABLE IF NOT EXISTS `item_subcategories` (
-  `module_id` int(11) NOT NULL,
-  `parent` int(11) NOT NULL DEFAULT '0',
-  `level` int(11) NOT NULL DEFAULT '1',
-  `id` int(11) NOT NULL,
-  `short` varchar(50) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  `active` enum('Y','N') NOT NULL DEFAULT 'Y',
-  `for_printing` enum('Y','N') NOT NULL DEFAULT 'N',
-  `for_lamination` enum('Y','N') NOT NULL DEFAULT 'N',
-  `group` int(11) DEFAULT NULL,
-  `vatable` enum('Y','N') DEFAULT 'Y',
-  `sales_acct` int(11) DEFAULT '0',
-  `usage_acct` int(11) DEFAULT '0',
-  `inv_acct` int(11) DEFAULT '0',
-  `over_cost` enum('Amount','Percent') DEFAULT NULL,
-  `std` decimal(12,2) DEFAULT NULL,
-  `max` decimal(12,2) DEFAULT NULL,
-  `min` decimal(12,2) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 --
 -- Dumping data for table `item_subcategories`
 --
 
-INSERT INTO `item_subcategories` (`module_id`, `parent`, `level`, `id`, `short`, `name`, `description`, `active`, `for_printing`, `for_lamination`, `group`, `vatable`, `sales_acct`, `usage_acct`, `inv_acct`, `over_cost`, `std`, `max`, `min`) VALUES
-(2, 2, 2, 1, '', 'Digital Video Recorders', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 2, 2, 2, '', 'CCTV Cameras', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 2, 2, 3, '', 'DVR Cards', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 2, 2, 4, '', 'Network Video Recorders', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 2, 2, 5, '', 'IP Cameras', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 2, 2, 6, '', 'CCTV Accessories', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 1, 2, 7, '', 'Casings', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 1, 2, 8, '', 'Motherboards', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 1, 2, 9, '', 'Processors', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 1, 2, 10, '', 'Memory', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 11, '', 'Casings', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 12, '', 'Motherboards', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 13, '', 'Processors', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 14, '', 'Memory Modules', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 15, '', 'Disk Drives', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 16, '', 'Video Controllers', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 17, '', 'Network Controllers', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 18, '', 'Disk Controllers', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 19, '', 'Cooling Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 20, '', 'Monitors', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 21, '', 'Audio Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 22, '', 'Data and Power Cables', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 7, 2, 23, '', 'Switches', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 7, 2, 24, '', 'Routers', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 7, 2, 25, '', 'Modems', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 7, 2, 26, '', 'Network Accessories', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 9, 2, 27, '', 'Computer Power Supply Units', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 9, 2, 28, '', 'Camera Power Supply Units', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 9, 2, 29, '', 'Uninterrupted Power Supplies', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, 'Percent', '10.00', '20.00', '8.00'),
-(2, 9, 2, 30, '', 'Mobile Device Power Supply Units', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 9, 2, 31, '', 'Generic Power Supply Units', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 11, 2, 32, '', 'Coaxial Cables', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 11, 2, 33, '', 'UTP Cables', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 11, 2, 34, '', 'STP Cables', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 11, 2, 35, '', 'Electrical Wires', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 4, 2, 36, '', 'Automation Controllers', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 4, 2, 37, '', 'Automation Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 6, 2, 38, '', 'Project Consumables', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 6, 2, 39, '', 'Pipes and Conduits', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 6, 2, 40, '', 'Plugs and Connectors', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 12, 2, 41, '', 'Hand Tools', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 12, 2, 42, '', 'Power Tools', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 12, 2, 43, '', 'Specialized Tools', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 44, '', 'Laptops and Notebooks', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 45, '', 'All-in-One PCs', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 46, '', 'Embedded Systems', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 7, 2, 47, '', 'Network Storage Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 48, '', 'Input and Output Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 10, 2, 49, '', 'Output Devices', '', 'N', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 5, 2, 50, '', 'Licenses', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 5, 2, 51, '', 'Business Systems', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, 'Percent', '20.00', '30.00', '10.00'),
-(2, 3, 2, 52, '', 'POS Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 3, 2, 53, '', 'POS Machines', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 8, 2, 54, '', 'Computer Repairs', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 8, 2, 55, '', 'CCTV Installations', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 2, 2, 56, '', 'Access Control Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 9, 2, 57, '', 'Automatic Voltage Regulators', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 9, 2, 58, '', 'Power Supply Accessories', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 13, 2, 59, '', 'Papers', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 13, 2, 60, '', 'Inks and Toners', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 13, 2, 61, '', 'Blank Media', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 13, 2, 62, '', 'Office Furnitures', '', 'Y', 'N', 'N', NULL, 'Y', 50, 17, 8, '', '0.00', '0.00', '0.00'),
-(2, 7, 2, 63, '', 'IP Telephony', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 8, 2, 64, '', 'Network Installations', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
-(2, 14, 2, 65, '', 'Safety Shoes', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, 'Percent', '25.00', '40.00', '20.00'),
-(0, 0, 1, 0, NULL, NULL, NULL, 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `item_subcategories` (`parent`, `id`, `short`, `name`, `description`, `active`, `for_printing`, `for_lamination`, `group`, `vatable`, `sales_acct`, `usage_acct`, `inv_acct`, `over_cost`, `std`, `max`, `min`) VALUES
+(2, 1, '', 'Digital Video Recorders', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(2, 2, '', 'CCTV Cameras', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(2, 3, '', 'DVR Cards', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(2, 4, '', 'Network Video Recorders', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(2, 5, '', 'IP Cameras', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(2, 6, '', 'CCTV Accessories', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(1, 7, '', 'Casings', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(1, 8, '', 'Motherboards', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(1, 9, '', 'Processors', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(1, 10, '', 'Memory', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 11, '', 'Casings', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 12, '', 'Motherboards', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 13, '', 'Processors', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 14, '', 'Memory Modules', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 15, '', 'Disk Drives', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 16, '', 'Video Controllers', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 17, '', 'Network Controllers', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 18, '', 'Disk Controllers', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 19, '', 'Cooling Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 20, '', 'Monitors', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 21, '', 'Audio Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 22, '', 'Data and Power Cables', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(7, 23, '', 'Switches', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(7, 24, '', 'Routers', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(7, 25, '', 'Modems', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(7, 26, '', 'Network Accessories', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(9, 27, '', 'Computer Power Supply Units', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(9, 28, '', 'Camera Power Supply Units', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(9, 29, '', 'Uninterrupted Power Supplies', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, 'Percent', '10.00', '20.00', '8.00'),
+(9, 30, '', 'Mobile Device Power Supply Units', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(9, 31, '', 'Generic Power Supply Units', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(11, 32, '', 'Coaxial Cables', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(11, 33, '', 'UTP Cables', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(11, 34, '', 'STP Cables', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(11, 35, '', 'Electrical Wires', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(4, 36, '', 'Automation Controllers', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(4, 37, '', 'Automation Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(6, 38, '', 'Project Consumables', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(6, 39, '', 'Pipes and Conduits', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(6, 40, '', 'Plugs and Connectors', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(12, 41, '', 'Hand Tools', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(12, 42, '', 'Power Tools', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(12, 43, '', 'Specialized Tools', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 44, '', 'Laptops and Notebooks', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 45, '', 'All-in-One PCs', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 46, '', 'Embedded Systems', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(7, 47, '', 'Network Storage Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 48, '', 'Input and Output Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(10, 49, '', 'Output Devices', '', 'N', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(5, 50, '', 'Licenses', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(5, 51, '', 'Business Systems', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, 'Percent', '20.00', '30.00', '10.00'),
+(3, 52, '', 'POS Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(3, 53, '', 'POS Machines', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(8, 54, '', 'Computer Repairs', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(8, 55, '', 'CCTV Installations', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(2, 56, '', 'Access Control Devices', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(9, 57, '', 'Automatic Voltage Regulators', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(9, 58, '', 'Power Supply Accessories', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(13, 59, '', 'Papers', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(13, 60, '', 'Inks and Toners', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(13, 61, '', 'Blank Media', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(13, 62, '', 'Office Furnitures', '', 'Y', 'N', 'N', NULL, 'Y', 50, 17, 8, '', '0.00', '0.00', '0.00'),
+(7, 63, '', 'IP Telephony', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(8, 64, '', 'Network Installations', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, '', '0.00', '0.00', '0.00'),
+(14, 65, '', 'Safety Shoes', '', 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, 'Percent', '25.00', '40.00', '20.00'),
+(0, 0, NULL, NULL, NULL, 'Y', 'N', 'N', NULL, 'Y', 0, 0, 0, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -564,23 +446,7 @@ INSERT INTO `item_subcategories` (`module_id`, `parent`, `level`, `id`, `short`,
 -- Table structure for table `migrations`
 --
 
-CREATE TABLE IF NOT EXISTS `migrations` (
-  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`migration`, `batch`) VALUES
-('2015_07_29_112550_partners_table', 1),
-('2015_07_29_112621_partner_branches', 1),
-('2015_07_29_112636_partner_contacts', 1),
-('2015_07_29_171120_account', 1),
-('2015_07_30_102809_item_sub_categories', 1),
-('2015_07_30_104221_item_categories', 1),
-('2015_07_30_105102_items', 1);
 
 -- --------------------------------------------------------
 
@@ -588,41 +454,6 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- Table structure for table `partners`
 --
 
-CREATE TABLE IF NOT EXISTS `partners` (
-  `id` int(10) unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` enum('New','Active','Archived') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Active',
-  `customer` enum('No','Yes') COLLATE utf8_unicode_ci DEFAULT NULL,
-  `supplier` enum('No','Yes') COLLATE utf8_unicode_ci DEFAULT NULL,
-  `employee` enum('No','Yes') COLLATE utf8_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `home` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `street` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `barangay` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `province` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `country` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mobile_countrycode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mobile_areacode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mobile_lineno` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tel_countrycode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tel_areacode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tel_lineno` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `fax_countrycode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `fax_areacode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `fax_lineno` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `business_entity` enum('Individual','Sole Proprietorship','Partnership','Corporation') COLLATE utf8_unicode_ci NOT NULL,
-  `tin` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `reg_no` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `reg_date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `birthday` date NOT NULL,
-  `_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
 -- Dumping data for table `partners`
 --
 
@@ -642,15 +473,6 @@ INSERT INTO `partners` (`id`, `name`, `status`, `customer`, `supplier`, `employe
 -- Table structure for table `partnertitles`
 --
 
-CREATE TABLE IF NOT EXISTS `partnertitles` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `active` enum('Yes','No') DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `partnertitles`
---
 
 INSERT INTO `partnertitles` (`id`, `name`, `active`) VALUES
 (1, 'Mr.', 'Yes'),
@@ -665,35 +487,6 @@ INSERT INTO `partnertitles` (`id`, `name`, `active`) VALUES
 -- Table structure for table `partner_branches`
 --
 
-CREATE TABLE IF NOT EXISTS `partner_branches` (
-  `id` int(10) unsigned NOT NULL,
-  `partner_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` enum('New','Active','Archived') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Active',
-  `home` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `street` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `barangay` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `province` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `country` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mobile_countrycode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mobile_areacode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mobile_lineno` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tel_countrycode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tel_areacode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tel_lineno` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `fax_countrycode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `fax_areacode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `fax_lineno` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
 -- Dumping data for table `partner_branches`
 --
 
@@ -710,46 +503,6 @@ INSERT INTO `partner_branches` (`id`, `partner_id`, `name`, `description`, `addr
 --
 -- Table structure for table `partner_contacts`
 --
-
-CREATE TABLE IF NOT EXISTS `partner_contacts` (
-  `id` int(10) unsigned NOT NULL,
-  `partner_id` int(11) NOT NULL,
-  `status` enum('New','Active','Archived') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Active',
-  `title` enum('Mr.','Mrs.','Ms.','Atty.','Dr.') COLLATE utf8_unicode_ci NOT NULL,
-  `manager` enum('Yes','No') COLLATE utf8_unicode_ci DEFAULT NULL,
-  `supervisor` enum('Yes','No') COLLATE utf8_unicode_ci DEFAULT NULL,
-  `contact_person` enum('Yes','No') COLLATE utf8_unicode_ci DEFAULT NULL,
-  `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `middle_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `position` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `branch` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `home` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `street` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `barangay` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `province` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `country` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `citizenship` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `gender` enum('Female','Male') COLLATE utf8_unicode_ci NOT NULL,
-  `marital_status` enum('Single','Marrried','Separated','Widow') COLLATE utf8_unicode_ci NOT NULL,
-  `active` enum('Yes','No') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Yes',
-  `birthday` date NOT NULL,
-  `mobile_countrycode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mobile_areacode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mobile_lineno` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tel_countrycode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tel_areacode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tel_lineno` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `fax_countrycode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `fax_areacode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `fax_lineno` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `partner_contacts`
@@ -777,15 +530,6 @@ INSERT INTO `partner_contacts` (`id`, `partner_id`, `status`, `title`, `manager`
 -- Table structure for table `uoms`
 --
 
-CREATE TABLE IF NOT EXISTS `uoms` (
-  `id` int(11) NOT NULL,
-  `short` varchar(100) DEFAULT NULL,
-  `name` varchar(150) DEFAULT NULL,
-  `plural_name` varchar(100) DEFAULT NULL,
-  `active` enum('Y','N') DEFAULT 'Y'
-) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
-
---
 -- Dumping data for table `uoms`
 --
 
@@ -809,140 +553,3 @@ INSERT INTO `uoms` (`id`, `short`, `name`, `plural_name`, `active`) VALUES
 
 --
 -- Indexes for table `accounts`
---
-ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `citizenships`
---
-ALTER TABLE `citizenships`
-  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `name` (`name`);
-
---
--- Indexes for table `countries`
---
-ALTER TABLE `countries`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `entities`
---
-ALTER TABLE `entities`
-  ADD PRIMARY KEY (`id`,`client`);
-
---
--- Indexes for table `items`
---
-ALTER TABLE `items`
-  ADD PRIMARY KEY (`item_id`);
-
---
--- Indexes for table `item_categories`
---
-ALTER TABLE `item_categories`
-  ADD PRIMARY KEY (`module_id`,`level`,`id`), ADD KEY `NewIndex1` (`parent`,`level`,`id`);
-
---
--- Indexes for table `item_subcategories`
---
-ALTER TABLE `item_subcategories`
-  ADD PRIMARY KEY (`module_id`,`level`,`id`), ADD KEY `NewIndex1` (`parent`,`level`,`id`);
-
---
--- Indexes for table `partners`
---
-ALTER TABLE `partners`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `partnertitles`
---
-ALTER TABLE `partnertitles`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `partner_branches`
---
-ALTER TABLE `partner_branches`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `partner_contacts`
---
-ALTER TABLE `partner_contacts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `uoms`
---
-ALTER TABLE `uoms`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `accounts`
---
-ALTER TABLE `accounts`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `citizenships`
---
-ALTER TABLE `citizenships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT for table `countries`
---
-ALTER TABLE `countries`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=243;
---
--- AUTO_INCREMENT for table `entities`
---
-ALTER TABLE `entities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `items`
---
-ALTER TABLE `items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44097;
---
--- AUTO_INCREMENT for table `item_categories`
---
-ALTER TABLE `item_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `item_subcategories`
---
-ALTER TABLE `item_subcategories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `partners`
---
-ALTER TABLE `partners`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `partnertitles`
---
-ALTER TABLE `partnertitles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `partner_branches`
---
-ALTER TABLE `partner_branches`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `partner_contacts`
---
-ALTER TABLE `partner_contacts`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT for table `uoms`
---
-ALTER TABLE `uoms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

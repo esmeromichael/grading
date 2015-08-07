@@ -25,7 +25,7 @@ class ItemSubCategories extends Migration
             $table->enum('vatable', array('Y', 'N'));
             $table->integer('sales_acct')->default('0');
             $table->integer('usage_acct')->default('0');
-            $table->integer('invi_acct')->default('0');
+            $table->integer('inv_acct')->default('0');
             $table->enum('over_cost', array('Amount','Percent'))->default('Amount');
             $table->decimal('std',12,2);
             $table->decimal('max',12,2);
