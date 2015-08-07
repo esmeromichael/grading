@@ -23,7 +23,7 @@ Route::get('deskpad/', function () {
 
 Route::get('deskpad/partners/{id}/profile','DeskpadController@showprofile');
 
-Route::get('deskpad/partners/{partner_id}/contacts','DeskpadController@showcontact');
+Route::get('deskpad/partners/{id}/contacts','DeskpadController@showcontact');
 
 /*for show partner branch*/
 Route::post('deskpad/partners/{id}/branches','DeskpadController@showbranch');
@@ -48,19 +48,7 @@ Route::post('deskpad/partners/{id}/contacts', 'DeskpadController@UpdateContact')
 /*------------------------------------*/
 
 
-/*this section is for items controller*/
-Route::get('operations/items', 'OperationController@displayItems');
 
-Route::get('operations/items/{item_id}/profile','OperationController@itemProfile');
-
-Route::post('operations/items/{item_id}/profile', 'OperationController@UpdateItems');
-
-
-/*this section is for load combobox*/
-// 
-/*end section*/
-
-/*end comment=================================================================*/
 
 
 Route::get('register', function () {
@@ -69,9 +57,41 @@ Route::get('register', function () {
 
 Route::post('register','RegisterController@insert');
 
+
+
+/*-------------------------CREATING-----------------------------------------*/
+Route::post('deskpad/partners', 'DeskpadController@createPartner');
+Route::post('deskpad/partners/{id}/branches', 'DeskpadController@createBranch');
+Route::post('deskpad/partners/{id}/contacts', 'DeskpadController@createContact');
+/*-------------------------/CREATING-----------------------------------------*/
+
+
+/*----------------------------SEARCH PARTNER------------------------------------------------*/ 
+Route::post('deskpad/partners/search','DeskpadController@search');
+/*---------------------------/SEARCH PARTNER------------------------------------------------*/
+
+/*----------------------------SEARCH BRANCH------------------------------------------------*/ 
+Route::post('deskpad/partners/{id}/searchbranch','DeskpadController@searchbranch');
+/*---------------------------/SEARCH BRANCH------------------------------------------------*/
+
+
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*this section is for items controller*/
+Route::get('operations/items', 'OperationController@displayItems');
+Route::get('operations/items/{item_id}/profile','OperationController@itemProfile');
+
+Route::post('operations/items/{item_id}/profile', 'OperationController@UpdateItems');
+/*end comment---------------------------------------------------------*/
+
+
 Route::get('operations/', function () {
     return view('operations/index');
 });
 
 
-
+ /*------------------------CREATE PARTNER-------------------------------*/ 
+ Route::post('operations/items', 'OperationController@createitem');
+ /*------------------------/CREATE PARTNER-------------------------------*/ 

@@ -1,4 +1,4 @@
- @extends('layouts.main')
+ @extends('layouts.main2')
 
 @section('content')
 <nav id="top_navigation" class="text_nav">
@@ -6,7 +6,7 @@
                 <ul id="text_nav_h" class="clearfix j_menu top_text_nav jMenu">
 
                     <li><a href="/deskpad">Home</a></li>
-                    <li><a href="/deskpad/partners">Partners</a></li>
+                    <li class="active"><a href="/deskpad/partners">Partners</a></li>
 
                 </ul>
             </div>
@@ -18,7 +18,7 @@
                 <ul id="text_nav_h" class="clearfix j_menu top_text_nav jMenu">
                     <li><a href="/deskpad/partners/{{ $partnerid->id }}/profile">Profile</a></li>
                     <li><a href="/deskpad/partners/{{ $partnerid->id }}/branches">Branches</a></li>
-                    <li><a href="/deskpad/partners/{{ $partnerid->id }}/contacts">Contacts</a></li>
+                    <li class="active"><a href="/deskpad/partners/{{ $partnerid->id }}/contacts">Contacts</a></li>
                 </ul>
             </div>
         </nav>
@@ -30,13 +30,13 @@
 <form class="form-signin" name="loginform" method="POST" action="/deskpad/partners/{{$partnerid->id}}/contacts">
 <table>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-			 <tr>
+             <tr>
                             <td><b>Contact Type</b></td>
                             <td>
                             <div class="col-xs-12">
-                            <label class="checkbox-inline"><input  type="checkbox" name="manager" value="Y">Manager</label>
-                            <label class="checkbox-inline"><input  type="checkbox" name="supervisor" value="Y">Supervisor</label>
-                            <label class="checkbox-inline"><input  type="checkbox" name="contactperson" value="Y">Contact Person</label>  
+                            <label class="checkbox-inline"><input  type="checkbox" name="manager" value="Yes">Manager</label>
+                            <label class="checkbox-inline"><input  type="checkbox" name="supervisor" value="Yes">Supervisor</label>
+                            <label class="checkbox-inline"><input  type="checkbox" name="contactperson" value="Yes">Contact Person</label>  
                             </div>
                             </td>
              </tr>
@@ -45,31 +45,30 @@
                             <b>Branch</b>
                             </td>
                             <td>
-                            <div class="col-xs-updatecontact">
+                            <div class="col-xs-12">
                             <input type="hidden" id="inputPartnerID" value="" name="partnerid" class="form-control" placeholder="Branch" autofocus="">
                             <input type="text" id="inputPartnerID" value="{{$updatecontact->branch}}" name="branch" class="form-control" placeholder="Branch" autofocus="">
                             </div>
                             </td>
               </tr>
-              				<tr>
+                            <tr>
                             <td><b><br>Contact ID</b></td>
                             <td>
-                           
+                            <hr>
                             <div class="col-xs-4">
                             <input type="text" id="inputcontactid" name="id" value="{{$updatecontact->id}}" class="form-control" placeholder="" required autofocus="" readonly>
                             </div>
                             </td>
                </tr>
-               	<tr>
+                <tr>
                             <td><b>Title</b></td>
                             <td>
                             <div class="col-xs-4">
                             <select class="form-control" id="title" name="title">
                             <option value="">---Select One---</option>
-                            <option value="Mr.">Mr.</option>
-                            <option value="Mrs." >Mrs.</option>
-                            <option value="Ms.">Ms.</option>
-                            <option value="Atty.">Atty.</option>
+                            @foreach($partnertitles as $title)
+                            <option value="{{$title->name}}">{{$title->name}}</option>
+                            @endforeach
                             </select>
                             </div>
                             <div class="col-xs-4" align="right">
@@ -98,35 +97,44 @@
                  </tr>
 
                  <tr>
-                            <td><b>Address</b></td>
+                            <td><b><br>Address</b></td>
                             <td><br>
                             <div class="col-xs-4">
-                            <input type="text" id="inputCountry" value="{{$updatecontact->country}}" name="country" class="form-control" placeholder="Country"  autofocus="">Country
+                            <input type="text" id="inputCountry" list="countries" value="{{$updatecontact->country}}" name="country" class="form-control" placeholder="Country"  autofocus="">
+                            <datalist id="countries">
+                                @foreach ($countries as $country)
+                            <option value="{{$country->value}}">
+                                @endforeach
+                                </datalist>
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputProvince" value="{{$updatecontact->province}}" name="province" class="form-control" placeholder="Province"  autofocus="">Province
+                            <input type="text" id="inputProvince" value="{{$updatecontact->province}}" name="province" class="form-control" placeholder="Province"  autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputCity" value="{{$updatecontact->city}}" name="city" class="form-control" placeholder="City/Municipality"  autofocus="">City
+                            <input type="text" id="inputCity" value="{{$updatecontact->city}}" name="city" class="form-control" placeholder="City/Municipality"  autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputBarangay" value="{{$updatecontact->barangay}}" name="barangay" class="form-control" placeholder="Barangay"  autofocus="">Barangay
+                            <input type="text" id="inputBarangay" value="{{$updatecontact->barangay}}" name="barangay" class="form-control" placeholder="Barangay"  autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputSteet" value="{{$updatecontact->street}}" name="street" class="form-control" placeholder="Street"  autofocus="">Street
+                            <input type="text" id="inputSteet" value="{{$updatecontact->street}}" name="street" class="form-control" placeholder="Street"  autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputHouse" value="{{$updatecontact->home}}" name="house" class="form-control" placeholder="House No./Building"  autofocus="">House No./Buiding
+                            <input type="text" id="inputHouse" value="{{$updatecontact->home}}" name="house" class="form-control" placeholder="House No./Building"  autofocus="">
                             </div>
                             </td>
                  </tr>
 
                 <tr>
-                 			 <td><b>Citizenship</b></td>
-                 			 <td>
-                 			 <div class="col-xs-4">
-                            <input type="text" id="inputCitizenship" value="{{$updatecontact->citizenship}}" name="citizenship" class="form-control" placeholder="Citizenship"  autofocus="">
-                            </select>
+                             <td><b>Citizenship</b></td>
+                             <td>
+                             <div class="col-xs-4">
+                            <input type="text" id="inputCitizenship" list="citizenships" value="{{$updatecontact->citizenship}}" name="citizenship" class="form-control" placeholder="Citizenship"  autofocus="">
+                            <datalist id="citizenships">
+                                @foreach ($citizenships as $citizen)
+                            <option value="{{$citizen->name}}">
+                                @endforeach
+                                </datalist>
                             </div>
                             
                             <div class="col-xs-4" align="right">
@@ -135,7 +143,7 @@
                             <div class="col-xs-4">
                             <input type="date" id="inputBirtdate" value="{{$updatecontact->birthday}}" name="birthday" class="form-control"  autofocus="">
                             </div>
-                 			 </td>
+                             </td>
                 </tr>
                             
                 <tr>
@@ -167,7 +175,7 @@
                 <tr>
                             <td><b><br><br>Mobile No.</b></td>
                             <td>
-                            
+                            <hr>
                             <div class="col-xs-4">
                             <input type="text" id="inputCountrycode" value="{{$updatecontact->mobile_countrycode}}" name="mobile_countrycode" class="form-control" placeholder="Country Code"  autofocus="">Country Code
                             </div>
@@ -184,7 +192,7 @@
                             <td><b>Tel No.</b></td>
                             <td>
                             <div class="col-xs-4">
-                            <input type="text" id="inputCountrycode1" value="{{$updatecontact->tel_countrycode}}" name="tel_countrycode" class="form-control" placeholder="Country Code"  autofocus="">ountry Code
+                            <input type="text" id="inputCountrycode1" value="{{$updatecontact->tel_countrycode}}" name="tel_countrycode" class="form-control" placeholder="Country Code"  autofocus="">Country Code
                             </div>
                             <div class="col-xs-4">
                             <input type="text" id="inputAreacode1" value="{{$updatecontact->tel_areacode}}" name="tel_areacode" class="form-control" placeholder="Area Code"  autofocus="">Area Code
@@ -195,7 +203,7 @@
                             </td>
                 </tr>
 
-               	<tr>
+                <tr>
                             <td><b>Fax No.</b></td>
                             <td>
                             <div class="col-xs-4">
@@ -210,20 +218,22 @@
                             </td>
                 </tr>
 
-                			 <tr>
+                             <tr>
                             <td>
-                            <b><br>Email</b>
+                            <b>Email</b>
                             </td>
                             <td>
-                            <div class="col-xs-1-updatecontact">
+                            <div class="col-xs-12">
                             <input type="text" id="inputEmail" value="{{$updatecontact->email}}" name="email" class="form-control" placeholder="Email Address"  autofocus="">Example: john_doe@email.com
                             </div>
                             </td>
                             </tr>
                             
 
-</table>
-                            <button type="submit" class="btn btn-lg btn-primary" name="submit1">Update</button>
+</table><br>
+                            <button type="submit" class="btn btn-lg btn-primary btn-sm" name="submit1">Update Info</button>
                             
 </form>
-        @endsection
+
+@include('deskpad.modalfunctions.createcontact') 
+@endsection

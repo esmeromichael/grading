@@ -13,8 +13,8 @@ class Items extends Migration
     public function up()
     {
         Schema::create('items', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('item_id');
+    
+            $table->increments('item_id');
             $table->string('code');
             $table->string('sku');
             $table->string('generic');
@@ -49,6 +49,7 @@ class Items extends Migration
             $table->decimal('max',12,2)->default('0.00');
             $table->decimal('min',12,2)->default('0.00');
             $table->integer('old_id');
+            $table->string('_token');
 
 
             $table->timestamps();

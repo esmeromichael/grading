@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main2')
 
 @section('content')
 
@@ -7,7 +7,7 @@
                 <ul id="text_nav_h" class="clearfix j_menu top_text_nav jMenu">
 
                     <li><a href="/deskpad">Home</a></li>
-                    <li><a href="/deskpad/partners">Partners</a></li>
+                    <li class="active"><a href="/deskpad/partners">Partners</a></li>
 
                 </ul>
             </div>
@@ -23,7 +23,7 @@
             <div class="container"> 
                     <ul id="text_nav_h" class="clearfix j_menu top_text_nav jMenu">
                     <li><a href="/deskpad/partners/{{ $partnerid->id }}/profile">Profile</a></li>
-                    <li><a href="/deskpad/partners/{{ $partnerid->id }}/branches">Branches</a></li>
+                    <li class="active"><a href="/deskpad/partners/{{ $partnerid->id }}/branches">Branches</a></li>
                     <li><a href="/deskpad/partners/{{ $partnerid->id }}/contacts">Contacts</a></li>
                 </ul>          
             </div>
@@ -62,6 +62,5 @@
         </tbody>
     </table>
 
-
-  
+@include('deskpad.modalfunctions.createbranch') 
 @endsection

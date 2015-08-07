@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main2')
 
 @section('content')
    <nav id="top_navigation" class="text_nav">
@@ -6,7 +6,7 @@
                 <ul id="text_nav_h" class="clearfix j_menu top_text_nav jMenu">
 
                     <li><a href="/operations">Home</a></li>
-                    <li><a href="/operations/items">Items</a></li>
+                    <li class="active"><a href="/operations/items">Items</a></li>
                     <li><a href="/operations/purchase">Purchase</a></li>
                     <li><a href="/operations/sales">Sales</a></li>
 
@@ -46,9 +46,9 @@
 			                    <td>{{ $item->status }}</td> 
 
 			                </tr>
-			            @endforeach
+               @endforeach
 			        </tbody>
 			</table>
 
-
+@include('operations.modalfunctions.createitem')
 @endsection

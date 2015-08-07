@@ -2338,36 +2338,36 @@ $(function() {
 
 /*comment- my additional js section*/
  function myFunction1() {
-    var x = document.getElementById("entity").value;
+    var x = document.getElementById("entity1").value;
     if (x == "Individual") 
         {
-            document.getElementById("inputRegdiv").style.display = "none";
-            document.getElementById("inputBdaydiv").style.display = "block";
-            document.getElementById("inputdateincdiv").style.display = "none";
+            document.getElementById("inputRegdiv1").style.display = "none";
+            document.getElementById("inputBdaydiv1").style.display = "block";
+            document.getElementById("inputdateincdiv1").style.display = "none";
         }
     else if(x == "Sole Proprietorship")
         {
-            document.getElementById("inputRegdiv").style.display = "block";
-            document.getElementById("inputBdaydiv").style.display = "none";
-            document.getElementById("inputdateincdiv").style.display = "block";
+            document.getElementById("inputRegdiv1").style.display = "block";
+            document.getElementById("inputBdaydiv1").style.display = "none";
+            document.getElementById("inputdateincdiv1").style.display = "block";
         }
     else if(x == "Partnership")
         {
-            document.getElementById("inputRegdiv").style.display = "block";
-            document.getElementById("inputBdaydiv").style.display = "none";
-            document.getElementById("inputdateincdiv").style.display = "block";
+            document.getElementById("inputRegdiv1").style.display = "block";
+            document.getElementById("inputBdaydiv1").style.display = "none";
+            document.getElementById("inputdateincdiv1").style.display = "block";
         }
     else if(x == "Corporation")
         {
-           document.getElementById("inputRegdiv").style.display = "block";
-            document.getElementById("inputBdaydiv").style.display = "none";
-            document.getElementById("inputdateincdiv").style.display = "block";
+           document.getElementById("inputRegdiv1").style.display = "block";
+            document.getElementById("inputBdaydiv1").style.display = "none";
+            document.getElementById("inputdateincdiv1").style.display = "block";
         }
     else
         {
-            document.getElementById("inputRegdiv").style.display = "none";
-            document.getElementById("inputBdaydiv").style.display = "none";
-            document.getElementById("inputdateincdiv").style.display = "none";
+            document.getElementById("inputRegdiv1").style.display = "none";
+            document.getElementById("inputBdaydiv1").style.display = "none";
+            document.getElementById("inputdateincdiv1").style.display = "none";
         }
 
 //      function copy() {
@@ -2377,7 +2377,6 @@ $(function() {
 
     }
 //# sourceMappingURL=all.js.map
-
 $(document).ready(function(){
   $('.cat').change(function(){
     var value = $(this).val();
@@ -2393,3 +2392,36 @@ $(document).ready(function(){
     $('.subcat').html(lists);
   });
 });
+
+//ITEM_DESCRIPTION
+function changeTest ( form ) 
+    { 
+        form.echo1.value = 
+        form.orig1.value +" "+ 
+        form.orig21.value+" "+ 
+        form.orig31.value+" "+ 
+        form.orig41.value+" "+ 
+        form.orig51.value+" "+ 
+        form.orig61.value+" "+ 
+        form.orig71.value
+    } 
+
+//UPDATE_CONFIRM
+
+    function updateconfirm() 
+    {
+    var x;
+    if (confirm("Are you sure you want to update this Item???") == true) {
+    
+        alert('One Item Updated!!');
+        return true;
+    } 
+    else 
+    {
+        return false;
+    }
+	}
+
+    
+
+    

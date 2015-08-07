@@ -13,7 +13,8 @@ class PartnerBranches extends Migration
     public function up()
     {
         Schema::create('partner_branches', function (Blueprint $table) {
-            $table->increments('branch_id');
+            
+            $table->increments('id');
             $table->integer('partner_id');
             $table->string('name');
             $table->string('description');               
@@ -37,6 +38,7 @@ class PartnerBranches extends Migration
             $table->string('fax_areacode');
             $table->string('fax_lineno');
             $table->string('email'); 
+            $table->string('_token');
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Items extends Migration
+class UOMS extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,14 @@ class Items extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('uoms', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('short');
+            $table->string('name');
+            $table->string('plural_name');               
+            $table->string('address');
+            $table->enum('active', array('Y', 'N'))->default('Y');
+
         });
     }
 
@@ -25,6 +30,6 @@ class Items extends Migration
      */
     public function down()
     {
-        Schema::drop('items');
+        Schema::drop('uoms');
     }
 }
