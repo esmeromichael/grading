@@ -39,8 +39,8 @@
 			                    <td>{{ $item->description }}</td>
 			                    <td>{{ $item->sku }} </td>
 			                    <td>{{ $item->code }}</td>
-			                    <td>{{ $item->name }}</td>
-			                    <td># </td>
+			                    <td>{{ $item->catname }}</td>
+			                    <td>{{ $item->subname }}</td>
 			                    <td> # </td>
 			                    <td> # </td>
 			                    <td>{{ $item->status }}</td> 

@@ -51,7 +51,7 @@
             ?>
             @foreach ($partnersbranch as $branch)
                 <tr>
-                    <td> <a href="/deskpad/partners/{{$partnerid->id}}/branches/{{$branch->branchid}}">{{$index++}}</a></td>
+                    <td> <a href="/deskpad/partners/{{$partnerid->id}}/branches/{{$branch->id}}">{{$index++}}</a></td>
                     <td>{{ $branch->name }}</td>
                     <td>{{ $branch->description }}</td>
                     <td>{{ $branch->address }}</td>

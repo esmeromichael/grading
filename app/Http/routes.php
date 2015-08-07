@@ -50,11 +50,19 @@ Route::post('deskpad/partners/{id}/contacts', 'DeskpadController@UpdateContact')
 
 /*this section is for items controller*/
 Route::get('operations/items', 'OperationController@displayItems');
+
 Route::get('operations/items/{item_id}/profile','OperationController@itemProfile');
 
 Route::post('operations/items/{item_id}/profile', 'OperationController@UpdateItems');
 
-/*end comment---------------------------------------------------------*/
+
+/*this section is for load combobox*/
+// 
+/*end section*/
+
+/*end comment=================================================================*/
+
+
 Route::get('register', function () {
     return view('account.register');
 });

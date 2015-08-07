@@ -43,7 +43,7 @@
                             </td>
                             <td>
                             <div class="col-xs-14-updatepartner">
-                            <b><input type="text" id="inputBrandid"  name="branchid" class="form-control" autofocus="" readonly="" value="{{$update->branchid}}"></b>
+                            <b><input type="text" id="inputBrandid"  name="id" class="form-control" autofocus="" readonly="" value="{{$update->id}}"></b>
                             </div>
                             </td>
                 </tr>

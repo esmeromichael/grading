@@ -38,7 +38,7 @@ class DeskpadController extends Controller {
 
     public function ShowUpdateBranch($id, $branchid)
     {
-         $update = PartnerBranch::where('branchid', $branchid)->first(); 
+         $update = PartnerBranch::where('id', $branchid)->first(); 
          $partnerid = Partner::find($id);        
          return view('deskpad/updatebranch', compact('update','partnerid'));
     }
@@ -78,10 +78,10 @@ class DeskpadController extends Controller {
 
     public function UpdateBranchPartner($id)
     {
-        $bid=Request::input('branchid');
+        $bid=Request::input('id');
 
         $UpdatePartner = DB::table('partner_branches')
-        ->where('branchid','=',$bid) 
+        ->where('id','=',$bid) 
         ->update(['name' => Request::input('name'), 'description' => Request::input('description'), 'country' => Request::input('country'), 'province' => Request::input('province'), 'city' => Request::input('city'), 'barangay' => Request::input('barangay'),
                     'street' => Request::input('street'), 'home' => Request::input('home'), 
                     'mobile_countrycode' => Request::input('mobile_countrycode'), 'mobile_areacode' => request::input('mobile_areacode'), 'mobile_lineno' => Request::input('mobile_lineno'),

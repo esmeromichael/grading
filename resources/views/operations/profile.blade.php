@@ -39,7 +39,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
             <div class="panel-heading">[{{$iteminfo->item_id}}] - {{$iteminfo->description}}</div>
-            <form class="form-horizontal" role="form" method="post" action="{{ action('OperationController@UpdateItems')}}">
+            <form class="form-horizontal" role="form" method="post" action="{{ action('OperationController@UpdateItems',[$iteminfo->item_id])}}">
             <table>
 
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -125,7 +125,7 @@
                 <div class="form-group">
                             <label class="col-md-4 control-label">Description</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="description" name="description" value="{{$iteminfo->description}}">
+                                <input type="text" class="form-control" id="description" name="description" readonly value="{{$iteminfo->description}}">
                             </div>
                 </div>
 
@@ -133,20 +133,31 @@
                     <legend>Product Category</legend>
 
                             <div class="form-group">
-                            <label class="col-md-4 control-label">Category</label>
+                            <label  class="col-md-4 control-label">Category</label>
                             <div class="col-md-6">
-                                <select class="form-control" name="category">
-                                <option value=""></option>
+                                <select class="cat form-control" name="category">
+                                    <option value="{{ $itemcatsub->cid }}">{{ $itemcatsub->cname }}</option>
+                                     @foreach ($catt as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                 </select>
+
                              </div>
+
 
                              <div class="form-group">
                             <label class="col-md-4 control-label">Sub-Category</label>
                             <div class="col-md-6">
-                                <select class="form-control" name="category">
-                                <option value=""></option>
+                             
+                               <select class="subcat form-control" name="subcategory">
+                                <option value="{{ $itemcatsub->sname }}">{{ $itemcatsub->sname }}</option>
                                 </select>
+
+
+                             <div id="load" data-load='{!! $categories !!}'></div>
+                            
                              </div>
+
                 </fieldset>
 
                  <fieldset>
@@ -155,7 +166,8 @@
                             <div class="form-group">
                             <label class="col-md-4 control-label">Base Unit</label>
                             <div class="col-md-6">
-                                <select class="form-control" id="category" name="category" ">
+                                <select class="form-control" id="category" name="unit">
+
                                 @foreach($displayuom as $uom)
                                  <option value="{{$uom->id}}">{{$uom->name}}</option>
                                 @endforeach
@@ -163,12 +175,14 @@
 
                              </div>
 
+
                              <div class="form-group">
                             <label class="col-md-4 control-label">Bulk Unit</label>
                             </div>
                              <div class="form-group">
                             <label class="col-md-4 control-label">Bulk Packaging Unit</label>
                             </div>
+
                             
                 </fieldset>
 
@@ -177,8 +191,8 @@
                      <div  class="col-md-4 control-label">
                      <tr>
                      <td>
-                            <label class="checkbox-inline">Inventoriable<input type="checkbox" name="customer" value="Yes"></label>
-                            <label class="checkbox-inline">Serialized <input type="checkbox" name="supplier" value="Yes"></label>
+                            <label class="checkbox-inline">Inventoriable<input type="checkbox" name="inventoriable" value="Y" <?php echo ($iteminfo->inventoriable=='Y' ? 'checked' : '');?>></label>
+                            <label class="checkbox-inline">Serialized <input type="checkbox" name="serialized" value="Y" <?php echo ($iteminfo->serialized=='Y' ? 'checked' : '');?>></label>
                             </td></tr>
                         </div>
                   
@@ -202,14 +216,8 @@
      </div>
     </div>
 </div>
-<script type="text/javascript">
-$(document).ready(function(){
-    $("select.form-control").change(function(){
-        var selectedBaseUnit = $(".form-control option:selected").val();
-        alert("You have selected the country - " + selectedBaseUnit);
-    });
-});
-</script>
+
+
 
   
 @endsection

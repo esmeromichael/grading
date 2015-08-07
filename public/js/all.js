@@ -2377,3 +2377,19 @@ $(function() {
 
     }
 //# sourceMappingURL=all.js.map
+
+$(document).ready(function(){
+  $('.cat').change(function(){
+    var value = $(this).val();
+    var load = $('#load').data('load');
+    var lists = "";
+    for(var cat in load){
+      if(value == cat){
+        load[cat].forEach(function(entry){
+          lists += "<option>"+entry+"</option>";
+        });
+      }
+    }
+    $('.subcat').html(lists);
+  });
+});
