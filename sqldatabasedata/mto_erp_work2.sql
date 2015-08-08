@@ -472,7 +472,11 @@ INSERT INTO `partners` (`id`, `name`, `status`, `customer`, `supplier`, `employe
 --
 -- Table structure for table `partnertitles`
 --
-
+CREATE TABLE IF NOT EXISTS `partnertitles` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `active` enum('Yes','No') DEFAULT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 INSERT INTO `partnertitles` (`id`, `name`, `active`) VALUES
 (1, 'Mr.', 'Yes'),
