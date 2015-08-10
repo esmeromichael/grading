@@ -82,8 +82,13 @@ Route::post('deskpad/partners/{id}/searchbranch','DeskpadController@searchbranch
 /*this section is for items controller*/
 Route::get('operations/items', 'OperationController@displayItems');
 Route::get('operations/items/{item_id}/profile','OperationController@itemProfile');
-
 Route::post('operations/items/{item_id}/profile', 'OperationController@UpdateItems');
+Route::get('operations/items/{item_id}/priceadvice','OperationController@itemPriceadvice');
+Route::get('operations/items/{item_id}/priceadvicedisplay/{id}','OperationController@displayPriceAdvice');
+Route::get('operations/items/{item_id}/purchases','OperationController@showPurchases');
+Route::get('operations/items/{item_id}/suppliers','OperationController@showSuppliers');
+Route::get('operations/items/{item_id}/movements','OperationController@showMovements');
+
 /*end comment---------------------------------------------------------*/
 
 

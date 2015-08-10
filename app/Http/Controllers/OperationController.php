@@ -81,33 +81,80 @@ public function itemProfile($item_id) {
 
 public function itemPriceadvice($item_id) {
 
-     $iteminfo = Item::where('item_id', $item_id)->first();
-     $priceadvice = DB::table('item_prices')
-     ->where('item_id', $item_id)
-              ->join('partners', 'item_prices.partner_id', '=', 'partners.partner_id')
-              ->select('partners.*', 'item_prices.*')
-              ->get();        
-        return view('operations/priceadvice',compact('iteminfo','priceadvice'));
+    $iteminfo = Item::where('item_id', $item_id)->first();
+          $priceadvice = DB::table('item_prices')
+          ->where('item_id', $item_id)
+                ->join('partners', 'item_prices.partner_id', '=', 'partners.id')
+                ->select('partners.*', 'item_prices.*')
+                ->get();            
+            return view('operations/priceadvice',compact('iteminfo','priceadvice'));
 }
 
 
-public function updatePriceAdvice($item_id, $id) {
+public function displayPriceAdvice($item_id, $id) {
 
-     $iteminfo = Item::where('item_id', $item_id)->first();
-     $itempriceinfo = ItemPrice::find($id);           
-        return view('operations/priceadviceupdate',compact('itempriceinfo','iteminfo'));
+           $iteminfo = Item::where('item_id', $item_id)->first();
+
+           $itempriceinfo = ItemPrice::find($id);
+
+          $priceadvice = DB::table('item_prices')
+          ->where('item_id', $item_id)
+                ->join('partners', 'item_prices.partner_id', '=', 'partners.id')
+                ->select('partners.*', 'item_prices.*')
+                ->first();
+
+
+             return view('operations/priceadvicedisplay',compact('itempriceinfo','iteminfo','priceadvice'));
+
+
+
 }
-
 
 public function showPurchases($item_id) {
 
-     $iteminfo = Item::where('item_id', $item_id)->first();
-     $purchases = DB::table('purchases')
-     ->where('item_id', $item_id)
-              ->join('partners', 'purchases.partner_id', '=', 'partners.partner_id')
-              ->select('partners.*', 'purchases.*')
-              ->get();        
-        return view('operations/purchases',compact('purchases','iteminfo'));
+    $iteminfo = Item::where('item_id', $item_id)->first();
+
+          $purchases = DB::table('purchases')
+          ->where('item_id', $item_id)
+                ->join('partners', 'purchases.partner_id', '=', 'partners.id')
+                ->select('partners.*', 'purchases.*')
+                ->get();            
+            return view('operations/purchases',compact('purchases','iteminfo'));
+}
+
+public function showSuppliers($item_id) {
+
+          $iteminfo = Item::where('item_id', $item_id)->first();
+
+          $suppliers = DB::table('purchase_details')
+          ->where('item_id', $item_id)
+                ->join('partners', 'purchase_details.partner_id', '=', 'partners.id')
+                ->select('partners.*', 'purchase_details.*')
+                ->get();            
+            return view('operations/suppliers',compact('suppliers','iteminfo'));
+}
+
+public function showMovements($item_id) {
+
+  $iteminfo = Item::where('item_id', $item_id)->first();
+
+  $movements = DB::table('movements')
+          ->where('movements.item_id', $item_id)
+          ->leftJoin('items', 'movements.item_id', '=', 'items.item_id')
+          ->leftJoin('uoms', 'items.uom', '=', 'uoms.id')
+          
+          ->rightjoin('references', 'movements.doc_type', '=', 'references.ref_id')
+
+          ->select('movements.doc_no as doc_no', 'movements.date as doc_date', 'movements.qty as quantity','uoms.name as unit', 'references.ref_type as type')
+          ->orderBy('movements.doc_no', 'desc')
+          ->get();
+
+
+
+          return view('operations/movements', compact('movements','iteminfo'));
+          
+
+
 }
 
 public function UpdateItems($item_id)
@@ -172,7 +219,6 @@ public function createitem() {
                 'code' => Request::input('code')
                 ,'sku' => Request::input('sku')
                 ,'generic' => Request::input('generic')
-
                 ,'brand' => Request::input('brand')
                 ,'make' => Request::input('make')
                 ,'model' => Request::input('model')
@@ -190,7 +236,7 @@ public function createitem() {
                 ,'_token' => Request::input('_token')
                 ]
                 );
-
+            
                     return redirect()->action('OperationController@displayItems');
 
        endforeach; 
