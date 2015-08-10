@@ -30,7 +30,7 @@
             </div>
     <h6> Update Partner Info </h6>
 
- <form class="form-signin" name="loginform" method="POST" action="{{ action('DeskpadController@UpdatePartner')}}">
+ <form class="form-signin" name="loginform" method="POST" action="{{ action('DeskpadController@UpdatePartner', [$partnerinfo->id])}}">
  <input type="hidden" name="_token" value="{{ csrf_token() }}">
  <table>
                      <tr>

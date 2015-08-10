@@ -31,10 +31,10 @@
  <div class="container"> 
                     <h5>[{{$partnerid->id}}] - {{$partnerid->name}}</h5> 
             </div>
-    <h6> Update Partner Info </h6>
+    <h6> Update Branch Info </h6>
 
 
- <form class="form-signin" name="loginform" method="POST" action="/deskpad/partners/{{$partnerid->id}}/branches">
+ <form class="form-signin" name="loginform" method="POST" action="{{ action('DeskpadController@UpdateBranchPartner', [$partnerid->id])}}">
 <table>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <tr>

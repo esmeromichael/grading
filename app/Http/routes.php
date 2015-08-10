@@ -33,7 +33,7 @@ Route::get('deskpad/partners/{id}/branches','DeskpadController@showbranch');
 
 /*for update partners*/
 Route::get('deskpad/partners', 'DeskpadController@partners');
-Route::post('deskpad/partners', 'DeskpadController@UpdatePartner');
+Route::post('deskpad/partners/{id}/profile', 'DeskpadController@UpdatePartner');
 /*end comment*/
 
 /*for update partner branch*/

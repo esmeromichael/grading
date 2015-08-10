@@ -25,7 +25,7 @@ class DeskpadController extends Controller {
 
     public function showprofile($id)
     {
-        $partnerinfo = Partner::find($id);
+        $partnerinfo = Partner::where('id', $id)->first();
         $countries = Country::all();
         $entities = Entity::all();
         return view('deskpad/profile',compact('partnerinfo','countries','entities'));
@@ -69,47 +69,32 @@ class DeskpadController extends Controller {
          return view('deskpad/updatecontact', compact('updatecontact','partnerid','countries','citizenships','partnertitles'));
     }
 
-
-    public function UpdatePartner()
-    {
-        // $input = Partner::find($id);
-        // $input->update();
-        $id=Request::input('id');
-       
-
-        $UpdatePartner = DB::table('partners')
-        ->where('id','=',$id) 
-        ->update(['name' => Request::input('name'), 'email' => Request::input('email'), 'customer' => Request::input('customer'), 'supplier' => Request::input('supplier'), 'employee' => Request::input('employee'), 'address' => Request::input('address'), 'home' => Request::input('home'),
-                    'street' => Request::input('street'), 'barangay' => Request::input('barangay'), 'city' => Request::input('city'), 'province' => Request::input('province'), 'country' => Request::input('country'),
-                    'mobile_countrycode' => Request::input('mobile_countrycode'), 'mobile_areacode' => Request::input('mobile_areacode'), 'mobile_lineno' => Request::input('mobile_lineno'),
-                    'tel_countrycode' => Request::input('tel_countrycode'), 'tel_areacode' => Request::input('tel_areacode'), 'tel_lineno' => Request::input('tel_lineno'),
-                    'fax_countrycode' => Request::input('fax_countrycode'), 'fax_areacode' => Request::input('fax_areacode'), 'fax_lineno' => Request::input('fax_lineno'),
-                    'business_entity' => Request::input('business_entity'), 'tin' => Request::input('tin'), 'reg_no' => Request::input('reg_no'), 'reg_date' => Request::input('reg_date'),
-                    'birthday' => Request::input('birthday'), '_token' => Request::input('_token'), 'updated_at' => date('Y-m-d H:i:s')]);
-
-        return Redirect::action('DeskpadController@partners')->with('message', 'Task updated.');
-
-    // return view('deskpad/partners', compact('input'));
-    // $partners = Partner::all();
-    //     return view('deskpad/partners', compact('partners'));
+/* shorten using eloquent
+by: kerwin
+*/
+    public function UpdatePartner($partner_id)
+    {   
+        $input = Input::all();
+        $UpdatePartner = Partner::whereId($partner_id)->update($input); 
+        return redirect()->action('DeskpadController@showprofile', $partner_id);
     }
-    
+ /* end by kerwin */   
 
-    public function UpdateBranchPartner($id)
+    public function UpdateBranchPartner($id,  $branchid)
     {
-        $bid=Request::input('branchid');
 
-        $UpdatePartner = DB::table('partner_branches')
-        ->where('branchid','=',$bid) 
-        ->update(['name' => Request::input('name'), 'description' => Request::input('description'), 'country' => Request::input('country'), 'province' => Request::input('province'), 'city' => Request::input('city'), 'barangay' => Request::input('barangay'),
-                    'street' => Request::input('street'), 'home' => Request::input('home'), 
-                    'mobile_countrycode' => Request::input('mobile_countrycode'), 'mobile_areacode' => request::input('mobile_areacode'), 'mobile_lineno' => Request::input('mobile_lineno'),
-                    'tel_countrycode' => Request::input('tel_countrycode'), 'tel_areacode' => Request::input('tel_areacode'), 'tel_lineno' => Request::input('tel_lineno'),
-                    'fax_countrycode' => Request::input('fax_countrycode'), 'fax_areacode' => Request::input('fax_areacode'), 'fax_lineno' => Request::input('fax_lineno'), 'email' => Request::input('email'), '_token' => Request::input('_token'), 'updated_at' => date('Y-m-d H:i:s')]);
+      return $input = Input::all();
+       // $UpdateBranch = PartnerBranch::whereBranchid($branchid)->update($input);
+        // ->where('branchid','=',$bid) 
+        // ->update(['name' => Request::input('name'), 'description' => Request::input('description'), 'country' => Request::input('country'), 'province' => Request::input('province'), 'city' => Request::input('city'), 'barangay' => Request::input('barangay'),
+        //             'street' => Request::input('street'), 'home' => Request::input('home'), 
+        //             'mobile_countrycode' => Request::input('mobile_countrycode'), 'mobile_areacode' => request::input('mobile_areacode'), 'mobile_lineno' => Request::input('mobile_lineno'),
+        //             'tel_countrycode' => Request::input('tel_countrycode'), 'tel_areacode' => Request::input('tel_areacode'), 'tel_lineno' => Request::input('tel_lineno'),
+        //             'fax_countrycode' => Request::input('fax_countrycode'), 'fax_areacode' => Request::input('fax_areacode'), 'fax_lineno' => Request::input('fax_lineno'), 'email' => Request::input('email'), '_token' => Request::input('_token'), 'updated_at' => date('Y-m-d H:i:s')]);
 
-        $partnersbranch = PartnerBranch::where('partner_id', $id)->get();
-        $partnerid = Partner::find($id);     
-        return view('deskpad/branches',compact('partnerid','partnersbranch'));
+        // $partnersbranch = PartnerBranch::where('partner_id', $id)->get();
+        // $partnerid = Partner::find($id);     
+        // return view('deskpad/branches',compact('partnerid','partnersbranch'));
                 
     } 
 
@@ -128,9 +113,6 @@ class DeskpadController extends Controller {
                     'tel_countrycode' => Request::input('tel_countrycode'), 'tel_areacode' => Request::input('tel_areacode'), 'tel_lineno' => Request::input('tel_lineno'),
                     'fax_countrycode' => Request::input('fax_countrycode'), 'fax_areacode' => Request::input('fax_areacode'), 'fax_lineno' => Request::input('fax_lineno'), 'email' => Request::input('email'), '_token' => Request::input('_token'), 'updated_at' => date('Y-m-d H:i:s')]);
 
-        // $partnerscontact = PartnerContact::where('id', $id)->get();
-        // $partnerid = Partner::find($id);     
-        // return view('deskpad/contacts',compact('partnerid','partnerscontact'));
 
     }
 

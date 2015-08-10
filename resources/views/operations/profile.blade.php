@@ -48,7 +48,7 @@
                             </td>
                             <td>
                             <div class="col-xs-5">
-                            <input type="text" class="form-control" id="id" name="id" value="{{$iteminfo->item_id}}" readonly="readonly">
+                            <input type="text" class="form-control" id="id" name="item_id" value="{{$iteminfo->item_id}}" readonly="readonly">
                             </div>
                             </td>
                     </tr>
@@ -182,7 +182,7 @@
                             </td>
                             <td>
                             <div class="col-xs-8">
-                            <select class="form-control" name="unit">
+                            <select class="form-control" name="uom">
                             @foreach($uoms as $uom)
                                  <option value="{{$uom->id}}">{{$uom->name}}</option>
                             @endforeach
