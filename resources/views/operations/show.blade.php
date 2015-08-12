@@ -35,7 +35,7 @@
 			        <tbody>
 			            @foreach ($itemlist as $item)
 			                <tr>
-			                    <td> <a href="/operations/items/{{ $item->item_id }}/profile">{{ $item->item_id }}</a></td>
+			                    <td> <a href="/operations/items/{{ $item->id }}/profile">{{ $item->id }}</a></td>
 			                    <td>{{ $item->description }}</td>
 			                    <td>{{ $item->sku }} </td>
 			                    <td>{{ $item->code }}</td>
@@ -47,8 +47,11 @@
 
 			                </tr>
                @endforeach
+               	
+               		
+               		
 			        </tbody>
 			</table>
-
+<div id="page-selection" class="pagination" style="position:fixed; bottom: 30px;right: 350px; width: 700px;">{!! $itemlist->render() !!}</div>
 @include('operations.modalfunctions.createitem')
 @endsection

@@ -19,27 +19,24 @@
         <nav id="top_navigation" class="text_nav">
             <div class="container">
                 <ul id="text_nav_h" class="clearfix j_menu top_text_nav jMenu">
-                    <li class="active"><a href="/operations/items/{{ $iteminfo->item_id }}/profile">Profile</a></li>
-                    <li><a href="/operations/items/{{ $iteminfo->item_id }}/priceadvice">Price Advice</a></li>
-                    <li><a href="/operations/items/{{ $iteminfo->item_id }}/purchases">Purchases</a></li>
-                    <li><a href="/operations/items/{{ $iteminfo->item_id }}/suppliers">Suppliers</a></li>
-                    <li><a href="/operations/items/{{ $iteminfo->item_id }}/movements">Movements</a></li>
-                    <li><a href="/operations/items/{{ $iteminfo->item_id }}/accounting">Accounting</a></li>
-                    <li><a href="/operations/items/{{ $iteminfo->item_id }}/serials">Serials</a></li>
+                    <li class="active"><a href="/operations/items/{{ $iteminfo->id }}/profile">Profile</a></li>
+                    <li><a href="/operations/items/{{ $iteminfo->id }}/priceadvice">Price Advice</a></li>
+                    <li><a href="/operations/items/{{ $iteminfo->id }}/purchases">Purchases</a></li>
+                    <li><a href="/operations/items/{{ $iteminfo->id }}/suppliers">Suppliers</a></li>
+                    <li><a href="/operations/items/{{ $iteminfo->id }}/movements">Movements</a></li>
+                    <li><a href="/operations/items/{{ $iteminfo->id }}/accounting">Accounting</a></li>
+                    <li><a href="/operations/items/{{ $iteminfo->id }}/serials">Serials</a></li>
                 </ul>
             </div>
-            <!-- <div class="container"> 
-                   <h5><b>[{{$iteminfo->item_id}}] - {{$iteminfo->description}}</b></h5> 
-            </div> -->
-        
+     
         </nav>
 
         <div class="container"> 
-                   <h5>[{{$iteminfo->item_id}}] - {{$iteminfo->description}}</h5> 
+                   <h5>[{{$iteminfo->id}}] - {{$iteminfo->description}}</h5> 
         </div>
  <center>
  <div>
- <form class="form-signin" name="loginform" method="POST" action="{{ action('OperationController@UpdateItems',[$iteminfo->item_id])}}" onsubmit="return update()">
+ <form class="form-signin" name="loginform" method="POST" action="{{ action('Operations\ItemController@UpdateItems',[$iteminfo->id])}}" onsubmit="return update()">
  <input type="hidden" name="_token" value="{{ csrf_token() }}">
  <table>
                      <tr>
@@ -48,7 +45,7 @@
                             </td>
                             <td>
                             <div class="col-xs-5">
-                            <input type="text" class="form-control" id="id" name="item_id" value="{{$iteminfo->item_id}}" readonly="readonly">
+                            <input type="text" class="form-control" id="id" name="id" value="{{$iteminfo->id}}" readonly="readonly">
                             </div>
                             </td>
                     </tr>
@@ -147,7 +144,7 @@
                             </td>
                             <td>
                             <div class="col-xs-8">
-                            <select class="cat form-control" name="category">
+                            <select class="cat form-control" name="category_id">
                             <option value="{{ $itemcatsub->cid }}">{{ $itemcatsub->cname }}</option>
                                      @foreach ($catt as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -162,7 +159,7 @@
                             </td>
                             <td>
                             <div class="col-xs-8">
-                            <select class="subcat form-control" name="subcategory">
+                            <select class="subcat form-control" name="subcategory_id">
                             <option value="{{ $itemcatsub->sname }}">{{ $itemcatsub->sname }}</option>
                             </select>
                             <div id="load" data-load='{!! $categories !!}'></div>

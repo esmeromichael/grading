@@ -43,7 +43,7 @@
         </div>
 
                             <div class="modal-body">
-                            <form class="form-signin" name="createcontactform" method="POST" action="/operations/items" onsubmit="return create()">
+                            <form class="form-signin" name="createcontactform" method="POST" action="{{action('Operations\ItemController@displayItems')}}" onsubmit="return create()">
                             <table>
                             <tr>
                             <td><b>Item ID</b></td>
@@ -137,7 +137,7 @@
                             </td>
                             <td>
                             <div class="col-xs-8">
-                            <select class="cat form-control" name="category">
+                            <select class="cat form-control" name="category_id">
                             <option>--Category--</option>
                             @foreach ($catt as $category)
                             <option value="{{$category->id}}">{{ $category->name }}</option>
@@ -152,7 +152,7 @@
                             </td>
                             <td>
                             <div class="col-xs-8">
-                            <select class="subcat form-control" name="subcategory">
+                            <select class="subcat form-control" name="subcategory_id">
                             <option>--Select Subcategory--</option>
                             </select>
                             <div id="load" data-load='{!! $categories !!}'></div>
@@ -172,7 +172,7 @@
                             </td>
                             <td>
                             <div class="col-xs-8">
-                            <select class="form-control" name="baseunit">
+                            <select class="form-control" name="uom">
                             <option>--Select One--</option>
                             @foreach ($uoms as $unit)
                             <option value="{{$unit->id}}">{{ $unit->name }}</option>

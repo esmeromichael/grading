@@ -19,51 +19,32 @@ Route::get('deskpad/', function () {
     return view('deskpad/index');
 });
 
+/*for partner*/
+Route::post('deskpad/partners', 'Deskpad\PartnerController@createPartner');
+Route::get('deskpad/partners/{id}/profile','Deskpad\PartnerController@showprofile');
+Route::get('deskpad/partners', 'Deskpad\PartnerController@partners');
+Route::post('deskpad/partners/{id}/profile', 'Deskpad\PartnerController@UpdatePartner');
+/*end */
 
+/*for branch*/
+Route::get('deskpad/partners/{id}/branches','Deskpad\BranchController@showbranch');
+Route::post('deskpad/partners/{id}/branches', 'Deskpad\BranchController@createBranch');
+Route::get('deskpad/partners/{id}/branches/{branchid}','Deskpad\BranchController@ShowBranchProfile');
+Route::post('deskpad/partners/{id}/branches/{branchid}','Deskpad\BranchController@UpdateBranchPartner');
+/*end */
 
-Route::get('deskpad/partners/{id}/profile','DeskpadController@showprofile');
-
-Route::get('deskpad/partners/{id}/contacts','DeskpadController@showcontact');
-
-/*for show partner branch*/
-Route::post('deskpad/partners/{id}/branches','DeskpadController@showbranch');
-Route::get('deskpad/partners/{id}/branches','DeskpadController@showbranch');
-/*end comment*/
-
-
-/*for update partners*/
-Route::get('deskpad/partners', 'DeskpadController@partners');
-Route::post('deskpad/partners/{id}/profile', 'DeskpadController@UpdatePartner');
-/*end comment*/
-
-/*for update partner branch*/
-Route::get('deskpad/partners/{id}/branches/{branchid}','DeskpadController@ShowUpdateBranch');
-Route::post('deskpad/partners/{id}/branches', 'DeskpadController@UpdateBranchPartner');
-/*end comment*/
-
-/*for update contacts*/
-Route::get('deskpad/partners/{partnerid}/contacts/{contactid}','DeskpadController@ShowUpdateContacts');
-
-Route::post('deskpad/partners/{id}/contacts', 'DeskpadController@UpdateContact');
-/*------------------------------------*/
-
-
-
+/*for contacts*/
+Route::get('deskpad/partners/{partnerid}/contacts/{contactid}','Deskpad\ContactController@ShowUpdateContacts');
+Route::get('deskpad/partners/{id}/contacts','Deskpad\ContactController@showcontact');
+Route::post('deskpad/partners/{partnerid}/contacts/{contactid}', 'Deskpad\ContactController@UpdateContact');
+Route::post('deskpad/partners/{id}/contacts', 'Deskpad\ContactController@createContact');
+/*end */
 
 
 Route::get('register', function () {
     return view('account.register');
 });
-
 Route::post('register','RegisterController@insert');
-
-
-
-/*-------------------------CREATING-----------------------------------------*/
-Route::post('deskpad/partners', 'DeskpadController@createPartner');
-Route::post('deskpad/partners/{id}/branches', 'DeskpadController@createBranch');
-Route::post('deskpad/partners/{id}/contacts', 'DeskpadController@createContact');
-/*-------------------------/CREATING-----------------------------------------*/
 
 
 /*----------------------------SEARCH PARTNER------------------------------------------------*/ 
@@ -79,10 +60,14 @@ Route::post('deskpad/partners/{id}/searchbranch','DeskpadController@searchbranch
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-/*this section is for items controller*/
-Route::get('operations/items', 'OperationController@displayItems');
-Route::get('operations/items/{item_id}/profile','OperationController@itemProfile');
-Route::post('operations/items/{item_id}/profile', 'OperationController@UpdateItems');
+/*for items*/
+Route::get('operations/items', 'Operations\ItemController@displayItems');
+Route::get('operations/items/{item_id}/profile','Operations\ItemController@itemProfile');
+Route::post('operations/items/{item_id}/profile', 'Operations\ItemController@UpdateItems');
+Route::post('operations/items', 'Operations\ItemController@createItem');
+/*end */
+
+
 Route::get('operations/items/{item_id}/priceadvice','OperationController@itemPriceadvice');
 Route::get('operations/items/{item_id}/priceadvicedisplay/{id}','OperationController@displayPriceAdvice');
 Route::get('operations/items/{item_id}/purchases','OperationController@showPurchases');
@@ -96,7 +81,3 @@ Route::get('operations/', function () {
     return view('operations/index');
 });
 
-
- /*------------------------CREATE PARTNER-------------------------------*/ 
- Route::post('operations/items', 'OperationController@createitem');
- /*------------------------/CREATE PARTNER-------------------------------*/ 

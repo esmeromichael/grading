@@ -49,7 +49,7 @@
         <tbody><?php 
             $index=1;
             ?>
-            @foreach ($partnersbranch as $branch)
+            @foreach ($branch as $branch)
                 <tr>
                     <td> <a href="/deskpad/partners/{{$partnerid->id}}/branches/{{$branch->id}}">{{$index++}}</a></td>
                     <td>{{ $branch->name }}</td>

@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class PartnerContact extends Model {
 
- 	protected $primaryKey = 'id';
+ 	protected $guarded = ['id'];
  
 }

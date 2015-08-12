@@ -44,7 +44,7 @@
 
                             <div class="modal-body">
                             <h6>Create New Contact Info</h6>
-                            <form class="form-signin" name="createcontactform" method="POST" action="/deskpad/partners/{{ $partnerid->id }}/contacts" onsubmit="return create()">
+                            <form class="form-signin" name="createcontactform" method="POST" action="" onsubmit="return create()">
                             <table>
                             <tr>
                             <td><b>Contact Type</b></td>
@@ -52,7 +52,7 @@
                             <div class="col-xs-6">
                             <label class="checkbox-inline"><input type="checkbox" name="manager" value="Yes">Manager</label>
                             <label class="checkbox-inline"><input type="checkbox" name="supervisor" value="Yes">Supervisor</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="contactperson" value="Yes">Contact Person</label>  
+                            <label class="checkbox-inline"><input type="checkbox" name="contact_person" value="Yes">Contact Person</label>  
                             </div>
                             </td>
                             </tr>
@@ -228,7 +228,7 @@
                             <br>
         </div>
                             <div class="modal-footer">
-                            <button type="submit" class="btn btn-lg btn-primary" name="submit1">Save</button>
+                            <button type="submit" class="btn btn-lg btn-primary" >Save</button>
                             </div>
                             </form>
       </div>

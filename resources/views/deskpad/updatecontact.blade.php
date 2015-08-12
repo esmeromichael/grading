@@ -27,7 +27,7 @@
                     <h5>[{{$partnerid->id}}] - {{$partnerid->name}}</h5> 
             </div>
     <h6> Update Partner Info </h6>
-<form class="form-signin" name="loginform" method="POST" action="/deskpad/partners/{{$partnerid->id}}/contacts">
+<form class="form-signin" name="loginform" method="POST" action="">
 <table>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
              <tr>
@@ -36,7 +36,7 @@
                             <div class="col-xs-12">
                             <label class="checkbox-inline"><input  type="checkbox" name="manager" value="Yes">Manager</label>
                             <label class="checkbox-inline"><input  type="checkbox" name="supervisor" value="Yes">Supervisor</label>
-                            <label class="checkbox-inline"><input  type="checkbox" name="contactperson" value="Yes">Contact Person</label>  
+                            <label class="checkbox-inline"><input  type="checkbox" name="contact_person" value="Yes">Contact Person</label>  
                             </div>
                             </td>
              </tr>
@@ -46,7 +46,7 @@
                             </td>
                             <td>
                             <div class="col-xs-12">
-                            <input type="hidden" id="inputPartnerID" value="" name="partnerid" class="form-control" placeholder="Branch" autofocus="">
+                            <input type="hidden" id="inputPartnerID" value="{{$partnerid->id}}" name="partner_id" class="form-control" placeholder="Branch" autofocus="">
                             <input type="text" id="inputPartnerID" value="{{$updatecontact->branch}}" name="branch" class="form-control" placeholder="Branch" autofocus="">
                             </div>
                             </td>
@@ -120,7 +120,7 @@
                             <input type="text" id="inputSteet" value="{{$updatecontact->street}}" name="street" class="form-control" placeholder="Street"  autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputHouse" value="{{$updatecontact->home}}" name="house" class="form-control" placeholder="House No./Building"  autofocus="">
+                            <input type="text" id="inputHouse" value="{{$updatecontact->home}}" name="home" class="form-control" placeholder="House No./Building"  autofocus="">
                             </div>
                             </td>
                  </tr>
@@ -161,7 +161,7 @@
                             <b>Marital Status</b>
                             </div>
                             <div class="col-xs-4">
-                            <select class="form-control" id="maritalstatus" name="maritalstatus">
+                            <select class="form-control" id="maritalstatus" name="marital_status">
                             <option value="">---Select One---</option>
                             <option value="Single">Single</option>
                             <option value="Married" >Married</option>
@@ -231,7 +231,7 @@
                             
 
 </table><br>
-                            <button type="submit" class="btn btn-lg btn-primary btn-sm" name="submit1">Update Info</button>
+                            <button type="submit" class="btn btn-lg btn-primary btn-sm" >Update Info</button>
                             
 </form>
 

@@ -34,7 +34,7 @@
     <h6> Update Branch Info </h6>
 
 
- <form class="form-signin" name="loginform" method="POST" action="{{ action('DeskpadController@UpdateBranchPartner', [$partnerid->id])}}">
+ <form class="form-signin" name="loginform" method="POST" action="">
 <table>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <tr>
@@ -43,7 +43,7 @@
                             </td>
                             <td>
                             <div class="col-xs-4">
-                            <b><input type="text" id="inputBrandid" value="{{$update->id}}" name="branchid" class="form-control" autofocus="" readonly="" ></b>
+                            <b><input type="text" id="inputBrandid" value="{{$update->id}}" name="id" class="form-control" autofocus="" readonly="" ></b>
                             </div>
                             </td>
                             </tr>
@@ -145,7 +145,7 @@
 
 </table>
  <br>
-<button class="btn btn-lg btn-primary btn-sm" type="submit" name="submit">Update Info</button>
+<button class="btn btn-lg btn-primary btn-sm" type="submit" >Update Info</button>
  </form>
  
  @include('deskpad.modalfunctions.createbranch')

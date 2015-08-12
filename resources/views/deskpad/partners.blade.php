@@ -39,8 +39,14 @@
                     <td>{{ $partner->status }} </td>                   
                 </tr>
             @endforeach
+            <tr>
+                <td>
+                    <div id="page-selection" class="pagination" style="position:fixed; bottom: 30px;right: 350px; width: 700px;">{!! $partners->render() !!}</div>
+                </td>
+            </tr>
         </tbody>
     </table>
+
     </div>
 @include('deskpad.modalfunctions.createpartner')
 @endsection

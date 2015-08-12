@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Entity extends Model {
+class EntityType extends Model {
 
  	protected $primaryKey = 'id';
 

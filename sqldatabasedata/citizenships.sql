@@ -1,0 +1,14 @@
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (1, 'Filipino', 'Citizens of the Republic of the Philippines\r\n', 'Y', 'Active');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (2, 'Chinese', 'Citizens of the People\'s Republic of China\r\n', 'Y', 'Active');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (3, 'Japanese', 'Citizens of Japan', 'N', 'Active');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (4, 'Malaysian', 'Citizens of Malaysia', 'N', 'Active');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (5, 'Afghan', 'Citizens of Afghanistan', 'N', 'Inactive');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (6, 'American', 'Citizens of the USA', 'N', 'Active');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (7, 'German', 'Citizens of Germany', 'N', 'Active');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (8, 'Russian', 'Citizens of Russia', 'N', 'Active');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (9, 'Spanish', 'Citizens of Spain', 'N', 'Active');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (10, 'Swedish', 'Citizens of Sweden', 'N', 'Active');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (11, 'French', 'Citizens of France', 'N', 'Active');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (12, 'Korean', 'Citizens of Korea', 'N', 'Active');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (13, 'Polish', 'Citizens of Poland', 'N', 'Active');
+INSERT INTO `citizenships` (`id`, `name`, `description`, `is_local`, `status`) VALUES (14, 'Greek', 'Citizens of Greece', 'N', 'Active');

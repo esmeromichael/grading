@@ -44,7 +44,7 @@
 
                             <div class="modal-body">
                             <h6>Create New Partner Info</h6>
-                            <form class="form-signin" id="createpartner" name="createpartner" method="POST" action="{{ url('deskpad/partners') }}" onsubmit="return create()">
+                            <form class="form-signin" id="createpartner" name="createpartner" method="POST" action="{{ action('Deskpad\PartnerController@partners')}}" onsubmit="return create()">
                             <table>
                             <tr>
                                 <td> 
@@ -53,7 +53,7 @@
                                 <td>
                                     <div class="col-xs-6">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="text" id="inputPartnerID" name="partnerid" class="form-control" placeholder="New" readonly="" autofocus="">
+                                    <input type="text" id="inputPartnerID" name="id" class="form-control" placeholder="New" readonly="" autofocus="">
                                     </div>
                                 </td>
                             </tr>
@@ -64,7 +64,7 @@
                                 </td>
                                 <td>
                                     <div class="col-xs-6">
-                                    <input type="text" id="inputPartnerName" name="partnername" class="form-control" required placeholder="***Partner Name"  autofocus="">
+                                    <input type="text" id="inputPartnerName" name="name" class="form-control" required placeholder="***Partner Name"  autofocus="">
                                     </div>
                                 </td>
                             </tr>
@@ -106,7 +106,7 @@
                             <input type="text" id="inputSteet" name="street" class="form-control" placeholder="Street"  autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputHouse" name="house" class="form-control" placeholder="House No./Building"  autofocus="">
+                            <input type="text" id="inputHouse" name="home" class="form-control" placeholder="House No./Building"  autofocus="">
                             </div>
                             </td>
                             </tr>
@@ -114,39 +114,39 @@
                             <td>
                             <hr>
                             <div class="col-xs-4">
-                            Country Code<input type="text" id="inputCountrycode" name="countrycode" class="form-control" placeholder="Country Code"  autofocus="">
+                            Country Code<input type="text" id="inputCountrycode" name="mobile_countrycode" class="form-control" placeholder="Country Code"  autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            Area Code<input type="text" id="inputAreacode" name="areacode" class="form-control" placeholder="Area Code"  autofocus="">
+                            Area Code<input type="text" id="inputAreacode" name="mobile_areacode" class="form-control" placeholder="Area Code"  autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            Line Number<input type="text" id="inputLinenumber" name="linenumber" class="form-control" placeholder="Line Number"  autofocus="">
+                            Line Number<input type="text" id="inputLinenumber" name="mobile_lineno" class="form-control" placeholder="Line Number"  autofocus="">
                             </div>
                             </td>
                             </tr>
                             <tr><td><b>Tel No. &nbsp;&nbsp;&nbsp;</b></td>
                             <td>
                             <div class="col-xs-4">
-                            <input type="text" id="inputCountrycode1" name="countrycode1" class="form-control" placeholder="Country Code"  autofocus="">
+                            <input type="text" id="inputCountrycode1" name="tel_countrycode" class="form-control" placeholder="Country Code"  autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputAreacode1" name="areacode1" class="form-control" placeholder="Area Code"  autofocus="">
+                            <input type="text" id="inputAreacode1" name="tel_areacode" class="form-control" placeholder="Area Code"  autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputLinenumber1" name="linenumber1" class="form-control" placeholder="Line Number"  autofocus="">
+                            <input type="text" id="inputLinenumber1" name="tel_lineno" class="form-control" placeholder="Line Number"  autofocus="">
                             </div>
                             </td>
                             </tr>
                             <tr><td><b>Fax No. &nbsp;&nbsp;&nbsp;</b></td>
                             <td>
                             <div class="col-xs-4">
-                            <input type="text" id="inputCountrycode2" name="countrycode2" class="form-control" placeholder="Country Code"  autofocus="">
+                            <input type="text" id="inputCountrycode2" name="fax_countrycode" class="form-control" placeholder="Country Code"  autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputAreacode2" name="areacode2" class="form-control" placeholder="Area Code"  autofocus="">
+                            <input type="text" id="inputAreacode2" name="fax_areacode" class="form-control" placeholder="Area Code"  autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputLinenumber2" name="linenumber2" class="form-control" placeholder="Line Number"  autofocus="">
+                            <input type="text" id="inputLinenumber2" name="fax_lineno" class="form-control" placeholder="Line Number"  autofocus="">
                             </div>
                             </td>
                             </tr>
@@ -162,7 +162,7 @@
                             <hr>
                             <div class="col-xs-3">
                             Entity List
-                            <select class="form-control" id="entity" name="entity" onchange="myFunction();">
+                            <select class="form-control" id="entity" name="business_entity" onchange="myFunction();">
                             <option value="">---Select One---</option>
                             @foreach ($entities as $entity)
                             <option value="{{$entity->name}}">{{$entity->name}}</option>
@@ -173,13 +173,13 @@
                             TIN<input type="text" id="inputTIN" name="tin" class="form-control" placeholder="TIN"  autofocus="">
                             </div> 
                             <div class="col-xs-3" id="inputRegdiv" style="display:none">
-                            Reg #<input type="text" id="inputReg" name="reg" class="form-control" placeholder="Reg #"  autofocus="">
+                            Reg #<input type="text" id="inputReg" name="reg_no" class="form-control" placeholder="Reg #"  autofocus="">
                             </div>             
                             <div class="col-xs-3" id="inputBdaydiv" style="display:none">
-                            Date of Birth<input type="date" id="inputBday" name="bday" class="form-control" placeholder="TIN"  autofocus="">
+                            Date of Birth<input type="date" id="inputBday" name="birthday" class="form-control" placeholder="TIN"  autofocus="">
                             </div>
                             <div class="col-xs-3" id="inputRegdatediv" style="display:none">
-                            Date of Registration<input type="date" id="inputRegdate" name="regdate" class="form-control" placeholder="Reg #"  autofocus="">
+                            Date of Registration<input type="date" id="inputRegdate" name="reg_date" class="form-control" placeholder="Reg #"  autofocus="">
                             </div> 
                             </td>
                             </tr>
@@ -188,7 +188,7 @@
                             </table>
         </div>
                             <div class="modal-footer">
-                            <button type="submit" class="btn btn-lg btn-primary" name="submit1" onclick="return val()">Save</button>
+                            <button type="submit" class="btn btn-lg btn-primary" onclick="return val()">Save</button>
                             </div>
                             </form>
       </div>

@@ -44,7 +44,7 @@
 
                             <div class="modal-body">
                             <h6>Create New Branch Info</h6>
-                            <form class="form-signin" name="createbrachform" method="POST" action="/deskpad/partners/{{ $partnerid->id }}/branches" onsubmit="return create()">
+                            <form class="form-signin" name="createbrachform" method="POST" action="{{ action('Deskpad\BranchController@showbranch', $partnerid->id) }}" onsubmit="return create()">
                             <table>
                             <tr>
                             <td>
@@ -53,8 +53,8 @@
                             <td>
                             <div class="col-xs-4">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" id="inputPartnerid" value="{{$partnerid->id}}" name="partnerid" class="form-control" placeholder="New" readonly="" autofocus="">
-                            <input type="text" id="inputBranchid" name="branchid" class="form-control" placeholder="New" readonly="" autofocus="">
+                            <input type="hidden" id="inputPartnerid" value="{{$partnerid->id}}" name="partner_id" class="form-control" placeholder="New" readonly="" autofocus="">
+                            <input type="text" id="inputBranchid" name="id" class="form-control" placeholder="New" readonly="" autofocus="">
                             </div>
                             </td>
                             </tr>
@@ -64,7 +64,7 @@
                             </td>
                             <td>
                             <div class="col-xs-12">
-                            <input type="text" id="inputBranchname" name="branchname" class="form-control" placeholder="Branch Name" required autofocus="">
+                            <input type="text" id="inputBranchname" name="name" class="form-control" placeholder="Branch Name" required autofocus="">
                             </div>
                             </td>
                             </tr>
@@ -110,39 +110,39 @@
                             <td>
                             <hr>
                             <div class="col-xs-4">
-                            Country Code<input type="text" id="inputCountrycode" name="countrycode" class="form-control" placeholder="Country Code" autofocus="">
+                            Country Code<input type="text" id="inputCountrycode" name="mobile_countrycode" class="form-control" placeholder="Country Code" autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            Area Code<input type="text" id="inputAreacode" name="areacode" class="form-control" placeholder="Area Code" autofocus="">
+                            Area Code<input type="text" id="inputAreacode" name="mobile_areacode" class="form-control" placeholder="Area Code" autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            Line Number<input type="text" id="inputLinenumber" name="linenumber" class="form-control" placeholder="Line Number" autofocus="">
+                            Line Number<input type="text" id="inputLinenumber" name="mobile_lineno" class="form-control" placeholder="Line Number" autofocus="">
                             </div>
                             </td>
                             </tr>
                             <tr><td><b>Tel No.</b></td>
                             <td>
                             <div class="col-xs-4">
-                            <input type="text" id="inputCountrycode1" name="countrycode1" class="form-control" placeholder="Country Code" autofocus="">
+                            <input type="text" id="inputCountrycode1" name="tel_countrycode" class="form-control" placeholder="Country Code" autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputAreacode1" name="areacode1" class="form-control" placeholder="Area Code" autofocus="">
+                            <input type="text" id="inputAreacode1" name="tel_areacode" class="form-control" placeholder="Area Code" autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputLinenumber1" name="linenumber1" class="form-control" placeholder="Line Number" autofocus="">
+                            <input type="text" id="inputLinenumber1" name="tel_lineno" class="form-control" placeholder="Line Number" autofocus="">
                             </div>
                             </td>
                             </tr>
                             <tr><td><b>Fax No.</b></td>
                             <td>
                             <div class="col-xs-4">
-                            <input type="text" id="inputCountrycode2" name="countrycode2" class="form-control" placeholder="Country Code" autofocus="">
+                            <input type="text" id="inputCountrycode2" name="fax_countrycode" class="form-control" placeholder="Country Code" autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputAreacode2" name="areacode2" class="form-control" placeholder="Area Code" autofocus="">
+                            <input type="text" id="inputAreacode2" name="fax_areacode" class="form-control" placeholder="Area Code" autofocus="">
                             </div>
                             <div class="col-xs-4">
-                            <input type="text" id="inputLinenumber2" name="linenumber2" class="form-control" placeholder="Line Number" autofocus="">
+                            <input type="text" id="inputLinenumber2" name="fax_lineno" class="form-control" placeholder="Line Number" autofocus="">
                             </div>
                             </td>
                             </tr>
@@ -157,7 +157,7 @@
                             </table>
                             </div>
                             <div class="modal-footer">
-                            <button type="submit" class="btn btn-lg btn-primary" name="submit1">Save</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Save</button>
                             </div>
                             </form>
                             </div>
