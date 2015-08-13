@@ -20,7 +20,7 @@ public function displayItems(){
 	    $categories = ItemCategory::all();
 	    $categories_pack = [];
 	    foreach($categories as $category):
-		    $subcategories = ItemSubcategory::where('parent',$category->id)->lists('name','id');
+		    $subcategories = ItemSubcategory::where('parent',$category->id)->lists('name');
 		    $categories_pack[$category->id][$category->name] = $subcategories;
 	    endforeach;
 
