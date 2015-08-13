@@ -15,7 +15,7 @@ class CreatePartnerTitle extends Migration
         Schema::create('partnertitles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->enum('active', array('Yes','No')->default('NULL');
+            $table->enum('active', array('Yes','No'))->default('Yes');
             $table->timestamps();
         });
     }

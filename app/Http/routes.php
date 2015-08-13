@@ -68,11 +68,12 @@ Route::post('operations/items', 'Operations\ItemController@createItem');
 /*end */
 
 
-Route::get('operations/items/{item_id}/priceadvice','OperationController@itemPriceadvice');
-Route::get('operations/items/{item_id}/priceadvicedisplay/{id}','OperationController@displayPriceAdvice');
-Route::get('operations/items/{item_id}/purchases','OperationController@showPurchases');
-Route::get('operations/items/{item_id}/suppliers','OperationController@showSuppliers');
+Route::get('operations/items/{item_id}/priceadvice','Operations\ItemPriceController@itemPriceadvice');
+Route::get('operations/items/{item_id}/priceadvicedisplay/{id}','Operations\ItemPriceController@displayPriceAdvice');
+Route::get('operations/items/{item_id}/purchases','Operations\ItemPurchasesController@DisplayItemPurchases');
+Route::get('operations/items/{item_id}/suppliers','Operations\ItemSupplierController@showSuppliers');
 Route::get('operations/items/{item_id}/movements','OperationController@showMovements');
+Route::post('operations/items/{item_id}/priceadvice', 'Operations\ItemPriceController@createitemPriceadvice');
 
 /*end comment---------------------------------------------------------*/
 

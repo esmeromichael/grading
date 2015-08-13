@@ -2422,6 +2422,42 @@ function changeTest ( form )
     }
 	}
 
-    
+    //PRICE ADVICE  
+
+function changeTest1 ( form ) 
+    { 
+    	var y = document.getElementById("disc_type").value;
+    	if (y == "Amount") 
+        {
+        	form.cost.value = form.q_price.value - form.disc.value 
+    	}
+    	else
+    	{
+    		var a = form.q_price.value;
+   			var b = form.disc.value;
+   			var c = b / 100;
+   			var d = a * c;
+   			var e = a - d;
+    		form.cost.value = e;  
+    	}
+    }
+
+    function changeTest2 ( form ) 
+    { 
+    	var l = document.getElementById("disc_type2").value;
+    	if (l == "Amount") 
+        {
+        	form.cost2.value = form.q_price2.value - form.disc2.value 
+    	}
+    	else
+    	{
+    		var a1 = form.q_price2.value;
+   			var b1 = form.disc2.value;
+   			var c1 = b1 / 100;
+   			var d1 = a1 * c1;
+   			var e1 = a1 - d1;
+    		form.cost2.value = e1;  
+    	}
+    }
 
     

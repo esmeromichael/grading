@@ -22,6 +22,6 @@ class DropColumNameToken extends Migration
      */
     public function down()
     {
-        B::statement('ALTER TABLE items ADD _token');
+        DB::statement('ALTER TABLE items ADD _token');
     }
 }

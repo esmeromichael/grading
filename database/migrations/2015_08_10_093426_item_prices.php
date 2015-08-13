@@ -24,6 +24,7 @@ class ItemPrices extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('status', array('Active', 'Void', 'New'));
+            $table->string('remarks');
             $table->timestamps();
         });
     }

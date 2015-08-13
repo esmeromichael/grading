@@ -1,200 +1,189 @@
 <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Change Your Account</h4>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Change Your Account</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-signin" name="loginform" method="POST" action="#.php">
+                    <h6 class="form-signin-heading">Change Your Username or Password</h6>
+                    Username: <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus="">
+                    <hr>
+                    Old Password:
+                    <input type="password" id="oldpassword" name="oldpassword" class="form-control" placeholder="Old Password" required>
+                    New Password:
+                    <input type="password" id="newpassword" name="newpassword" class="form-control" placeholder="New Password" required>
+                    Confirm Password:
+                    <input type="password" id="conpassword" name="conpassword" onkeyup="checkPass(); return false;" class="form-control" placeholder="Confirm Password" required>
+                    <span id="confirmMessage" class="confirmMessage"></span>
+            <div class="modal-footer">
+                <button class="btn btn-lg btn-primary" type="submit" name="submit">Save</button>
+            </div>
+                </form>
+            </div>
         </div>
-
-        <div class="modal-body">
-        <form class="form-signin" name="loginform" method="POST" action="#.php">
-            <h6 class="form-signin-heading">Change Your Username or Password</h6>
-            Username: <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus="">
-            <hr>
-            Old Password:
-            <input type="password" id="oldpassword" name="oldpassword" class="form-control" placeholder="Old Password" required>
-            New Password:
-            <input type="password" id="newpassword" name="newpassword" class="form-control" placeholder="New Password" required>
-            Confirm Password:
-            <input type="password" id="conpassword" name="conpassword" onkeyup="checkPass(); return false;" class="form-control" placeholder="Confirm Password" required>
-            <span id="confirmMessage" class="confirmMessage"></span>
-            
-        </div>
-        <div class="modal-footer">
-        <button class="btn btn-lg btn-primary" type="submit" name="submit">Save</button>
-        </div>
-        </form>
-      </div>
-      
     </div>
-    </div>
-
-    <div class="modal fade" id="myModal1" role="dialog">
+</div>
+<div class="modal fade" id="myModal1" role="dialog">
     <div class="modal-dialog modal-lg">
-    
-      <!-- Modal content-->
-      <div class="modal-content" >
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4><b>New Partner</b></h4>
-        </div>
+        <!-- Modal content-->
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><b>New Partner</b></h4>
+            </div>
 
-                            <div class="modal-body">
-                            <h6>Create New Partner Info</h6>
-                            <form class="form-signin" id="createpartner" name="createpartner" method="POST" action="{{ action('Deskpad\PartnerController@partners')}}" onsubmit="return create()">
-                            <table>
-                            <tr>
-                                <td> 
-                                    <b>Partner ID</b>
-                                </td>
-                                <td>
-                                    <div class="col-xs-6">
+            <div class="modal-body">
+            <h6>Create New Partner Info</h6>
+                <form class="form-signin" id="createpartner" name="createpartner" method="POST" action="{{ action('Deskpad\PartnerController@partners')}}" onsubmit="return create()">
+                    <table>
+                        <tr>
+                            <td> 
+                                <b>Partner ID</b>
+                            </td>
+                            <td>
+                                <div class="col-xs-6">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="text" id="inputPartnerID" name="id" class="form-control" placeholder="New" readonly="" autofocus="">
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td style="width:12%;">
-                                    <b>**Partner Name</b>
-                                </td>
-                                <td>
-                                    <div class="col-xs-6">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:12%;">
+                                <b>**Partner Name</b>
+                            </td>
+                            <td>
+                                <div class="col-xs-6">
                                     <input type="text" id="inputPartnerName" name="name" class="form-control" required placeholder="***Partner Name"  autofocus="">
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <b>Partner Type &nbsp;&nbsp;&nbsp;</b>
-                                </td>
-                                <td>
-                                    <div class="col-xs-12">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Partner Type &nbsp;&nbsp;&nbsp;</b>
+                            </td>
+                            <td>
+                                <div class="col-xs-12">
                                     <label class="checkbox-inline"><input type="checkbox" name="customer" value="Yes">Customer</label>
                                     <label class="checkbox-inline"><input type="checkbox" name="supplier" value="Yes">Supplier</label>
                                     <label class="checkbox-inline"><input type="checkbox" name="employee" value="Yes">Employee</label> 
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td><b><br>Address &nbsp;&nbsp;&nbsp;</b></td>
                             <td>
-                            <div class="col-xs-4">
-                            <input type="text" id="country" list="countries" name="country" class="form-control" placeholder="Country" onkeyup="lookup(this.value);" onblur="fill();" />
-                                <datalist id="countries">
-                                @foreach ($countries as $country)
-                            <option value="{{$country->value}}">
-                                @endforeach
-                                </datalist>
-                            </div>
-                            </div>
-                            <div class="col-xs-4">
-                            <input type="text" id="inputProvince" name="province" class="form-control" placeholder="Province"  autofocus="">
-                            </div>
-                            <div class="col-xs-4">
-                            <input type="text" id="inputCity" name="city" class="form-control" placeholder="City/Municipality"  autofocus="">
-                            </div>
-                            <div class="col-xs-4">
-                            <input type="text" id="inputBarangay" name="barangay" class="form-control" placeholder="Barangay"  autofocus="">
-                            </div>
-                            <div class="col-xs-4">
-                            <input type="text" id="inputSteet" name="street" class="form-control" placeholder="Street"  autofocus="">
-                            </div>
-                            <div class="col-xs-4">
-                            <input type="text" id="inputHouse" name="home" class="form-control" placeholder="House No./Building"  autofocus="">
-                            </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="country" list="countries" name="country" class="form-control" placeholder="Country" onkeyup="lookup(this.value);" onblur="fill();" />
+                                    <datalist id="countries">
+                                        @foreach ($countries as $country)
+                                        <option value="{{$country->value}}">
+                                        @endforeach
+                                    </datalist>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="inputProvince" name="province" class="form-control" placeholder="Province"  autofocus="">
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="inputCity" name="city" class="form-control" placeholder="City/Municipality"  autofocus="">
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="inputBarangay" name="barangay" class="form-control" placeholder="Barangay"  autofocus="">
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="inputSteet" name="street" class="form-control" placeholder="Street"  autofocus="">
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="inputHouse" name="home" class="form-control" placeholder="House No./Building"  autofocus="">
+                                </div>
                             </td>
-                            </tr>
-                            <tr><td><b><br><br>Mobile No. &nbsp;&nbsp;&nbsp;</b></td>
+                        </tr>
+                        <tr><td><b><br><br>Mobile No. &nbsp;&nbsp;&nbsp;</b></td>
                             <td>
                             <hr>
-                            <div class="col-xs-4">
-                            Country Code<input type="text" id="inputCountrycode" name="mobile_countrycode" class="form-control" placeholder="Country Code"  autofocus="">
-                            </div>
-                            <div class="col-xs-4">
-                            Area Code<input type="text" id="inputAreacode" name="mobile_areacode" class="form-control" placeholder="Area Code"  autofocus="">
-                            </div>
-                            <div class="col-xs-4">
-                            Line Number<input type="text" id="inputLinenumber" name="mobile_lineno" class="form-control" placeholder="Line Number"  autofocus="">
-                            </div>
+                                <div class="col-xs-4">
+                                    Country Code<input type="text" id="inputCountrycode" name="mobile_countrycode" class="form-control" placeholder="Country Code"  autofocus="">
+                                </div>
+                                <div class="col-xs-4">
+                                    Area Code<input type="text" id="inputAreacode" name="mobile_areacode" class="form-control" placeholder="Area Code"  autofocus="">
+                                </div>
+                                <div class="col-xs-4">
+                                    Line Number<input type="text" id="inputLinenumber" name="mobile_lineno" class="form-control" placeholder="Line Number"  autofocus="">
+                                </div>
                             </td>
-                            </tr>
-                            <tr><td><b>Tel No. &nbsp;&nbsp;&nbsp;</b></td>
+                        </tr>
+                        <tr><td><b>Tel No. &nbsp;&nbsp;&nbsp;</b></td>
                             <td>
-                            <div class="col-xs-4">
-                            <input type="text" id="inputCountrycode1" name="tel_countrycode" class="form-control" placeholder="Country Code"  autofocus="">
-                            </div>
-                            <div class="col-xs-4">
-                            <input type="text" id="inputAreacode1" name="tel_areacode" class="form-control" placeholder="Area Code"  autofocus="">
-                            </div>
-                            <div class="col-xs-4">
-                            <input type="text" id="inputLinenumber1" name="tel_lineno" class="form-control" placeholder="Line Number"  autofocus="">
-                            </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="inputCountrycode1" name="tel_countrycode" class="form-control" placeholder="Country Code"  autofocus="">
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="inputAreacode1" name="tel_areacode" class="form-control" placeholder="Area Code"  autofocus="">
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="inputLinenumber1" name="tel_lineno" class="form-control" placeholder="Line Number"  autofocus="">
+                                </div>
                             </td>
-                            </tr>
-                            <tr><td><b>Fax No. &nbsp;&nbsp;&nbsp;</b></td>
+                        </tr>
+                        <tr><td><b>Fax No. &nbsp;&nbsp;&nbsp;</b></td>
                             <td>
-                            <div class="col-xs-4">
-                            <input type="text" id="inputCountrycode2" name="fax_countrycode" class="form-control" placeholder="Country Code"  autofocus="">
-                            </div>
-                            <div class="col-xs-4">
-                            <input type="text" id="inputAreacode2" name="fax_areacode" class="form-control" placeholder="Area Code"  autofocus="">
-                            </div>
-                            <div class="col-xs-4">
-                            <input type="text" id="inputLinenumber2" name="fax_lineno" class="form-control" placeholder="Line Number"  autofocus="">
-                            </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="inputCountrycode2" name="fax_countrycode" class="form-control" placeholder="Country Code"  autofocus="">
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="inputAreacode2" name="fax_areacode" class="form-control" placeholder="Area Code"  autofocus="">
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="inputLinenumber2" name="fax_lineno" class="form-control" placeholder="Line Number"  autofocus="">
+                                </div>
                             </td>
-                            </tr>
-                            <tr><td><b><br>Email &nbsp;&nbsp;&nbsp;</b></td>
+                        </tr>
+                        <tr><td><b><br>Email &nbsp;&nbsp;&nbsp;</b></td>
                             <td>
-                            <div class="col-xs-6">
-                            Example: john_doe@email.com<input type="text" id="inputEmail" name="email" class="form-control" placeholder="Email Address"  autofocus="">
-                            </div>
+                                <div class="col-xs-6">
+                                    Example: john_doe@email.com<input type="text" id="inputEmail" name="email" class="form-control" placeholder="Email Address"  autofocus="">
+                                </div>
                             </td>
-                            </tr>
-                            <tr><td><b><br>Entity &nbsp;&nbsp;&nbsp;</b></td>
+                        </tr>
+                        <tr><td><b><br>Entity &nbsp;&nbsp;&nbsp;</b></td>
                             <td>
                             <hr>
-                            <div class="col-xs-3">
-                            Entity List
-                            <select class="form-control" id="entity" name="business_entity" onchange="myFunction();">
-                            <option value="">---Select One---</option>
-                            @foreach ($entities as $entity)
-                            <option value="{{$entity->name}}">{{$entity->name}}</option>
-                            @endforeach
-                            </select>
-                            </div>
-                            <div class="col-xs-3" id="inputTINdiv">
-                            TIN<input type="text" id="inputTIN" name="tin" class="form-control" placeholder="TIN"  autofocus="">
-                            </div> 
-                            <div class="col-xs-3" id="inputRegdiv" style="display:none">
-                            Reg #<input type="text" id="inputReg" name="reg_no" class="form-control" placeholder="Reg #"  autofocus="">
-                            </div>             
-                            <div class="col-xs-3" id="inputBdaydiv" style="display:none">
-                            Date of Birth<input type="date" id="inputBday" name="birthday" class="form-control" placeholder="TIN"  autofocus="">
-                            </div>
-                            <div class="col-xs-3" id="inputRegdatediv" style="display:none">
-                            Date of Registration<input type="date" id="inputRegdate" name="reg_date" class="form-control" placeholder="Reg #"  autofocus="">
-                            </div> 
+                                <div class="col-xs-3">
+                                    Entity List
+                                    <select class="form-control" id="entity" name="business_entity" onchange="myFunction();">
+                                        <option value="">---Select One---</option>
+                                        @foreach ($entities as $entity)
+                                        <option value="{{$entity->name}}">{{$entity->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-xs-3" id="inputTINdiv">
+                                    TIN<input type="text" id="inputTIN" name="tin" class="form-control" placeholder="TIN"  autofocus="">
+                                </div> 
+                                <div class="col-xs-3" id="inputRegdiv" style="display:none">
+                                    Reg #<input type="text" id="inputReg" name="reg_no" class="form-control" placeholder="Reg #"  autofocus="">
+                                </div>             
+                                <div class="col-xs-3" id="inputBdaydiv" style="display:none">
+                                    Date of Birth<input type="date" id="inputBday" name="birthday" class="form-control" placeholder="TIN"  autofocus="">
+                                </div>
+                                <div class="col-xs-3" id="inputRegdatediv" style="display:none">
+                                    Date of Registration<input type="date" id="inputRegdate" name="reg_date" class="form-control" placeholder="Reg #"  autofocus="">
+                                /div> 
                             </td>
-                            </tr>
-                            
-                            
-                            </table>
-        </div>
+                        </tr>
+                    </table>
                             <div class="modal-footer">
-                            <button type="submit" class="btn btn-lg btn-primary" onclick="return val()">Save</button>
+                                <button type="submit" class="btn btn-lg btn-primary" >Save</button>
                             </div>
-                            </form>
-      </div>
-      
+                </form>
+            </div>
+        </div>
     </div>
-    </div>
+</div>
 
 
     <!-- <div class="modal fade" id="myModal2" role="dialog">
