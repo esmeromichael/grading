@@ -28,7 +28,11 @@
                     <tr>
                         <td> <a href="/deskpad/partners/{{ $partner->id }}/profile">{{ $partner->id }}</a></td>
                         <td>{{ $partner->name }}</td>
-                        <td> # </td>
+                        <td>
+                            {{ ($partner->supplier === 'Yes') ? 'Supplier' : '' }}
+                            {{ ($partner->customer === 'Yes') ? 'Customer' : '' }}
+                            {{ ($partner->employee === 'Yes') ? 'Employee' : '' }}
+                        </td>
                         <td>{{ $partner->address }}</td>
                         <td>{{ $partner->tel_areacode}} {{$partner->tel_lineno }}</td>
                         <td>{{ $partner->status }} </td>                   

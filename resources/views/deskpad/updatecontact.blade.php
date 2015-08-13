@@ -30,9 +30,9 @@
             <td><b>Contact Type</b></td>
             <td>
                 <div class="col-xs-12">
-                    <label class="checkbox-inline"><input  type="checkbox" name="manager" value="Yes">Manager</label>
-                    <label class="checkbox-inline"><input  type="checkbox" name="supervisor" value="Yes">Supervisor</label>
-                    <label class="checkbox-inline"><input  type="checkbox" name="contact_person" value="Yes">Contact Person</label>  
+                    <label class="checkbox-inline"><input  type="checkbox" name="manager" value="Yes" <?php echo ($updatecontact->manager=='Yes' ? 'checked' : '');?> >Manager</label>
+                    <label class="checkbox-inline"><input  type="checkbox" name="supervisor" value="Yes" <?php echo ($updatecontact->supervisor=='Yes' ? 'checked' : '');?> >Supervisor</label>
+                    <label class="checkbox-inline"><input  type="checkbox" name="contact_person" value="Yes" <?php echo ($updatecontact->contact_person=='Yes' ? 'checked' : '');?> >Pontact Person</label> 
                 </div>
             </td>
         </tr>

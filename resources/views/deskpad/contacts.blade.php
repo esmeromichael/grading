@@ -45,7 +45,7 @@
                 <tr>
                     <td> <a href="/deskpad/partners/{{$partnerid->id}}/contacts/{{$contact->id}}">{{ $index++ }}</a></td>
                     <td>{{ $contact->first_name}} {{ $contact->middle_name }} {{$contact->last_name}}</td>
-                    <td>{{ $contact->home}}, {{ $contact->street }}, {{ $contact->barangay}}, {{ $contact->city }}, {{$contact->province}}, {{$contact->country}}</td>
+                    <td>{{ $contact->home}} {{ $contact->street }} {{ $contact->barangay}} {{ $contact->city }} {{$contact->province}} {{$contact->country}}</td>
                     <td>{{ $contact->tel_areacode}} {{$contact->tel_lineno }}</td>                  
                 </tr>
             @endforeach

@@ -137,7 +137,7 @@
                 <td>
                     <div class="col-xs-8">
                         <select class="cat form-control" name="category_id">
-                            <option value="{{ $itemcatsub->cid }}">{{ $itemcatsub->cname }}</option>
+                            <option value="{{ $iteminfo->category->id }}">{{ $iteminfo->category->name  }}</option>
                             @foreach ($catt as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -152,9 +152,10 @@
                 <td>
                     <div class="col-xs-8">
                         <select class="subcat form-control" name="subcategory_id">
-                            <option value="{{ $itemcatsub->sname }}">{{ $itemcatsub->sname }}</option>
+                            <option value="{{ $iteminfo->subcategory->name }}">{{ $iteminfo->subcategory->name }}</option>
                         </select>
                     <div id="load" data-load='{!! $categories !!}'></div>
+
                     </div>
                 </td>
             </tr>
@@ -171,7 +172,7 @@
                 </td>
                 <td>
                     <div class="col-xs-8">
-                        <select class="form-control" name="uom">
+                        <select class="form-control" name="uom_id">
                             @foreach($uoms as $uom)
                             <option value="{{$uom->id}}">{{$uom->name}}</option>
                             @endforeach

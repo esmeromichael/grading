@@ -170,7 +170,7 @@
                             </td>
                             <td>
                                 <div class="col-xs-8">
-                                    <select class="form-control" name="uom">
+                                    <select class="form-control" name="uom_id">
                                         <option>--Select One--</option>
                                         @foreach ($uoms as $unit)
                                         <option value="{{$unit->id}}">{{ $unit->name }}</option>

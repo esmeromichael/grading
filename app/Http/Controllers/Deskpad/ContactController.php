@@ -28,7 +28,7 @@ public function createContact($id) {
 		$contact = new PartnerContact;
 		$input = Input::except('_token','manager','supervisor','contact_person','address');
 		$contact->fill($input);
-		$contact->address = Input::get('home').",".Input::get('street').",".Input::get('barangay').",".Input::get('city').",".Input::get('province').",".Input::get('country');
+		$contact->address = Input::get('home').Input::get('street').Input::get('barangay').Input::get('city').Input::get('province').Input::get('country');
 		$contact->manager = (Input::get('manager')=='Yes' ? 'Yes' : 'No');
 		$contact->supervisor = (Input::get('supervisor')=='Yes' ? 'Yes' : 'No');
 		$contact->contact_person = (Input::get('contact_person')=='Yes' ? 'Yes' : 'No');

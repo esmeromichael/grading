@@ -21,7 +21,7 @@ public function showbranch($id) {
 public function createBranch($id) {
 
         $branch = new PartnerBranch;
-		$branch_params = Input::except('_token');
+		$branch_params = Input::except('_token','submit1');
         $branch->address = Input::get('home').Input::get('barangay').Input::get('street').Input::get('city').Input::get('province').Input::get('country');
 		$branch->fill($branch_params)->save();
 

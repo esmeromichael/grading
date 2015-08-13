@@ -14,19 +14,14 @@ class ItemController extends Controller {
 
 public function displayItems(){
 
-		$itemlist = DB::table('items')         
-		    ->join('item_categories', 'items.category_id', '=', 'item_categories.id')
-		    ->join('item_subcategories', 'items.subcategory_id', '=', 'item_subcategories.id')
-		    ->select('items.*', 'item_subcategories.name as subname','item_categories.name as catname')
-		    ->orderBy('items.id', 'asc')
-		    ->paginate(10);
+		$itemlist = Item::paginate(10);
 
 	    $catt = ItemCategory::all();
 	    $categories = ItemCategory::all();
 	    $categories_pack = [];
 	    foreach($categories as $category):
-		    $subcategories = ItemSubcategory::where('parent',$category->id)->lists('name');
-		    $categories_pack[$category->id] = $subcategories;
+		    $subcategories = ItemSubcategory::where('parent',$category->id)->lists('name','id');
+		    $categories_pack[$category->id][$category->name] = $subcategories;
 	    endforeach;
 
 	    $jsonified = json_encode($categories_pack);
@@ -42,18 +37,11 @@ public function itemProfile($item_id) {
 	  	$iteminfo = Item::whereId($item_id)->first();
 	    $uoms = Uom::where('active','Y')->get();
 
-	    $itemcatsub = DB::table('items')   
-		    ->where('items.id', $item_id)        
-		    ->join('item_categories', 'items.category_id', '=', 'item_categories.id')
-		    ->join('item_subcategories', 'items.subcategory_id', '=', 'item_subcategories.id')
-		    ->select('item_subcategories.id as sid', 'item_subcategories.name as sname','item_categories.name as cname','item_categories.id as cid')
-		    ->first();
-
 	    $catt = ItemCategory::all();
 	    $categories = ItemCategory::all();
 	    $categories_pack = [];
 	    foreach($categories as $category):
-		    $subcategories = ItemSubcategory::where('parent',$category->id)->lists('name');
+		    $subcategories = ItemSubcategory::where('parent',$category->id)->orderBy('parent','asc')->lists('name');
 		    $categories_pack[$category->id] = $subcategories;
 	    endforeach;
 
@@ -88,7 +76,7 @@ public function createItem() {
 		  'code', 'sku', 'generic',
 		  'brand', 'make', 'model',
 		  'color', 'description',
-		  'category_id', 'uom'
+		  'category_id', 'uom_id'
 		]), [
 		  'size_dim' => Input::get('size_dimension'),
 		  'gauge_thick' => Input::get('gauge_thickness'),

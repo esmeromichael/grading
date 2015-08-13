@@ -34,10 +34,10 @@
 			            <td>{{ $item->description }}</td>
 			            <td>{{ $item->sku }} </td>
 			            <td>{{ $item->code }}</td>
-			            <td>{{ $item->catname }}</td>
-			            <td>{{ $item->subname }}</td>
+			            <td>{{ $item->category->name }}</td>
+			            <td>{{ $item->subcategory->name }}</td>
 			            <td> # </td>
-			            <td> # </td>
+			            <td>{{ $item->uom->name }} </td>
 			            <td>{{ $item->status }}</td> 
 			        </tr>
                @endforeach

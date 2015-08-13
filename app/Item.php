@@ -14,5 +14,9 @@ class Item extends Model {
 
 	public function subcategory() {
 		return $this->belongsTo('App\ItemSubcategory');
-	}	
+	}
+
+	public function uom() {
+		return $this->belongsTo('App\Uom');
+	}
 }
