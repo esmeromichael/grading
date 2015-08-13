@@ -21,7 +21,7 @@ public function displayItems(){
 	    $categories_pack = [];
 	    foreach($categories as $category):
 		    $subcategories = ItemSubcategory::where('parent',$category->id)->lists('name');
-		    $categories_pack[$category->id][$category->name] = $subcategories;
+		    $categories_pack[$category->id] = $subcategories;
 	    endforeach;
 
 	    $jsonified = json_encode($categories_pack);
