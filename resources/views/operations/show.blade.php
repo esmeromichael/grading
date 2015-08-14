@@ -1,5 +1,4 @@
 @extends('layouts.main2')
-
 @section('content')
 <nav id="top_navigation" class="text_nav">
     <div class="container">
@@ -12,6 +11,11 @@
     </div>
 </nav>
 <section class="container main_section">
+@if(Session::has('message'))
+<div class="alert-box success">
+{{Session::get('message')}}
+</div>
+@endif
 	<h5>This is the Items Tab. Click on the Item ID to view details</h5>
 		<table class="table table-striped table-hover">
 			<thead>

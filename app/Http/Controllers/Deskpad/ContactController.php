@@ -34,7 +34,7 @@ public function createContact($id) {
 		$contact->contact_person = (Input::get('contact_person')=='Yes' ? 'Yes' : 'No');
 		$contact->save();
 		
-		return redirect()->action('Deskpad\ContactController@showcontact', $id);
+		return redirect()->action('Deskpad\ContactController@showcontact', $id)->with('message', 'Contact Successfully Added.');;
 	}
 
 public function ShowUpdateContacts($id, $branchid) {
@@ -58,7 +58,7 @@ public function ShowUpdateContacts($id, $branchid) {
 		$contact->contact_person = (Input::get('contact_person')=='Yes' ? 'Yes' : 'No');
 		$contact->save();
 
-        return redirect()->action('Deskpad\ContactController@showcontact', $partnerid);
+        return redirect()->action('Deskpad\ContactController@showcontact', $partnerid)->with('message', 'Contact Successfully Updated.');;
     }   
 
 }

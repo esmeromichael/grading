@@ -28,6 +28,11 @@
          <h5>[{{$partnerid->id}}] - {{$partnerid->name}}</h5> 
     </div>
 </nav>
+@if(Session::has('message'))
+<div class="alert alert-success">
+{{Session::get('message')}}
+</div>
+@endif
 <h6>This is the Branch Tab. Click on the Branch ID to view details</h6>
     <table class="table table-striped table-hover">
         <thead>

@@ -30,7 +30,7 @@ public function createPartner() {
 		$partner->address = Input::get('home').Input::get('barangay').Input::get('street').Input::get('city').Input::get('province').Input::get('country');
 		$partner->save();
 
-	 	return redirect()->action('Deskpad\PartnerController@partners');
+        return redirect()->action('Deskpad\PartnerController@partners')->with('message', 'Partner Successfully Added.');;
 	}
 
 public function showprofile($id) {
@@ -54,7 +54,7 @@ public function UpdatePartner($id) {
 
         $partner->save();
         
-        return redirect()->action('Deskpad\PartnerController@partners');
+        return redirect()->action('Deskpad\PartnerController@partners')->with('message', 'Partner Successfully updated.');
     }
 
 

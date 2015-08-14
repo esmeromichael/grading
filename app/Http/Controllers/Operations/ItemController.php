@@ -8,7 +8,8 @@ use App\ItemCategory;
 use App\ItemSubCategory;
 use DB;
 use Input;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ItemController extends Controller {
 
@@ -63,10 +64,10 @@ public function UpdateItems($item_id) {
         $item->subcategory_id = $subname->id;
 		$item->save();
 
-		return redirect()->action('Operations\ItemController@displayItems');
+		return redirect()->action('Operations\ItemController@displayItems')->with('message', 'Item Successfully Updated.');
 	}
 
-public function createItem() { 
+public function createItem() {
 
 		$sname = Input::get('subcategory_id');
 		$subname = ItemSubcategory::where('name',$sname)->first();
@@ -83,16 +84,11 @@ public function createItem() {
 		  'reorder_lvl' => Input::get('reoderlevel'),
 		  'subcategory_id' => $subname->id
 		]);
-
 		$item->fill($item_params);
 
 		$item->serialized = (Input::get('serialized') === 'Y' ? 'Y' : 'N');
 		$item->inventoriable = (Input::get('inventoriable') === 'Y' ? 'Y' : 'N');
-
 		$item->save();
-
-	 	return redirect()->action('Operations\ItemController@displayItems');
+		return redirect()->action('Operations\ItemController@displayItems')->with('message', 'Item Successfully Added.');
 	}
-
-
 }

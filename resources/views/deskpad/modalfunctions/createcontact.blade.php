@@ -268,12 +268,3 @@
     </div> -->
     <!--/Modal -->
 
-<script>
-
-    function create()
-    {
-        alert('One Contact Created.');
-        return true;
-    }
-
-    </script>

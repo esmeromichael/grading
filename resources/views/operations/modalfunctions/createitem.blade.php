@@ -1,4 +1,5 @@
 <!-- Modal -->
+
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -28,7 +29,8 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="myModal1" role="dialog">
+<div class="modal" id="myModal1" role="dialog">
+
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -136,8 +138,8 @@
                             </td>
                             <td>
                                 <div class="col-xs-8">
-                                    <select class="cat form-control" name="category_id">
-                                        <option>--Category--</option>
+                                    <select class="cat form-control" name="category_id" required>
+                                        <option value="" disabled selected>--Category--</option>
                                         @foreach ($catt as $category)
                                         <option value="{{$category->id}}">{{ $category->name }}</option>
                                         @endforeach
@@ -151,7 +153,7 @@
                             </td>
                             <td>
                                 <div class="col-xs-8">
-                                    <select class="subcat form-control" name="subcategory_id">
+                                    <select class="subcat form-control" name="subcategory_id" required>
                                         <option>--Select Subcategory--</option>
                                     </select>
                                 <div id="load" data-load='{!! $categories !!}'></div>
@@ -170,8 +172,8 @@
                             </td>
                             <td>
                                 <div class="col-xs-8">
-                                    <select class="form-control" name="uom_id">
-                                        <option>--Select One--</option>
+                                    <select class="form-control" name="uom_id" required>
+                                        <option value="" disabled selected>--Select One--</option>
                                         @foreach ($uoms as $unit)
                                         <option value="{{$unit->id}}">{{ $unit->name }}</option>
                                         @endforeach
@@ -299,35 +301,17 @@
         message.style.color = badColor;
         message.innerHTML = "Passwords Do Not Match!"
     }
-    }  
-    </script>
-
-    <script language="JavaScript">
+    }
     $(document).ready(function() {
     $('#myTable').dataTable();
     } );
-    </script>
-
-    <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
                 responsive: true
         });
     });
-    </script>
-
-
-    <script>
-    function create()
-    {
-        alert('One Item Created.');
-        return true;
-    }
-    </script>
-
-    <!--Date-->
-    <script language="javascript">
     var today = new Date();
     document.getElementById('date').innerHTML=today.toDateString();
     </script>
+
     </div>

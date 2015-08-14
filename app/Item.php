@@ -19,4 +19,9 @@ class Item extends Model {
 	public function uom() {
 		return $this->belongsTo('App\Uom');
 	}
+
+	public static $rules = array(
+		'category_id' => 'required',
+		'uom_id'   => 'required'
+	);
 }

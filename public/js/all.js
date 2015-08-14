@@ -2406,23 +2406,6 @@ function changeTest ( form )
         form.orig71.value
     } 
 
-//UPDATE_CONFIRM
-
-    function updateconfirm() 
-    {
-    var x;
-    if (confirm("Are you sure you want to update this Item???") == true) {
-    
-        alert('One Item Updated!!');
-        return true;
-    } 
-    else 
-    {
-        return false;
-    }
-	}
-
-    //PRICE ADVICE  
 
 function changeTest1 ( form ) 
     { 

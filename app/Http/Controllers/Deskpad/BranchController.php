@@ -25,7 +25,7 @@ public function createBranch($id) {
         $branch->address = Input::get('home').Input::get('barangay').Input::get('street').Input::get('city').Input::get('province').Input::get('country');
 		$branch->fill($branch_params)->save();
 
-	 	return redirect()->action('Deskpad\BranchController@showbranch',$id);
+		return redirect()->action('Deskpad\BranchController@showbranch',$id)->with('message', 'Branch Successfully Added.');;
     }
 
 public function ShowBranchProfile($id, $branchid) {
@@ -44,6 +44,6 @@ public function UpdateBranchPartner($id, $branchid) {
         $branch->address = Input::get('home').Input::get('barangay').Input::get('street').Input::get('city').Input::get('province').Input::get('country');
         $branch->fill($input)->save();
 
-        return redirect()->action('Deskpad\BranchController@showbranch', $id);
+        return redirect()->action('Deskpad\BranchController@showbranch', $id)->with('message', 'Branch Successfully Updated.');;
     }
 }

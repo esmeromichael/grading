@@ -154,8 +154,8 @@
                             <hr>
                                 <div class="col-xs-3">
                                     Entity List
-                                    <select class="form-control" id="entity" name="business_entity" onchange="myFunction();">
-                                        <option value="">---Select One---</option>
+                                    <select class="form-control" id="entity" name="business_entity" onchange="myFunction();" required>
+                                        <option value="" disabled selected >---Select One---</option>
                                         @foreach ($entities as $entity)
                                         <option value="{{$entity->name}}">{{$entity->name}}</option>
                                         @endforeach
@@ -172,12 +172,12 @@
                                 </div>
                                 <div class="col-xs-3" id="inputRegdatediv" style="display:none">
                                     Date of Registration<input type="date" id="inputRegdate" name="reg_date" class="form-control" placeholder="Reg #"  autofocus="">
-                                /div> 
+                                </div>
                             </td>
                         </tr>
                     </table>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-lg btn-primary" >Save</button>
+                                <button type="submit" class="btn btn-lg btn-primary">Save</button>
                             </div>
                 </form>
             </div>
@@ -244,8 +244,8 @@
     </div>
     </div> -->
     <!--/Modal -->
-
     <!--functions-->
+
     <script language="javascript">
     function checkPass()
     {
@@ -332,23 +332,6 @@
         }
 
     }
-    
-    function val()
-    {
-    var y = document.getElementById("entity").value;
-    if(y == ""){
-
-    alert('Choose some Entity Value');
-    return false;
-    }
-    }
-
-    function create()
-    {
-        alert('One Partner Created.');
-        return true;
-    }
-
     </script>
 
     <!--Date-->
@@ -356,7 +339,6 @@
     var today = new Date();
     document.getElementById('date').innerHTML=today.toDateString();
     </script>
-    
 
     <!--AJAX SEARCH-->
     <script language="javascript" type="text/javascript">

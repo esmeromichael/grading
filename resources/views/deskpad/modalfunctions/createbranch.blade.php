@@ -212,14 +212,3 @@
     </div>
     </div> -->
     <!--/Modal -->
-
-
-        <script>
-
-    function create()
-    {
-        alert('One Branch Created.');
-        return true;
-    }
-
-    </script>

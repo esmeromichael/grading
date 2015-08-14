@@ -12,7 +12,7 @@ class ChangeItemPrimaryKey extends Migration
      */
     public function up()
     {
-        DB::statement('ALTER TABLE items CHANGE item_id id INT');
+        DB::statement('ALTER TABLE items CHANGE item_id id INT auto_increment');
     }
 
     /**
@@ -22,6 +22,6 @@ class ChangeItemPrimaryKey extends Migration
      */
     public function down()
     {
-        DB::statement('ALTER TABLE items CHANGE  id item_id INT');
+        DB::statement('ALTER TABLE items CHANGE  id item_id INT auto_increment');
     }
 }

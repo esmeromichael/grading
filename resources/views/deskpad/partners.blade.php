@@ -10,6 +10,11 @@
     </div>
 </nav>
 <section class="container main_section">
+@if(Session::has('message'))
+<div class="alert alert-success">
+{{Session::get('message')}}
+</div>
+@endif
 <h5>This is the Partners Tab. Click on the Partner ID to view details</h5>
     <div id="myTable">
         <table class="table table-striped table-hover">
