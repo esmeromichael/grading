@@ -72,10 +72,21 @@ Route::get('operations/items/{item_id}/priceadvice','Operations\ItemPriceControl
 Route::get('operations/items/{item_id}/priceadvicedisplay/{id}','Operations\ItemPriceController@displayPriceAdvice');
 Route::get('operations/items/{item_id}/purchases','Operations\ItemPurchasesController@DisplayItemPurchases');
 Route::get('operations/items/{item_id}/suppliers','Operations\ItemSupplierController@showSuppliers');
-Route::get('operations/items/{item_id}/movements','OperationController@showMovements');
+Route::get('operations/items/{item_id}/movements','Operations\ItemMovementsController@showMovements');
 Route::post('operations/items/{item_id}/priceadvice', 'Operations\ItemPriceController@createitemPriceadvice');
 
+
+Route::post('operations/items/{item_id}/displaybulkunits', 'Operations\ItemController@createBulkUOM');
+Route::post('operations/items/{item_id}/displaybulkpackaging', 'Operations\ItemController@createBulkPackaging');
+
+ //Route::get('operations/items/{item_id}/profile/{id}/modalfunctions/updatebulkunit', 'Operations\ItemController@itemProfile');
+
+
+
 /*end comment---------------------------------------------------------*/
+
+
+Route::get('operations/purchase', 'Operations\PurchaseRequestController@getItems');
 
 
 Route::get('operations/', function () {

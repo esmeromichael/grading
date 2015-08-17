@@ -24,4 +24,8 @@ class Item extends Model {
 		'category_id' => 'required',
 		'uom_id'   => 'required'
 	);
+
+	public function bulkunits() {
+		return $this->belongsTo('App\BulkUnit');
+	}
 }

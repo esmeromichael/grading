@@ -25,11 +25,22 @@
         </ul>
     </div>
 </nav>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <div class="container"> 
+@if(Session::has('message'))
+<div class="alert alert-success"> 
+{{Session::get('message')}} 
+</div>
+<script type="text/javascript">
+      $('#myBulkModal').modal('show');
+    </script>
+@endif
     <h5><b>[{{$iteminfo->id}}] - {{$iteminfo->description}}</b></h5> 
 </div>
-<center>
-<div>
+
+<div >
     <form class="form-signin" name="loginform" method="POST" action="{{ action('Operations\ItemController@UpdateItems',[$iteminfo->id])}}" onsubmit="return update()">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <table>
@@ -43,6 +54,7 @@
                     </div>
                 </td>
             </tr>
+
             <tr>
                 <td>
                     Code:
@@ -70,7 +82,8 @@
                         <input type="text" id="orig1" onchange="changeTest(this.form)" class="form-control" name="generic" value="{{$iteminfo->generic}}">
                     </div>
                 </td>
-            </tr>      
+            </tr>  
+
             <tr>
                 <td>Brand:</td>
                 <td>
@@ -85,6 +98,7 @@
                     </div>
                 </td>
             </tr>
+            
             <tr>
                 <td>Model:</td>
                 <td>
@@ -138,7 +152,7 @@
                     <div class="col-xs-8">
                         <select class="cat form-control" name="category_id">
                             <option value="{{ $iteminfo->category->id }}">{{ $iteminfo->category->name  }}</option>
-                            @foreach ($catt as $category)
+                            @foreach($catt as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
@@ -178,7 +192,26 @@
                             @endforeach
                         </select>
                     </div>
+
+                   
+                    <div class="checkbox-inline">
+
+                        <a class="dropdown-toggle" href="#"  data-toggle="modal" data-target="#myBulkModal"> <label class="checkbox-inline">Bulk Unit:</label> </a>
+                        
+                        @foreach($bulkunits as $baseunit)
+                        <span display="inline">
+                        <span>{{$baseunit->name}}</span>
+                        @endforeach
+                         
+                      
+                        <a class="dropdown-toggle" href="#" data-toggle="modal" data-target="#myBulkPackagingModal"> <label class="checkbox-inline">Bulk Packaging Unit:</label> </a>
+                        @foreach($bulkunits2 as $bulkpackaging)
+                        <span class="checkbox-inline">{{$bulkpackaging->name}}</span>
+                        @endforeach
+                    </div>
+
                 </td>
+                
             </tr>
             <tr>
                 <td>
@@ -189,10 +222,16 @@
             <tr>
                 <td></td>
                 <td>
-                    <div class="col-xs-12">
-                        Inventoriable&nbsp;<label class="checkbox-inline"><input type="checkbox" name="inventoriable" value="Y" <?php echo ($iteminfo->inventoriable=='Y' ? 'checked' : '');?>></label>
-                        Serialized&nbsp;<label class="checkbox-inline"><input type="checkbox" name="serialized" value="Y" <?php echo ($iteminfo->serialized=='Y' ? 'checked' : '');?>></label>
-                    </div>
+                   <div class="col-xs-8">
+                                Inventory Types 
+                                    <select class="form-control" name="inventory_types">
+                                        <option value="">--Select One--</option>
+                                        
+                                        <option value="None Inventoriable">Non-Inventoriable</option>
+                                        <option value="Inventoriable">Inventoriable</option>
+                                        <option value="Serialized and Inventoriable">Serialized</option>
+                                    </select>
+                                </div>
                 <br>
                     <div class="col-xs-6">
                         Re-Order Level <input type="text" name="reoderlevel" placeholder="Re-Order Level" class="form-control">
@@ -203,6 +242,12 @@
             <button class="btn btn-lg btn-primary btn-sm" type="submit" onclick="return updateconfirm()">Update Info</button>
     </form>
 </div>
-</center>
+
 @include('operations.modalfunctions.createitem')
+@include('operations.modalfunctions.displaybulkunit')
+@include('operations.modalfunctions.savebulkunit')
+@include('operations.modalfunctions.displaybulkpackaging')
+
 @endsection
+
+

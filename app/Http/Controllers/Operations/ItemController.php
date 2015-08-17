@@ -8,8 +8,9 @@ use App\ItemCategory;
 use App\ItemSubCategory;
 use DB;
 use Input;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\BulkUnit;
+use Redirect;
+use Request;
 
 class ItemController extends Controller {
 
@@ -37,7 +38,6 @@ public function itemProfile($item_id) {
 
 	  	$iteminfo = Item::whereId($item_id)->first();
 	    $uoms = Uom::where('active','Y')->get();
-
 	    $catt = ItemCategory::all();
 	    $categories = ItemCategory::all();
 	    $categories_pack = [];
@@ -49,8 +49,24 @@ public function itemProfile($item_id) {
 	    $jsonified = json_encode($categories_pack);
 	    $data = ['categories' => $jsonified];
 
-	    return View('operations/profile',$data, compact('catt','iteminfo','uoms','subcategories','itemcatsub'));
+	    $bulkunits = BulkUnit::where('item_id', $item_id)
+			 	->where('type', 'base')->get();
+
+		$bulkunits2 = BulkUnit::where('item_id', $item_id)
+			 	->where('type', 'bulk')->get();
+
+		$dropdownbulkunit = BulkUnit::where('item_id', $item_id)
+			 	->where('type', 'base')->get();
+		$bulkid = BulkUnit::where('item_id', $item_id)
+			 	->where('type', 'base')->first();
+
+		 $id = Request::input('id');
+ 		$updatebulkunits = BulkUnit::where('id', $id)->first();
+
+	    return View('operations/profile',$data, compact('catt','iteminfo','uoms','subcategories','itemcatsub','bulkunits','bulkunits2','dropdownbulkunit','updatebulkunits','bulkid'));
 	}
+
+
 
 public function UpdateItems($item_id) {
 
@@ -89,6 +105,39 @@ public function createItem() {
 		$item->serialized = (Input::get('serialized') === 'Y' ? 'Y' : 'N');
 		$item->inventoriable = (Input::get('inventoriable') === 'Y' ? 'Y' : 'N');
 		$item->save();
+
 		return redirect()->action('Operations\ItemController@displayItems')->with('message', 'Item Successfully Added.');
 	}
+
+	public function createBulkUOM($item_id) {
+		$iteminfo = Item::whereId($item_id)->first();
+		$item = new BulkUnit;
+		$itemid = Input::get('item_id');
+		$input = Input::except('_token');
+        $item->fill($input);
+		$item->save();
+	
+		 return redirect()->action('Operations\ItemController@itemProfile',$itemid)->with('message','success');
+
+	}
+
+	public function createBulkPackaging() {
+
+		$item = new BulkUnit;
+
+		$itemid = Input::get('item_id');
+		$input = Input::except('_token');
+        $item->fill($input);
+		$item->save();
+
+		redirect()->action('Operations\ItemController@itemProfile',$itemid);
+	}
+
+public function updatebulkUnit($id){
+
+		$updatebulkunits = BulkUnit::where('id', $id)
+		->where('type', 'base')->first();
+
+	}
 }
+

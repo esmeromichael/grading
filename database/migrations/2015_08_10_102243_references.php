@@ -12,9 +12,16 @@ class References extends Migration
      */
     public function up()
     {
-        Schema::create('references', function (Blueprint $table) {
+        Schema::create('module_references', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('ref_type');
+            $table->string('database');
+            $table->string('tables');
+            $table->string('pk');
+            $table->string('prefix');
+            $table->string('description');
+
+           
         });
     }
 
@@ -25,6 +32,6 @@ class References extends Migration
      */
     public function down()
     {
-        Schema::drop('references');
+        Schema::drop('module_references');
     }
 }
