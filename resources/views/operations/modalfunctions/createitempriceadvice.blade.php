@@ -37,11 +37,11 @@
                 <h4><b>[{{ $iteminfo->id }}] - {{ $iteminfo->description }}</b></h4>
             </div>         
                     <div class="modal-body">
-                        <h6>Create New Price Advice</h6>
+                        <h5><b>Create New Price Advice</b></h5>
                         <form class="form-signin" name="createcontactform" method="POST" action="" onsubmit="return create()">
                             <table>
                                 <tr>
-                                    <td><b>Price ID</b></td>
+                                    <td>Price ID</td>
                                     <td>
                                         <div class="col-xs-3">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -51,28 +51,28 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>Supplier</b>
+                                        Supplier
                                     </td>
                                     <td>
                                         <div class="col-xs-6">
-                                            <select class="cat form-control" name="partner_id">
-                                                <option>--Supplier--</option>
+                                            <select class="cat form-control" name="partner_id" required style="background-color: #faf2cc;">
+                                                <option value="" disabled selected="">--Supplier--</option>
                                                 @foreach ($catt as $category)
                                                 <option value="{{$category->id}}">{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-xs-2" align="right">
-                                            <b>Effective Date</b>
+                                            Effective Date
                                         </div>
                                         <div class="col-xs-4">
-                                            <input type="date" class="form-control" id="start_date" name="start_date" autofocus="">
+                                            <input type="date" class="form-control" id="start_date" name="start_date" required style="background-color: #faf2cc;" autofocus="">
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>Branch</b>
+                                        Branch
                                     </td>
                                     <td>
                                         <div class="col-xs-6">
@@ -82,17 +82,16 @@
                                         <div id="load" data-load='{!! $categories !!}'></div>
                                         </div>
                                         <div class="col-xs-2" align="right">
-                                            <b>Valid Until</b>
+                                            Valid Until
                                         </div>
                                         <div class="col-xs-4">
-                                            <input type="date" class="form-control" id="end_date" onchange ="checkDate(); return false;" name="end_date" autofocus="">
-                                            <span id="confirmMessage1" class="confirmMessage1"></span>
+                                            <input type="date" class="form-control" id="end_date" onchange ="checkCurrentDate(); return false;" name="end_date" autofocus="">
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>Remarks</b>
+                                        Remarks
                                     </td>
                                     <td>
                                         <div class="col-xs-12">
@@ -102,20 +101,19 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h5><b><br>UOM [{{ $uoms->name }}(Bases)]</b></h5>
+                                        <h5><br><b>UOM [{{ $uoms->name }}(Bases)]</b></h5>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b><br><br>Quoted Price</b>
+                                        Quoted Price
                                     </td>
                                     <td>
-                                    <hr>
                                         <div class="col-xs-3">
-                                            <input type="text" id="q_price" onchange="changeTest1(this.form)" name="q_price" class="form-control" placeholder=" 0.0000" autofocus="">
+                                            <input type="text" id="q_price" required onchange="changeTest1(this.form)" style="background-color: #faf2cc;" name="q_price" class="form-control" placeholder=" 0.0000" autofocus="">
                                         </div>
                                         <div class="col-xs-2" align="right">
-                                            <b>Discount Type</b>
+                                            Discount Type
                                         </div>
                                         <div class="col-xs-3">
                                             <select class="form-control" name="disc_type" id="disc_type" onchange="changeTest1(this.form)">
@@ -124,7 +122,7 @@
                                             </select>
                                         </div>
                                         <div class="col-xs-1" align="right">
-                                            <b>Discount</b>
+                                            Discount
                                         </div>
                                         <div class="col-xs-3">
                                             <input type="text" id="disc" onchange="changeTest1(this.form)" class="form-control" name="disc" autofocus="" placeholder=" 0.0000">
@@ -133,7 +131,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>Net Price</b>
+                                        Net Price
                                     </td>
                                     <td>
                                         <div class="col-xs-3">
@@ -146,7 +144,7 @@
                             <br>
                     
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-lg btn-primary" name="submit1">Save</button>
+                                <button type="submit" class="btn btn-lg btn-primary" name="submit1" onclick="return checkvalid();">Save</button>
                             </div>
                         </form>
                     </div>
@@ -162,7 +160,7 @@
   <!-- <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title"><b>Search Partners</b></h4>
+      <h4 class="modal-title">Search Partners</h4>
     </div>
 
     <div class="modal-body">
@@ -245,35 +243,46 @@ if(newpassword.value == conpassword.value){
 }
 }  
 
-
- function checkDate()
+function checkCurrentDate()
 {
-//Store the password field objects into variables ...
-var start_date = document.getElementById('start_date');
-var end_date = document.getElementById('end_date');
-//Store the Confimation Message Object ...
-var message = document.getElementById('confirmMessage1');
-//Set the colors we will be using ...
-var goodColor = "#66cc66";
-var badColor = "#ff6666";
-//Compare the values in the password field 
-//and the confirmation field
-if(start_date.value < end_date.value){
+    var start_date = document.getElementById('start_date').value;
+    var end_date = document.getElementById('end_date').value;
+    var currentDate = new Date()
+    var day = currentDate.getDate()
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    var nowdate=month + "/" + day + "/" + year
+
+    var startDate = Date.parse(start_date);
+    var endDate = Date.parse(end_date);
+
+if(startDate <= endDate){
     //The passwords match. 
     //Set the color to the good color and inform
     //the user that they have entered the correct password 
-    end_date.style.backgroundColor = goodColor;
-    message.style.color = goodColor;
-    message.innerHTML = "Date Valid!!"
+    alert("Your Chosen Date is VALID! :)");
 }else{
     //The passwords do not match.
     //Set the color to the bad color and
     //notify the user.
-    end_date.style.backgroundColor = badColor;
-    message.style.color = badColor;
-    message.innerHTML = "Date Invalid!!"
+    alert("Your Chosen Date is INVALID!!");
+}   
 }
-}  
+
+function checkvalid()
+{
+    var start_date = document.getElementById('start_date').value;
+    var end_date = document.getElementById('end_date').value;
+
+    if(startDate <= endDate){
+    //The passwords match. 
+    //Set the color to the good color and inform
+    //the user that they have entered the correct password 
+    alert("Your Chosen Date is INVALID!!!");
+    return false;
+}
+}
+
 </script>
 
 <script language="JavaScript">

@@ -1,7 +1,6 @@
 <!-- Modal -->
-
 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
     
         <!-- Modal content-->
         <div class="modal-content">
@@ -30,7 +29,6 @@
     </div>
 </div>
 <div class="modal" id="myModal1" role="dialog">
-
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -42,7 +40,7 @@
                 <form class="form-signin" name="createcontactform" method="POST" action="{{action('Operations\ItemController@displayItems')}}" onsubmit="return create()">
                     <table>
                         <tr>
-                            <td><b>Item ID</b></td>
+                            <td>Item ID</td>
                             <td>
                                 <div class="col-xs-5">
                                     <input type="text" class="form-control" placeholder="New" autofocus="" readonly="">
@@ -51,17 +49,15 @@
                         </tr>
                         <tr>
                             <td>
-                            <b>Code</b>
+                                Code
                             </td>
                             <td>
                                 <div class="col-xs-5">
                                     <input type="text" name="code" class="form-control" autofocus="" placeholder="Code">
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>SKU</b></td>
-                            <td>
+                                <div class="col-xs-2" align="right">
+                                    SKU
+                                </div>
                                 <div class="col-xs-5">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="text" class="form-control" name="sku" placeholder="SKU" autofocus="">
@@ -69,7 +65,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Generic</b></td>
+                            <td>Generic</td>
                             <td>
                                 <div class="col-xs-5">
                                     <input type="text" id="orig1" onchange="changeTest(this.form)" class="form-control" name="generic" placeholder="Generic" autofocus="">
@@ -77,39 +73,39 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Brand</b></td>
+                            <td>Brand</td>
                             <td>
                                 <div class="col-xs-5">
                                     <input type="text" id="orig21" onchange="changeTest(this.form)" name="brand" class="form-control" placeholder="Brand" autofocus="">
                                 </div>
                                 <div class="col-xs-2" align="right">
-                                    <b>Make</b>
+                                    Make
                                 </div>
                                 <div class="col-xs-5">
                                     <input type="text" id="orig31" onchange="changeTest(this.form)" name="make" class="form-control" placeholder="Make" autofocus="">
                                 </div>
                             </td>
                         </tr>
-                        <tr><td><b>Model</b></td>
+                        <tr><td>Model</td>
                             <td>
                                 <div class="col-xs-5">
-                                    <input type="text" id="orig41" onchange="changeTest(this.form)" name="model" class="form-control" placeholder="Model" autofocus="">
+                                    <textarea id="orig41" onchange="changeTest(this.form)" name="model" class="form-control" placeholder="Model"></textarea>
                                 </div>
                                 <div class="col-xs-2" align="right">
-                                    <b>Color</b>
+                                    Color
                                 </div>
                                 <div class="col-xs-5">
                                     <input type="text" id="orig51" onchange="changeTest(this.form)" name="color" class="form-control" placeholder="Color" autofocus="">
                                 </div>
                             </td>
                         </tr>
-                        <tr><td><b>Size/<br>Dimension</b></td>
+                        <tr><td>Size/<br>Dimension</td>
                             <td>
                                 <div class="col-xs-5">
                                     <input type="text" id="orig61" onchange="changeTest(this.form)" name="size_dimension" class="form-control" placeholder="Size/Dimension" autofocus="">
                                 </div>
                                 <div class="col-xs-2" align="right">
-                                    <b>Gauge/<br>Thickness</b>
+                                    Gauge/<br>Thickness
                                 </div>
                                 <div class="col-xs-5">
                                     <input type="text" id="orig71" onchange="changeTest(this.form)" name="gauge_thickness" class="form-control" placeholder="Gauge/Thickness" autofocus="">
@@ -118,7 +114,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>Description</b>
+                                Description
                             </td>
                             <td>
                                 <div class="col-xs-12">
@@ -128,17 +124,17 @@
                         </tr>
                         <tr>
                             <td>
-                                <h4><b>Product Category</b></h4>
+                                <h5><b>Product Category</b></h5>
                             </td>
                             <td><hr></td>
                         </tr>
                         <tr>
                             <td>
-                                <b>Category</b>
+                                Category
                             </td>
                             <td>
                                 <div class="col-xs-8">
-                                    <select class="cat form-control" name="category_id" required>
+                                    <select class="cat form-control" name="category_id" required style="background-color: #faf2cc;">
                                         <option value="" disabled selected>--Category--</option>
                                         @foreach ($catt as $category)
                                         <option value="{{$category->id}}">{{ $category->name }}</option>
@@ -149,7 +145,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>Sub-Category</b>
+                                Sub-Category
                             </td>
                             <td>
                                 <div class="col-xs-8">
@@ -162,17 +158,17 @@
                         </tr>
                         <tr>
                             <td>
-                                <h4><b>Units of Measure</b></h4>
+                                <h5><b>Units of Measure</b></h5>
                             </td>
                             <td><hr></td>
                         </tr>
                         <tr>
                             <td>
-                                <b>Base Unit</b>
+                                Base Unit
                             </td>
                             <td>
                                 <div class="col-xs-8">
-                                    <select class="form-control" name="uom_id" required>
+                                    <select class="form-control" name="uom_id" required style="background-color: #faf2cc;">
                                         <option value="" disabled selected>--Select One--</option>
                                         @foreach ($uoms as $unit)
                                         <option value="{{$unit->id}}">{{ $unit->name }}</option>
@@ -183,26 +179,28 @@
                         </tr>
                         <tr>
                             <td>
-                                <h4><b>Inventory Details</b></h4>
+                                <h5><b>Inventory Details</b></h5>
                             </td>
                             <td><hr></td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
-                                <div class="col-xs-12">
-                                    Inventoriable&nbsp;<label class="checkbox-inline"><input type="checkbox" name="inventoriable" value="Y"></label>
-                                    Serialized&nbsp;<label class="checkbox-inline"><input type="checkbox" name="serialized" value="Y"></label>
+                                <div class="col-xs-8">
+                                Inventory Types 
+                                    <select class="form-control" name="inventory_types">
+                                        <option value="">--Select One--</option>
+                                        @foreach ($inventory_types as $InvTypes)
+                                        <option value="{{$InvTypes->id}}">{{ $InvTypes->inventory_type }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                            <br>
-                                <div class="col-xs-6">
-                                    Re-Order Level <input type="text" name="reoderlevel" placeholder="Re-Order Level" class="form-control" autofocus="">
+                                <div class="col-xs-4">
+                                    Re-Order Level <input type="text" name="reoderlevel" placeholder="0.00" class="form-control" autofocus="">
                                 </div>
                             </td>
                         </tr>
-
                     </table>
-                            <br>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-lg btn-primary" name="submit1">Save</button>
                             </div>

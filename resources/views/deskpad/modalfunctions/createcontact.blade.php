@@ -93,7 +93,7 @@
                             <td><b>Name</b></td>
                             <td><br>
                                 <div class="col-xs-4">
-                                    <input type="text" id="inputFirstname" name="first_name" class="form-control" placeholder="First Name" required autofocus="">
+                                    <input type="text" id="inputFirstname" style="background-color: #faf2cc;"  name="first_name" class="form-control" placeholder="First Name" required autofocus="">
                                 </div>
                                 <div class="col-xs-4">
                                     <input type="text" id="inputMiddle" name="middle_name" class="form-control" placeholder="Middle Name" required autofocus="">

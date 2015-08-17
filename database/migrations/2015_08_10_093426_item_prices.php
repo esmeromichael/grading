@@ -23,7 +23,7 @@ class ItemPrices extends Migration
             $table->decimal('cost',11,4)->default('0.0000');
             $table->date('start_date');
             $table->date('end_date');
-            $table->enum('status', array('Active', 'Void', 'New'));
+            $table->enum('status', array('Active', 'Inactive', 'Void'));
             $table->string('remarks');
             $table->timestamps();
         });

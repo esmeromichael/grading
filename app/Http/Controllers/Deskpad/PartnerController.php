@@ -37,6 +37,7 @@ public function showprofile($id) {
 
         $partnerinfo = Partner::whereId($id)->first();
         $countries = Country::all();
+        //$countries = Country::where('value', 'like', '%'.Input::get('home').'%')->get();
         $entities = EntityType::all();
         return view('deskpad/profile',compact('partnerinfo','countries','entities'));
     }

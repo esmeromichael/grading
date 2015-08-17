@@ -2404,8 +2404,9 @@ function changeTest ( form )
         form.orig51.value+" "+ 
         form.orig61.value+" "+ 
         form.orig71.value
-    } 
+    }
 
+    //PRICE ADVICE
 
 function changeTest1 ( form ) 
     { 

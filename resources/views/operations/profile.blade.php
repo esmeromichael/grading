@@ -39,14 +39,13 @@
 @endif
     <h5><b>[{{$iteminfo->id}}] - {{$iteminfo->description}}</b></h5> 
 </div>
-
-<div >
-    <form class="form-signin" name="loginform" method="POST" action="{{ action('Operations\ItemController@UpdateItems',[$iteminfo->id])}}" onsubmit="return update()">
+<div class="container">
+    <center><form class="form-signin" name="loginform" method="POST" action="{{ action('Operations\ItemController@UpdateItems',[$iteminfo->id])}}" onsubmit="return update()">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <table>
             <tr>
                 <td>
-                    Item ID:
+                    Item ID
                 </td>
                 <td>
                     <div class="col-xs-5">
@@ -57,71 +56,67 @@
 
             <tr>
                 <td>
-                    Code:
+                    Code
                 </td>
                 <td>
                     <div class="col-xs-5">
                         <b><input type="text" class="form-control" id="code" name="code" value="{{$iteminfo->code}}"></b>
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    SKU:
-                </td>
-                <td>
+                    <div class="col-xs-2" align="right">
+                        SKU
+                    </div>
                     <div  class="col-xs-5">
                         <input type="text" class="form-control" id="sku" name="sku" value="{{$iteminfo->sku}}">
                     </div>
                 </td>
             </tr>
             <tr>
-                <td>Generic:</td>
+                <td>Generic</td>
                 <td>
                     <div class="col-xs-5">
                         <input type="text" id="orig1" onchange="changeTest(this.form)" class="form-control" name="generic" value="{{$iteminfo->generic}}">
+                    </div>
+                    <div class="col-xs-2" align="right">
+                        Brand
+                    </div>
+                    <div class="col-xs-5">
+                        <input type="text" id="orig21" onchange="changeTest(this.form)" class="form-control" name="brand" value="{{$iteminfo->brand}}">
                     </div>
                 </td>
             </tr>  
 
             <tr>
-                <td>Brand:</td>
+                <td>Make</td>
                 <td>
                     <div class="col-xs-5">
-                        <input type="text" id="orig21" onchange="changeTest(this.form)" class="form-control" name="brand" value="{{$iteminfo->brand}}">
+                        <input type="text" id="orig31" onchange="changeTest(this.form)" class="form-control" name="make" value="{{$iteminfo->make}}">
                     </div>
                     <div class="col-xs-2" align="right">
-                        Make:
+                        Model
                     </div>
                     <div class="col-xs-5">
-                        <input type="text" id="orig31" onchange="changeTest(this.form)" class="form-control" name="make" value="{{$iteminfo->make}}">
+                        <textarea id="orig41" onchange="changeTest(this.form)" name="model" class="form-control" placeholder="Model">{{$iteminfo->model}}</textarea>
                     </div>
                 </td>
             </tr>
             
             <tr>
-                <td>Model:</td>
+                <td>Color</td>
                 <td>
                     <div class="col-xs-5">
-                        <input type="text" id="orig41" onchange="changeTest(this.form)" class="form-control" name="model" value="{{$iteminfo->model}}">
+                        <input type="text" id="orig51" onchange="changeTest(this.form)" class="form-control" name="color" value="{{$iteminfo->color}}">
                     </div>
                     <div class="col-xs-2" align="right">
-                        Color:
+                        Size/<br>Dimension
                     </div>
                     <div class="col-xs-5">
-                        <input type="text" id="orig51" onchange="changeTest(this.form)" class="form-control" name="color" value="{{$iteminfo->color}}">
+                        <input type="text" id="orig61" onchange="changeTest(this.form)" class="form-control" name="size_dim" value="{{$iteminfo->size_dim}}">
                     </div>
                 </td>
             </tr>
             <tr>
-                <td>Size/<br>Dimension:</td>
+                <td>Gauge/<br>Thickness</td>
                 <td>
-                    <div class="col-xs-5">
-                        <input type="text" id="orig61" onchange="changeTest(this.form)" class="form-control" name="size_dim" value="{{$iteminfo->size_dim}}">
-                    </div>
-                    <div class="col-xs-2" align="right">
-                        Gauge/<br>Thickness:
-                    </div>
                     <div class="col-xs-5">
                         <input type="text" id="orig71" onchange="changeTest(this.form)" class="form-control" name="gauge_thick" value="{{$iteminfo->gauge_thick}}">
                     </div>
@@ -129,7 +124,7 @@
             </tr>
             <tr>
                 <td>
-                    Description:
+                    Description
                 </td>
                 <td>
                     <div class="col-xs-12">
@@ -137,16 +132,14 @@
                     </div>
                 </td>
             </tr>
-
             <tr>
                 <td>
-                    <h4><b>Product Category</b></h4>
+                    <h5><b>Product Category</b></h5>
                 </td>
-                <td><hr></td>
             </tr>
             <tr>
                 <td>
-                    Category:
+                    Category
                 </td>
                 <td>
                     <div class="col-xs-8">
@@ -161,7 +154,7 @@
             </tr>
             <tr>
                 <td>
-                    Sub-Category:
+                    Sub-Category
                 </td>
                 <td>
                     <div class="col-xs-8">
@@ -176,13 +169,12 @@
 
             <tr>
                 <td>
-                    <h4><b>Units of Measure</b></h4>
+                    <h5><b>Units of Measure</b></h5>
                 </td>
-                <td><hr></td>
             </tr>
             <tr>
                 <td>
-                    Base Unit:
+                    Base Unit
                 </td>
                 <td>
                     <div class="col-xs-8">
@@ -215,32 +207,31 @@
             </tr>
             <tr>
                 <td>
-                    <h4><b>Inventory Details</b></h4>
+                    <h5><b>Inventory Details</b></h5>
                 </td>
-                <td><hr></td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                   <div class="col-xs-8">
-                                Inventory Types 
-                                    <select class="form-control" name="inventory_types">
-                                        <option value="">--Select One--</option>
-                                        
-                                        <option value="None Inventoriable">Non-Inventoriable</option>
-                                        <option value="Inventoriable">Inventoriable</option>
-                                        <option value="Serialized and Inventoriable">Serialized</option>
-                                    </select>
-                                </div>
-                <br>
-                    <div class="col-xs-6">
-                        Re-Order Level <input type="text" name="reoderlevel" placeholder="Re-Order Level" class="form-control">
+                    <div class="col-xs-7">
+                        Inventory Types 
+                            <select class="form-control" name="inventory_types_id">
+                                @foreach ($inventory_types as $InvTypes)
+                                <option <?php if ($iteminfo->inventory_types_id == $InvTypes->id): ?> selected="selected"<?php endif; ?> value="{{$InvTypes->id}}">{{ $InvTypes->inventory_type }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <div class="col-xs-5">
+                            Re-Order Level <input type="text" name="reoderlevel" placeholder="0.00" class="form-control">
                     </div>
                 </td>
             </tr>
-        </table><br>
-            <button class="btn btn-lg btn-primary btn-sm" type="submit" onclick="return updateconfirm()">Update Info</button>
-    </form>
+        </table>
+            <div class="modal-footer">
+                <button class="btn btn-lg btn-primary btn-sm" type="submit" onclick="return updateconfirm()">Update Info</button>
+            </div>
+            
+    </form></center>
 </div>
 
 @include('operations.modalfunctions.createitem')

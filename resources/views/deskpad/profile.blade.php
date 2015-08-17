@@ -154,7 +154,6 @@
                                 <option <?php if ($partnerinfo->business_entity == "Corporation"): ?> selected="selected"<?php endif; ?> value="Corporation">Corporation</option>
                             </select></b>
                         </div>
-                        <hr>
                         <div class="col-xs-3" id="inputTINdiv1">
                             TIN<b><input type="text" id="inputTIN" name="tin" class="form-control"  value="{{$partnerinfo->tin}}" placeholder="TIN"  autofocus=""></b>
                         </div>

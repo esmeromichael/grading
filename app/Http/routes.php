@@ -70,6 +70,7 @@ Route::post('operations/items', 'Operations\ItemController@createItem');
 
 Route::get('operations/items/{item_id}/priceadvice','Operations\ItemPriceController@itemPriceadvice');
 Route::get('operations/items/{item_id}/priceadvicedisplay/{id}','Operations\ItemPriceController@displayPriceAdvice');
+Route::post('operations/items/{item_id}/priceadvicedisplay/{id}','Operations\ItemPriceController@UpdateItemPriceAdvice');
 Route::get('operations/items/{item_id}/purchases','Operations\ItemPurchasesController@DisplayItemPurchases');
 Route::get('operations/items/{item_id}/suppliers','Operations\ItemSupplierController@showSuppliers');
 Route::get('operations/items/{item_id}/movements','Operations\ItemMovementsController@showMovements');
@@ -92,4 +93,7 @@ Route::get('operations/purchase', 'Operations\PurchaseRequestController@getItems
 Route::get('operations/', function () {
     return view('operations/index');
 });
+
+Route::get('operations/purchase/adviser', 'Operations\AdviserController@displayAdviser');
+Route::get('operations/purchase/order', 'Operations\OrderController@displayOrder');
 

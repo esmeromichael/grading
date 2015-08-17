@@ -6,6 +6,7 @@ use App\Item;
 use App\Uom;
 use App\ItemCategory;
 use App\ItemSubCategory;
+use App\InventoryType;
 use DB;
 use Input;
 use App\BulkUnit;
@@ -30,8 +31,10 @@ public function displayItems(){
 
 	    $data = ['categories' => $jsonified];
 	    $uoms = Uom::all();
+	    $inventory_types = InventoryType::all();
 
-	    return view('operations/show',$data, compact('itemlist','displaycategory','displaysubcategory','catt','uoms'));
+	    return view('operations/show',$data, compact('inventory_types','itemlist','displaycategory','displaysubcategory','catt','uoms'));
+	    
 	}
 
 public function itemProfile($item_id) {
@@ -48,6 +51,7 @@ public function itemProfile($item_id) {
 
 	    $jsonified = json_encode($categories_pack);
 	    $data = ['categories' => $jsonified];
+	    $inventory_types = InventoryType::all();
 
 	    $bulkunits = BulkUnit::where('item_id', $item_id)
 			 	->where('type', 'base')->get();
@@ -93,7 +97,7 @@ public function createItem() {
 		  'code', 'sku', 'generic',
 		  'brand', 'make', 'model',
 		  'color', 'description',
-		  'category_id', 'uom_id'
+		  'category_id', 'uom_id','inventory_types_id'
 		]), [
 		  'size_dim' => Input::get('size_dimension'),
 		  'gauge_thick' => Input::get('gauge_thickness'),

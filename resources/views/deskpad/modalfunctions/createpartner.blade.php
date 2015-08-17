@@ -58,7 +58,7 @@
                             </td>
                             <td>
                                 <div class="col-xs-6">
-                                    <input type="text" id="inputPartnerName" name="name" class="form-control" required placeholder="***Partner Name"  autofocus="">
+                                    <input type="text" id="inputPartnerName" style="background-color: #faf2cc;"  name="name" class="form-control" required placeholder="***Partner Name"  autofocus="">
                                 </div>
                             </td>
                         </tr>

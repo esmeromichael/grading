@@ -58,7 +58,7 @@
                                 </td>
                                 <td>
                                     <div class="col-xs-12">
-                                        <input type="text" id="inputBranchname" name="name" class="form-control" placeholder="Branch Name" required autofocus="">
+                                        <input type="text" id="inputBranchname" style="background-color: #faf2cc;"  name="name" class="form-control" placeholder="Branch Name" required autofocus="">
                                     </div>
                                 </td>
                             </tr>
