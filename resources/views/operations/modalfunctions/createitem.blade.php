@@ -136,7 +136,7 @@
                             </td>
                             <td>
                                 <div class="col-xs-8">
-                                    <select class="cat form-control" name="category_id">
+                                    <select class="cat form-control" name="category_id" required>
                                         <option>--Category--</option>
                                         @foreach ($catt as $category)
                                         <option value="{{$category->id}}">{{ $category->name }}</option>

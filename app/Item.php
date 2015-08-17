@@ -19,4 +19,10 @@ class Item extends Model {
 	public function uom() {
 		return $this->belongsTo('App\Uom');
 	}
+
+	public function bulkunits() {
+		return $this->belongsTo('App\BulkUnit');
+	}
+
+
 }

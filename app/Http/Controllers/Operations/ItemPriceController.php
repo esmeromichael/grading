@@ -45,7 +45,7 @@ public function itemPriceadvice($item_id) {
     $data = ['categories' => $jsonified];
 
     $uoms = DB::table('uoms')
-            ->where('id', $iteminfo->uom)
+            ->where('id', $iteminfo->uom_id)
             ->first();
 
     return view('operations/priceadvice',$data,compact('uoms','catt','iteminfo','subcategories','itemcatsub','priceadvice'));
