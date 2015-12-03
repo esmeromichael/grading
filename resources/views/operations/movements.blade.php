@@ -36,37 +36,31 @@
 
    <h5>This is the movements tab</h5>
 
-            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Document</th>
-                                        <th>Date</th>
-                                        <th>Partner</th>
-                                        <th>Moved by</th>
-                                        <th>Location</th>
-                                        <th>Quantity</th>
-                                        <th>Unit</th>
-                                        
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-
-                                   @foreach ($movements as $movements)
-                                     <tr>
-                                         <td>{{ $movements->type }}-{{ $movements->doc_no }}</td>
-                                         <td>{{ $movements->doc_date }}</td>
-                                         <td># </td>
-                                         <td>#</td>
-                                         <td>#</td>
-                                         <td>{{ $movements->quantity }}</td>
-                                         <td>{{ $movements->unit }}</td>
-                                         
-                                      </tr>
-                                    @endforeach
-
-
-                                    
-                                </tbody>
-            </table>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Document</th>
+                <th>Date</th>
+                <th>Partner</th>
+                <th>Moved by</th>
+                <th>Location</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+           @foreach ($movements as $movements)
+             <tr>
+                 <td>{{ $movements->type }}-{{ $movements->doc_no }}</td>
+                 <td>{{ $movements->doc_date }}</td>
+                 <td># </td>
+                 <td>#</td>
+                 <td>#</td>
+                 <td>{{ $movements->quantity }}</td>
+                 <td>{{ $movements->unit }}</td>                
+              </tr>
+            @endforeach           
+        </tbody>
+    </table>
 @endsection

@@ -16,15 +16,15 @@
         <ul id="text_nav_h" class="clearfix j_menu top_text_nav jMenu">
         </ul>
     </div>
-    <div class="container"> 
+    <div class="container">
             <ul id="text_nav_h" class="clearfix j_menu top_text_nav jMenu">
             <li><a href="/deskpad/partners/{{ $partnerid->id }}/profile">Profile</a></li>
             <li><a href="/deskpad/partners/{{ $partnerid->id }}/branches">Branches</a></li>
             <li class="active"><a href="/deskpad/partners/{{ $partnerid->id }}/contacts">Contacts</a></li>
-        </ul>          
+        </ul>
     </div>
-    <div class="container"> 
-        <h5>[{{$partnerid->id}}] - {{$partnerid->name}}</h5> 
+    <div class="container">
+        <h5>[{{$partnerid->id}}] - {{$partnerid->name}}</h5>
     </div>
 </nav>
 @if(Session::has('message'))
@@ -51,7 +51,7 @@
                     <td> <a href="/deskpad/partners/{{$partnerid->id}}/contacts/{{$contact->id}}">{{ $index++ }}</a></td>
                     <td>{{ $contact->first_name}} {{ $contact->middle_name }} {{$contact->last_name}}</td>
                     <td>{{ $contact->home}} {{ $contact->street }} {{ $contact->barangay}} {{ $contact->city }} {{$contact->province}} {{$contact->country}}</td>
-                    <td>{{ $contact->tel_areacode}} {{$contact->tel_lineno }}</td>                  
+                    <td>{{ $contact->tel_areacode}} {{$contact->tel_lineno }}</td>
                 </tr>
             @endforeach
         </tbody>

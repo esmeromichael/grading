@@ -4,11 +4,12 @@
         <title>MTO ERP</title>
 
         <link rel="stylesheet" href="/css/app.css">
-
-        <link href='http://fonts.googleapis.com/css?family=Roboto:300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-
+        <link href="{{ asset('/additional/css/fontfamily.css') }}" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link href="{{ asset('/additional/css/select2.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('/additional/css/simplepagination.css') }}" rel="stylesheet" />
+        <link href="{{ asset('/additional/css/jquery-ui.css') }}" rel="stylesheet" />
+        <link href="{{ asset('/additional/css/additional.css') }}" rel="stylesheet" />
         <!--Time-->
     <script language="javascript">
     function startTime() {
@@ -31,15 +32,19 @@
     </head>
 
     <body class="@yield('body_class')" onload="startTime()">
-        @yield('body')
+    <script src="{{ asset('/additional/js/jquery.min.js') }}"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
+    <script src="/js/all.js"></script>
+    <script src="{{ asset('/additional/js/jquery-1.11.3.min.js') }}"></script>
+    <script src="{{ asset('/additional/js/select2.min.js') }}"></script>
+    <script src="{{ asset('/additional/js/simplePagination.js') }}"></script>
+    <script src="{{ asset('/additional/js/jquery-ui.js') }}"></script>
+    @yield('body')
     <!--Date-->
     <script language="javascript">
     var today = new Date();
     document.getElementById('date').innerHTML=today.toDateString();
     </script>
-
-        <script src="/js/all.js"></script>
-
     </body>
 </html>

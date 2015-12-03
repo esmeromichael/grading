@@ -7,18 +7,19 @@
 @section('body')
     <div id="wrapper_all">
         <nav id="side_fixed_nav">
-            <ul id="text_nav_side_fixed">
+           <ul id="text_nav_side_fixed">
                <li>
-                    <a href="/deskpad" title="Deskpad"><span class="fa fa-group fa-3x"></span> Deskpad</a>
+                    <a class="dropdown-toggle" href="#" data-toggle="modal" data-target="#myModalSubject"><span class="fa fa-group fa-3x"></span> Deskpad</a>
+
                 </li>
                 <li>
-                    <a href="/operations" title="Operations"><span class="fa fa-cog fa-3x"></span> Operations</a>
+                    <a class="dropdown-toggle" href="#" data-toggle="modal" data-target="#myModalsubsubject"><span class="fa fa-cog fa-3x"></span> Operations</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" title="Accounting"><span class="fa fa-bar-chart fa-3x"></span> Accounting</a>
+                    <a class="dropdown-toggle" href="#" data-toggle="modal" data-target="#myModalSetSubject"><span class="fa fa-bar-chart fa-3x"></span> Accounting</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" title="HR"><span class="fa fa-desktop fa-3x"></span> HR</a>
+                    <a class="dropdown-toggle" href="#" data-toggle="modal" data-target="#myModal1"><span class="fa fa-desktop fa-3x"></span> HR</a>
                 </li>
             </ul>
         </nav>
@@ -39,7 +40,7 @@
                            &nbsp;&nbsp;&nbsp;
                            <a class="dropdown-toggle" href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-search"></i></a>
                            &nbsp;&nbsp;&nbsp;
-                           <a class="dropdown-toggle" href="#" class="user_info dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"> <span class="fa fa-caret-down"></span></i></a> 
+                           <a class="dropdown-toggle" href="#" class="user_info dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"> <span class="fa fa-caret-down"></span></i></a>
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-user fa-fw"></i>Change Your Account</a>
                             </li>
@@ -58,4 +59,9 @@
             @yield('content')
         </section>
     </div>
+
+@include('deskpad.modalfunctions.createpartner')
+@include('deskpad.modalfunctions.createcontact')
+@include('deskpad.modalfunctions.createSetSubject')
+@include('deskpad.modalfunctions.createbranch')
 @endsection

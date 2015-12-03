@@ -12,6 +12,10 @@ use Input;
 use App\BulkUnit;
 use Redirect;
 use Request;
+use App\PurchaseDetails;
+use App\SalesOrder;
+use App\BulkPackaging;
+
 
 class ItemController extends Controller {
 
@@ -54,20 +58,23 @@ public function itemProfile($item_id) {
 	    $inventory_types = InventoryType::all();
 
 	    $bulkunits = BulkUnit::where('item_id', $item_id)
-			 	->where('type', 'base')->get();
+			 	->where('active', 'Active')->get();
 
-		$bulkunits2 = BulkUnit::where('item_id', $item_id)
-			 	->where('type', 'bulk')->get();
+		$bulkunits2 = BulkPackaging::where('item_id', $item_id)
+			 	->where('active', 'Active')->get();
 
 		$dropdownbulkunit = BulkUnit::where('item_id', $item_id)
-			 	->where('type', 'base')->get();
+			 	->where('type', 'base')
+			 	->where('active', 'Active')->get();
+
 		$bulkid = BulkUnit::where('item_id', $item_id)
 			 	->where('type', 'base')->first();
+		$id2 = Request::input('id');
+		$id = $iteminfo->id; 
 
-		 $id = Request::input('id');
- 		$updatebulkunits = BulkUnit::where('id', $id)->first();
-
-	    return View('operations/profile',$data, compact('catt','iteminfo','uoms','subcategories','itemcatsub','bulkunits','bulkunits2','dropdownbulkunit','updatebulkunits','bulkid'));
+		$trapPurchaseOrder = count(PurchaseDetails::where('item_id', $id)->get());
+		$trapSalesOrder = count(SalesOrder::where('item_id', $id)->get());
+	   return View('operations/profile',$data, compact('inventory_types','catt','iteminfo','uoms','subcategories','itemcatsub','bulkunits','bulkunits2','dropdownbulkunit','updatebulkunits','bulkid','trapPurchaseOrder','trapSalesOrder','getbasename'));
 	}
 
 
@@ -84,7 +91,11 @@ public function UpdateItems($item_id) {
         $item->subcategory_id = $subname->id;
 		$item->save();
 
+		$id = Request::input('id');
+ 		$updatebulkunits = BulkUnit::where('id', $item_id)->get();
+ 		
 		return redirect()->action('Operations\ItemController@displayItems')->with('message', 'Item Successfully Updated.');
+
 	}
 
 public function createItem() {
@@ -102,46 +113,84 @@ public function createItem() {
 		  'size_dim' => Input::get('size_dimension'),
 		  'gauge_thick' => Input::get('gauge_thickness'),
 		  'reorder_lvl' => Input::get('reoderlevel'),
-		  'subcategory_id' => $subname->id
+		  'subcategory_id' => $subname->id,
+		  'inventory_types_id' => Input::get('inventory_types')
 		]);
 		$item->fill($item_params);
-
-		$item->serialized = (Input::get('serialized') === 'Y' ? 'Y' : 'N');
-		$item->inventoriable = (Input::get('inventoriable') === 'Y' ? 'Y' : 'N');
 		$item->save();
 
 		return redirect()->action('Operations\ItemController@displayItems')->with('message', 'Item Successfully Added.');
 	}
 
 	public function createBulkUOM($item_id) {
-		$iteminfo = Item::whereId($item_id)->first();
-		$item = new BulkUnit;
-		$itemid = Input::get('item_id');
-		$input = Input::except('_token');
-        $item->fill($input);
-		$item->save();
-	
-		 return redirect()->action('Operations\ItemController@itemProfile',$itemid)->with('message','success');
 
+		$iteminfo = Item::whereId($item_id)->first();
+		$itemid = Input::get('item_id');
+			$bulkUom = new BulkUnit;			
+			$input = Input::except('_token');
+			$bulkUom->fill($input);
+			$bulkUom->active  = (Input::get('active')=='Active' ? 'Active' : 'Inactive');
+			$bulkUom->save();
+
+			return redirect()->action('Operations\ItemController@itemProfile',$itemid)->with('message','Bulk Unit added');
+		
 	}
 
 	public function createBulkPackaging() {
-
-		$item = new BulkUnit;
-
 		$itemid = Input::get('item_id');
+		$bulkpackaging = new BulkPackaging;
 		$input = Input::except('_token');
-        $item->fill($input);
-		$item->save();
+        $bulkpackaging->fill($input);
+        $bulkpackaging->active  = (Input::get('active')=='Active' ? 'Active' : 'Inactive');
+		$bulkpackaging->save();
 
-		redirect()->action('Operations\ItemController@itemProfile',$itemid);
+		return redirect()->action('Operations\ItemController@itemProfile',$itemid)->with('message','Bulk Packaging added');
 	}
 
-public function updatebulkUnit($id){
+public function updatebulkUnit($item_id){
 
-		$updatebulkunits = BulkUnit::where('id', $id)
-		->where('type', 'base')->first();
+		$id = Request::input('id');
+		$bulkunitid = BulkUnit::where('id', $id)->first();
+		$iteminfo = Item::where('id',$bulkunitid->item_id)->first();
+		$trapPurchaseOrder = count(PurchaseDetails::where('item_id', $iteminfo->id)->get());
+		$trapSalesOrder = count(SalesOrder::where('item_id',$iteminfo->id)->get());
 
-	}
+			if($trapPurchaseOrder > 0 || $trapSalesOrder > 0)
+			{
+
+				return redirect()->action('Operations\ItemController@itemProfile',$item_id)->with('message','cannot be update');
+			}
+			else
+			{
+				$updateBase = BulkUnit::where('id', $id)->first();		
+				$input = Input::except('_token');
+				$updateBase->fill($input);
+				$updateBase->save();
+
+	  		return redirect()->action('Operations\ItemController@itemProfile',$item_id)->with('message','Bulk unit updated');
+			}
+}
+
+ 	public function updatebulkPackaging($item_id){
+ 		$iteminfo = Item::whereId($item_id)->first();
+		$id = Request::input('id');
+		$bulkid = BulkPackaging::where('id', $id)->first();
+		$getBaseUnitid = count(BulkUnit::where('id', $bulkid->uom_id)->get());
+			if($getBaseUnitid > 0)
+			{
+				return redirect()->action('Operations\ItemController@itemProfile',$item_id)->with('message','cannot be update');
+			}
+			else
+			{
+			$updateBulk = BulkPackaging::where('id', $id)->first();		
+			$input = Input::except('_token');
+			$updateBulk->fill($input);
+			$updateBulk->save();
+
+	  		return redirect()->action('Operations\ItemController@itemProfile',$item_id)->with('message','Bulk Packaging  updated');
+			}
+			
+ 	}
+		
 }
 

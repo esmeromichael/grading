@@ -25,7 +25,7 @@ class Item extends Model {
 		'uom_id'   => 'required'
 	);
 
-	public function bulkunits() {
+	public function basebulk() {
 		return $this->belongsTo('App\BulkUnit');
 	}
 }

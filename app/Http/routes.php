@@ -12,88 +12,36 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('deskpad/baselogin');
 });
 
-Route::get('deskpad/', function () {
-    return view('deskpad/index');
-});
+
+Route::group(['prefix' => 'deskpad', 'namespace' => 'Deskpad'], function(){
 
 /*for partner*/
-Route::post('deskpad/partners', 'Deskpad\PartnerController@createPartner');
-Route::get('deskpad/partners/{id}/profile','Deskpad\PartnerController@showprofile');
-Route::get('deskpad/partners', 'Deskpad\PartnerController@partners');
-Route::post('deskpad/partners/{id}/profile', 'Deskpad\PartnerController@UpdatePartner');
-/*end */
-
-/*for branch*/
-Route::get('deskpad/partners/{id}/branches','Deskpad\BranchController@showbranch');
-Route::post('deskpad/partners/{id}/branches', 'Deskpad\BranchController@createBranch');
-Route::get('deskpad/partners/{id}/branches/{branchid}','Deskpad\BranchController@ShowBranchProfile');
-Route::post('deskpad/partners/{id}/branches/{branchid}','Deskpad\BranchController@UpdateBranchPartner');
-/*end */
-
-/*for contacts*/
-Route::get('deskpad/partners/{partnerid}/contacts/{contactid}','Deskpad\ContactController@ShowUpdateContacts');
-Route::get('deskpad/partners/{id}/contacts','Deskpad\ContactController@showcontact');
-Route::post('deskpad/partners/{partnerid}/contacts/{contactid}', 'Deskpad\ContactController@UpdateContact');
-Route::post('deskpad/partners/{id}/contacts', 'Deskpad\ContactController@createContact');
-/*end */
+Route::get('baselogin', 'PartnerController@login');
+Route::post('baselogin', 'PartnerController@login');
+Route::get('partners', 'PartnerController@partners');
+Route::post('partners', 'PartnerController@AddSubject');
+Route::post('partners', 'PartnerController@AddSubSuject');
+Route::post('partners', 'PartnerController@AddSetSuject');
+Route::post('partners', 'PartnerController@CreateStudent');
+Route::get('studentprofile={id}', 'PartnerController@StudentProfile');
 
 
-Route::get('register', function () {
-    return view('account.register');
+Route::get('grade', 'PartnerController@AddGrade');
+Route::get('dev/api/subject','PartnerController@getSubject');
+Route::get('subject','PartnerController@addSubject');
+Route::get('dev/api/getsubject','PartnerController@getSubSubject');
+Route::post('grade', 'PartnerController@SaveScore');
 });
-Route::post('register','RegisterController@insert');
+Route::get('dev/api/allsubjects','Search\SearchDataController@getSubject');
+
+Route::get('dev/api/subsubject','Search\SearchDataController@getExamType');
+Route::get('dev/api/allstudents','Search\SearchDataController@getAllStudents');
 
 
-/*----------------------------SEARCH PARTNER------------------------------------------------*/ 
-Route::post('deskpad/partners/search','DeskpadController@search');
-/*---------------------------/SEARCH PARTNER------------------------------------------------*/
-
-/*----------------------------SEARCH BRANCH------------------------------------------------*/ 
-Route::post('deskpad/partners/{id}/searchbranch','DeskpadController@searchbranch');
-/*---------------------------/SEARCH BRANCH------------------------------------------------*/
-
-
-
-
-/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
-/*for items*/
-Route::get('operations/items', 'Operations\ItemController@displayItems');
-Route::get('operations/items/{item_id}/profile','Operations\ItemController@itemProfile');
-Route::post('operations/items/{item_id}/profile', 'Operations\ItemController@UpdateItems');
-Route::post('operations/items', 'Operations\ItemController@createItem');
-/*end */
-
-
-Route::get('operations/items/{item_id}/priceadvice','Operations\ItemPriceController@itemPriceadvice');
-Route::get('operations/items/{item_id}/priceadvicedisplay/{id}','Operations\ItemPriceController@displayPriceAdvice');
-Route::post('operations/items/{item_id}/priceadvicedisplay/{id}','Operations\ItemPriceController@UpdateItemPriceAdvice');
-Route::get('operations/items/{item_id}/purchases','Operations\ItemPurchasesController@DisplayItemPurchases');
-Route::get('operations/items/{item_id}/suppliers','Operations\ItemSupplierController@showSuppliers');
-Route::get('operations/items/{item_id}/movements','Operations\ItemMovementsController@showMovements');
-Route::post('operations/items/{item_id}/priceadvice', 'Operations\ItemPriceController@createitemPriceadvice');
-
-
-Route::post('operations/items/{item_id}/displaybulkunits', 'Operations\ItemController@createBulkUOM');
-Route::post('operations/items/{item_id}/displaybulkpackaging', 'Operations\ItemController@createBulkPackaging');
-
- //Route::get('operations/items/{item_id}/profile/{id}/modalfunctions/updatebulkunit', 'Operations\ItemController@itemProfile');
-
-
-
-/*end comment---------------------------------------------------------*/
-
-
-Route::get('operations/purchase', 'Operations\PurchaseRequestController@getItems');
-
-
-Route::get('operations/', function () {
-    return view('operations/index');
-});
-
-Route::get('operations/purchase/adviser', 'Operations\AdviserController@displayAdviser');
-Route::get('operations/purchase/order', 'Operations\OrderController@displayOrder');
-
+// Route::post('grade', 'PartnerController@AddSubject');
+// Route::post('grade', 'PartnerController@AddSubSuject');
+// // Route::post('grade', 'PartnerController@AddSetSuject');
+// Route::post('partners', 'PartnerController@CreateStudent');

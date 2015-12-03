@@ -37,7 +37,7 @@
                 <h4><b>Create New Item</b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-signin" name="createcontactform" method="POST" action="{{action('Operations\ItemController@displayItems')}}" onsubmit="return create()">
+                <form class="form-signin" name="createcontactform" method="POST" action="{{action('Operations\ItemController@createItem')}}" onsubmit="return create()">
                     <table>
                         <tr>
                             <td>Item ID</td>
@@ -188,7 +188,7 @@
                             <td>
                                 <div class="col-xs-8">
                                 Inventory Types 
-                                    <select class="form-control" name="inventory_types">
+                                    <select class="form-control" name="inventory_types_id">
                                         <option value="">--Select One--</option>
                                         @foreach ($inventory_types as $InvTypes)
                                         <option value="{{$InvTypes->id}}">{{ $InvTypes->inventory_type }}</option>

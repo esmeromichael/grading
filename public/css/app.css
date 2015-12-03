@@ -722,7 +722,8 @@ pre code {
 .col-xs-12,
 .col-sm-12,
 .col-md-12,
-.col-lg-12 {
+.col-lg-12
+ {
   position: relative;
   min-height: 1px;
   padding-right: 15px;
@@ -743,7 +744,6 @@ pre code {
 
 .col-xs-12 {
   width: 100%; }
-
 .col-xs-11 {
   width: 91.66666666666666%; }
 
@@ -4813,6 +4813,7 @@ button.close {
 }
 .modal-header .close {
   margin-top: -2px;
+
 }
 .modal-title {
   margin: 0;
@@ -5712,7 +5713,7 @@ table {
   margin-bottom: 18px; }
 
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-  line-height: 1.4;
+  line-height: .50;
   border-top: 1px solid #ddd; }
 
 .table > thead > tr > th {
@@ -10314,7 +10315,7 @@ body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom
   border-color: rgba(0, 0, 0, 0.2); }
 
 .modal-header {
-  background: #f2f2f2;
+  background: #F0F0F0;
   border-color: rgba(0, 0, 0, 0.12);
   padding: 10px 15px; }
 
@@ -10586,9 +10587,9 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 
 /* top header */
 #top_header {
-  background: #f2f2f2;
+  background: #336699;
   border-bottom: 1px solid #e1e1e1;
-  height: 61px;
+  height: 85px;
   padding: 10px 0; }
 
 /* main logo */
@@ -13827,3 +13828,25 @@ body.side_fixed_open #text_nav_side_fixed .parent_active > a {
     margin-top: -2px; }
 
 /*# sourceMappingURL=app.css.map */
+
+.display {
+  display:block;
+}
+
+.modal-saveIcon {
+  margin-left: 532px;
+  margin-right: 10px;
+  margin-top: 6px;
+}
+
+.col-me-1 {
+ position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  float: left;
+  width:80%;
+  margin-left: -50px;
+  margin-right: 5px;
+}
+

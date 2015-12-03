@@ -1,6 +1,7 @@
 @extends('layouts.main2')
 
 @section('content')
+
 <nav id="top_navigation" class="text_nav">
     <div class="container">
         <ul id="text_nav_h" class="clearfix j_menu top_text_nav jMenu">
@@ -29,18 +30,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <div class="container"> 
-@if(Session::has('message'))
-<div class="alert alert-success"> 
-{{Session::get('message')}} 
-</div>
-<script type="text/javascript">
-      $('#myBulkModal').modal('show');
-    </script>
-@endif
+
     <h5><b>[{{$iteminfo->id}}] - {{$iteminfo->description}}</b></h5> 
 </div>
 <div class="container">
-    <center><form class="form-signin" name="loginform" method="POST" action="{{ action('Operations\ItemController@UpdateItems',[$iteminfo->id])}}" onsubmit="return update()">
+    <form class="form-signin" name="loginform" method="POST" action="{{ action('Operations\ItemController@UpdateItems',[$iteminfo->id])}}" onsubmit="return update()">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <table>
             <tr>
@@ -171,40 +165,45 @@
                 <td>
                     <h5><b>Units of Measure</b></h5>
                 </td>
-            </tr>
-            <tr>
                 <td>
-                    Base Unit
+                     @if(Session::has('message'))
+                    <div class="alert alert-success"> 
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{Session::get('message')}} 
+                    </div>
+                    @endif
                 </td>
+            </tr>
+
+            <tr>
+                <td>Base Unit</td>
                 <td>
-                    <div class="col-xs-8">
-                        <select class="form-control" name="uom_id">
+                    <div class="col-xs-4">                      
+                    <input type="hidden" id="PurchaseOrder" value="{{$trapPurchaseOrder}}">
+                    <input type="hidden" id="SalesOrder" value="{{$trapSalesOrder}}">                 
+                         <select class="form-control" id="uom_id" name="uom_id" onclick="return trapTransactions()" >
                             @foreach($uoms as $uom)
                             <option value="{{$uom->id}}">{{$uom->name}}</option>
                             @endforeach
-                        </select>
+                        </select>                     
+                    </div>                  
+                    <div class="col-xs-4 checkbox-inline">
+                        <a id="myBtn1"> <label class="checkbox-inline">Bulk Unit:</label> </a>                       
+                        @foreach($bulkunits as $baseunit)                       
+                        <span class="display">{{$baseunit->name}} = {{$baseunit->qty}} </span>
+
+                        @endforeach
                     </div>
 
-                   
-                    <div class="checkbox-inline">
-
-                        <a class="dropdown-toggle" href="#"  data-toggle="modal" data-target="#myBulkModal"> <label class="checkbox-inline">Bulk Unit:</label> </a>
-                        
-                        @foreach($bulkunits as $baseunit)
-                        <span display="inline">
-                        <span>{{$baseunit->name}}</span>
-                        @endforeach
-                         
-                      
-                        <a class="dropdown-toggle" href="#" data-toggle="modal" data-target="#myBulkPackagingModal"> <label class="checkbox-inline">Bulk Packaging Unit:</label> </a>
+                    <div class="col-xs-4"> 
+                        <a class="dropdown-toggle" id="myBtn4"> <label class="checkbox-inline">Bulk Packaging Unit:</label> </a>
                         @foreach($bulkunits2 as $bulkpackaging)
-                        <span class="checkbox-inline">{{$bulkpackaging->name}}</span>
+                        <span class="display">{{$bulkpackaging->name}} = {{$bulkpackaging->qty}}</span>
                         @endforeach
                     </div>
-
-                </td>
-                
+                </td>                
             </tr>
+
             <tr>
                 <td>
                     <h5><b>Inventory Details</b></h5>
@@ -213,14 +212,18 @@
             <tr>
                 <td></td>
                 <td>
+
                     <div class="col-xs-7">
-                        Inventory Types 
+                        Inventory Type 
                             <select class="form-control" name="inventory_types_id">
+
                                 @foreach ($inventory_types as $InvTypes)
                                 <option <?php if ($iteminfo->inventory_types_id == $InvTypes->id): ?> selected="selected"<?php endif; ?> value="{{$InvTypes->id}}">{{ $InvTypes->inventory_type }}</option>
                                 @endforeach
+
                             </select>
                     </div>
+
                     <div class="col-xs-5">
                             Re-Order Level <input type="text" name="reoderlevel" placeholder="0.00" class="form-control">
                     </div>
@@ -231,14 +234,17 @@
                 <button class="btn btn-lg btn-primary btn-sm" type="submit" onclick="return updateconfirm()">Update Info</button>
             </div>
             
-    </form></center>
+    </form>
 </div>
+
 
 @include('operations.modalfunctions.createitem')
 @include('operations.modalfunctions.displaybulkunit')
-@include('operations.modalfunctions.savebulkunit')
 @include('operations.modalfunctions.displaybulkpackaging')
+@include('operations.modalfunctions.updatebulkunit')
+
 
 @endsection
+
 
 

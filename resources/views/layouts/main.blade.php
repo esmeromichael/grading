@@ -41,9 +41,12 @@
                                 <li><a href="#">Log Out</a></li>
                             </ul>
                         </div>
+
+
                     </div>
                 </div>
             </div>
+            
         </header>
 
         <nav id="mobile_navigation"></nav>
